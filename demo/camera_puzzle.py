@@ -25,7 +25,7 @@ from functools import partial
 class Puzzle(Camera):
 
     blocksize = NumericProperty(100)
-
+#bla bla
     def on_texture_size(self, instance, value):
         self.build()
 
