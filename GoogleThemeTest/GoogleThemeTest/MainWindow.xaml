@@ -1,0 +1,104 @@
+﻿<Window x:Class="GoogleThemeTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GoogleThemeTest"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <!-- 
+             Window Splitting
+             The window will be split to a 3 x 3 grid 
+             Hamburger expanding menu will be on the left
+             ONLY the middle part ( Grid.Row="1" and Grid.Column="1" will be used for content
+        -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <!--Left Menu - Hamburger -->
+        <smtx:XamlDisplay Key="drawers_1" MaxHeight="{x:Static system:Double.MaxValue}" HorizontalContentAlignment="Stretch" VerticalAlignment="Top"  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" >
+            <materialDesign:DrawerHost HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <materialDesign:DrawerHost.LeftDrawerContent>
+                    <StackPanel VerticalAlignment="Stretch">
+                        <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                         Width="48" Height="48" HorizontalAlignment="Left">
+                            <materialDesign:PackIcon Kind="Menu" />
+                        </Button>
+                        <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                                HorizontalAlignment="Left"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                            CLOSE THIS
+                        </Button>
+                        <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                HorizontalAlignment="Left"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                            CLOSE ALL
+                        </Button>
+                    </StackPanel>
+                </materialDesign:DrawerHost.LeftDrawerContent>
+                <!--Left Menu Controller-->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                    <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                         Width="48" Height="48">
+                        <materialDesign:PackIcon Kind="Menu" />
+                    </Button>
+                </StackPanel>
+                 <!--End Of Left Menu Controller-->
+            </materialDesign:DrawerHost>
+        </smtx:XamlDisplay>
+        <!--End Of Left Menu-->
+
+
+        <!--Content Window-->
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <materialDesign:Card Padding="32" Margin="16" Grid.Column="0" Grid.Row="0">
+                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Tender System Analysis</TextBlock>
+            </materialDesign:Card>
+            <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">User</Button>
+        </Grid>
+    </Grid>
+</Window>
