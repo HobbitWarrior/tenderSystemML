@@ -12,12 +12,23 @@ namespace materialDesignTesting
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private object currentViewModel;
+  
 
         public object CurrentViewModel
         {
             get { return currentViewModel; }
             set { currentViewModel = value; RaisePropertyChanged(); }
         }
+
+
+        private String hideMenus = "Visible";
+
+        public String HideMenus
+        {
+            get { return hideMenus; }
+            set { hideMenus = value; RaisePropertyChanged(); }
+        }
+
         private RelayCommand<Type> navigateCommand;
         public RelayCommand<Type> NavigateCommand
         {

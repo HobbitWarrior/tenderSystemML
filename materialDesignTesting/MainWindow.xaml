@@ -133,7 +133,7 @@
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Margin="5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="Login Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
+                            <Button Visibility="{Binding HideMenus}" Margin="5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="Login Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
 
                             <Button Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="User Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserViewModel}"/>
                             <Button Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">

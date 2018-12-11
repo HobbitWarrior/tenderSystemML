@@ -8,13 +8,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type local:MainMenuViewModel}">
-            <local:MainMenuView/>
-        </DataTemplate>
+ 
     </UserControl.Resources>
     <Grid Background="Indigo" MinHeight="450" MinWidth="800">
         <StackPanel Orientation="Horizontal">
-            <Button Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:MainWindowViewModel}">
+            <Button Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" >
                 <materialDesign:PackIcon Kind="ArrowBack" Height="24" Width="24" />
             </Button>
         </StackPanel>
