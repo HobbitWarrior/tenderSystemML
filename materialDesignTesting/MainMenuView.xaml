@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="materialDesignTesting.MainMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:materialDesignTesting"
+        Height="800" Width="1100"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}" >
+    
+    <UserControl.CommandBindings>
+        <CommandBinding Command="Copy" Executed="OnCopy"></CommandBinding>
+    </UserControl.CommandBindings>
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Amber.Accent.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type local:LoginViewModel}">
+                <local:LoginUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:UserViewModel}">
+                <local:UserUS/>
+            </DataTemplate>
+
+            <!-- data template used for the dialogs example, defines a View for a ViewModel of type DateTime  -->
+            <DataTemplate DataType="{x:Type system:DateTime}">
+                <StackPanel Margin="16">
+                    <TextBlock>England win the World Cup:</TextBlock>
+                    <TextBlock Margin="0 8 0 0" Text="{Binding }" />
+                    <TextBlock Margin="0 8 0 0" >You will never see that again.</TextBlock>
+                    <Button  Margin="0 8 0 0" IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">AWESOME</Button>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <local:MainWindowViewModel/>
+    </UserControl.DataContext>
+
+    <!-- Fit Content in a 3 x 7 Grid -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Margin="5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="Login Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
+
+        <Button Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="User Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserViewModel}"/>
+
+        <Button Margin="5" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">Opponent</Button>
+
+        <Button Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">User</Button>
+        <Button Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2">User</Button>
+
+        <Button Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3">Estimate Strategy</Button>
+    </Grid>
+    <!-- End of Content Grid -->
+
+
+
+
+</UserControl>
