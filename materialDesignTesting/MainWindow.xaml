@@ -37,7 +37,6 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
-
     <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
@@ -99,36 +98,29 @@
 
 
                             <ContentControl Visibility="{Binding ShowMenu}" Grid.Row="0">
-                                 <!--Fit Content in a 3 x 7 Grid--> 
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Button Margin="5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="User" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
-
-                                    <Button Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserLoadStrategyViewModel}"/>
-                                    <Button Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Set Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserManualStrategyViewModel}"/>
-
-                                    <Button Margin="5" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Content="Opponent" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
-
-                                    <Button Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
-                                    <Button Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
-
-                                    <Button Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Estimate Stratrgy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:EstimateStrategyViewModel}"/>
-                                </Grid>
+                                <materialDesign:Card  Background="{DynamicResource MaterialDesignBackground}">
+                                    <StackPanel>
+                                        <Expander HorizontalAlignment="Stretch" IsExpanded="True" Header="User's Game Settings:">
+                                            <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                                <Button Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserLoadStrategyViewModel}"/>
+                                                <Button Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Set Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserManualStrategyViewModel}"/>
+                                            </StackPanel>
+                                        </Expander>
+                                        <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                                        <Expander HorizontalAlignment="Stretch" IsExpanded="True" Header="Opponet's Game Settings:">
+                                            <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                                <Button Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
+                                                <Button Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
+                                            </StackPanel>
+                                        </Expander>
+                                        <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                                        <Expander HorizontalAlignment="Stretch" IsExpanded="True" Header="Estimate Strategy">
+                                            <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                                <Button Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Estimate Stratrgy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:EstimateStrategyViewModel}"/>
+                                            </StackPanel>
+                                        </Expander>
+                                    </StackPanel>
+                                </materialDesign:Card>
                             </ContentControl>
 
                             <ContentControl Visibility="{Binding ShowOView}" Content="{Binding CurrentViewModel}" Grid.Row="0"/>
