@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\App.xaml
-3-1491281378
+101879013247
 
-141417424270
+281141444488
 16-572126367
-MainWindow.xaml;LoginUC.xaml;UserUS.xaml;
+EstimateStrategyView.xaml;MainMenuWIndow.xaml;MainWindow.xaml;LoginUC.xaml;mvvmTemplates.xaml;OpponentLoadStrategyView.xaml;OpponentManualStrategyView.xaml;UserLoadStrategyView.xaml;UserManualStrategyView.xaml;UserUS.xaml;
 
 True
 

@@ -22,20 +22,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Amber.Accent.xaml" />
+                <ResourceDictionary Source="mvvmTemplates.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <DataTemplate DataType="{x:Type local:LoginViewModel}">
-                <local:LoginUC/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type local:UserViewModel}">
-                <local:UserUS/>
-            </DataTemplate>
-
-              
-            <!--<DataTemplate DataType="{x:Type local:UserViewModel}">
-                <local:UserUC/>
-            </DataTemplate>-->
-
-            <!-- data template used for the dialogs example, defines a View for a ViewModel of type DateTime  -->
             <DataTemplate DataType="{x:Type system:DateTime}">
                 <StackPanel Margin="16">
                     <TextBlock>England win the World Cup:</TextBlock>
@@ -61,12 +49,6 @@
                    <!--    Hamburger left menus :) -->
                     <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
                              PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
-                        <!--ItemsSource="{Binding DemoItems}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate DataType="domain:DemoItem">
-                                <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>-->
                         <ListBoxItem Content="Main"></ListBoxItem>
                         <ListBoxItem Content="Log In"></ListBoxItem>
                         <ListBoxItem Content="Sign Up"></ListBoxItem>
@@ -103,56 +85,56 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <!--<domain1:DocumentationLinks DataContext="{Binding ElementName=DemoItemsListBox, Path=SelectedItem}"
-                                                Margin="0 0 0 16"
-                                                />-->
-                    
-                    
                     
                     <!-- Main Content Goes Here -->
                     <ScrollViewer Grid.Row="1" 
                                   HorizontalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
                                   VerticalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}" 
                                   Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}">
-                        
-                        <!-- Fit Content in a 3 x 7 Grid -->
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
 
-                            <Button Visibility="{Binding HideMenus}" Margin="5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="Login Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
 
-                            <Button Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="User Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserViewModel}"/>
-                            <Button Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
-                                <materialDesign:PackIcon Kind="ArrowBack" Height="24" Width="24" />
-                            </Button>
+                            <ContentControl Visibility="{Binding ShowMenu}" Grid.Row="0">
+                                 <!--Fit Content in a 3 x 7 Grid--> 
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <Button Margin="5" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">Opponent</Button>
+                                    <Button Margin="5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="User" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
 
-                            <Button Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">User</Button>
-                            <Button Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2">User</Button>
+                                    <Button Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserLoadStrategyViewModel}"/>
+                                    <Button Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Set Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserManualStrategyViewModel}"/>
 
-                            <Button Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3">Estimate Strategy</Button>
-                            <ContentControl Grid.Row="7" Content="{Binding CurrentViewModel}" />
+                                    <Button Margin="5" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Content="Opponent" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
+
+                                    <Button Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
+                                    <Button Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
+
+                                    <Button Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Estimate Stratrgy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:EstimateStrategyViewModel}"/>
+                                </Grid>
+                            </ContentControl>
+
+                            <ContentControl Visibility="{Binding ShowOView}" Content="{Binding CurrentViewModel}" Grid.Row="0"/>
+                            <Button Visibility="{Binding ShowOView}" Margin="5" Grid.Row="1" Content="Save" Command="{Binding BackToWizardCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
+                            
                         </Grid>
-                        <!-- End of Content Grid -->
-                        
-                        
-                        
-                        
                     </ScrollViewer>
                     <!-- End Of Main Content! -->
                     

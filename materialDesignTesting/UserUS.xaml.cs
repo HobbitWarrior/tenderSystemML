@@ -24,5 +24,10 @@ namespace materialDesignTesting
         {
             InitializeComponent();
         }
+
+        private void OnClick_backToWizardMen(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

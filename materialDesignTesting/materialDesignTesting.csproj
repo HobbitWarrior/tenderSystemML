@@ -66,14 +66,48 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EstimateStrategyView.xaml.cs">
+      <DependentUpon>EstimateStrategyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EstimateStrategyViewModel.cs" />
+    <Compile Include="OpponentLoadStrategyView.xaml.cs">
+      <DependentUpon>OpponentLoadStrategyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpponentLoadStrategyViewModel.cs" />
+    <Compile Include="OpponentManualStrategyView.xaml.cs">
+      <DependentUpon>OpponentManualStrategyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpponentManualStrategyViewModel.cs" />
+    <Compile Include="ProgressEnums.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="LoginUC.xaml.cs">
       <DependentUpon>LoginUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainMenuWIndow.xaml.cs">
+      <DependentUpon>MainMenuWIndow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenuWindowViewModel.cs" />
+    <Compile Include="UserLoadStrategyView.xaml.cs">
+      <DependentUpon>UserLoadStrategyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserLoadStrategyViewModel.cs" />
+    <Compile Include="UserManualStrategyView.xaml.cs">
+      <DependentUpon>UserManualStrategyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserManualStrategyViewModel.cs" />
     <Compile Include="UserUS.xaml.cs">
       <DependentUpon>UserUS.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserViewModel.cs" />
+    <Compile Include="ViewsMediator.cs" />
+    <Page Include="EstimateStrategyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenuWIndow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,6 +121,26 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="LoginUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mvvmTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpponentLoadStrategyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpponentManualStrategyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserLoadStrategyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserManualStrategyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

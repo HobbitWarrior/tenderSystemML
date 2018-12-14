@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace materialDesignTesting
 {
-    class LoginViewModel : MainWindowViewModel
+    class LoginViewModel 
     {
     }
 }

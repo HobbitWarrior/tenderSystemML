@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace materialDesignTesting
@@ -12,16 +13,62 @@ namespace materialDesignTesting
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private object currentViewModel;
-  
+
+        private string showMenu;
+        private string showOView;
+        private int viewsTogglingCounter = 0;
+        public string ShowMenu
+        {
+            get
+            {
+                if (showMenu == null)
+                    showMenu = "Visible";
+                return showMenu; }
+
+            set
+            {
+                showMenu = value; RaisePropertyChanged();
+            }
+
+        }
+
+
+        public string ShowOView
+        {
+            get
+            {
+                if (showOView == null)
+                    showOView = "Hidden";
+                return showOView;
+            }
+
+            set
+            {
+                showOView = value; RaisePropertyChanged();
+            }
+
+        }
+
+
+        public void ToggleMenuVisibility()
+        {
+            ShowMenu = (ShowMenu == "Visible" ? "Hidden" : "Visible");
+            ShowOView = (ShowOView == "Visible" ? "Hidden" : "Visible");
+        }
 
         public object CurrentViewModel
         {
-            get { return currentViewModel; }
+            get {
+
+                return currentViewModel;
+            }
             set { currentViewModel = value; RaisePropertyChanged(); }
         }
 
 
-        private String hideMenus = "Visible";
+        private static String hideMenus = "Visible";
+
+       
 
         public String HideMenus
         {
@@ -38,6 +85,11 @@ namespace materialDesignTesting
                   ?? (navigateCommand = new RelayCommand<Type>(
                     vmType =>
                     {
+                        //toggle menus visibility and then navigate
+                        ShowMenu = (ShowMenu == "Visible" ? "Hidden" : "Visible");
+                        ShowOView = (ShowOView == "Visible" ? "Hidden" : "Visible");
+
+                        //Bind a 'CurrentViewModel Set' eventTo the button
                         CurrentViewModel = null;
                         CurrentViewModel = Activator.CreateInstance(vmType);
                     }));
@@ -52,6 +104,31 @@ namespace materialDesignTesting
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+
+        private void OnClick_backToWizardMenu(object sender, RoutedEventArgs e)
+        {
+            ShowMenu = "Visible";
+            ShowOView = "Hidden";
+        }
+
+
+        private RelayCommand<Type> backToWizardCommand;
+        public RelayCommand<Type> BackToWizardCommand
+        {
+            get
+            {
+               return backToWizardCommand
+                  ?? (backToWizardCommand = new RelayCommand<Type>(
+                    (Type)=>
+                    {
+                        ShowMenu = "Visible";
+                        ShowOView = "Hidden";
+                    }));
+            }
+        }
+
+
     }
 
 
