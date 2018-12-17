@@ -21,7 +21,30 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="Chocolate">
-            
+    <Grid>
+        <GroupBox Header="Load Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Height="100">
+            <GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Upload" Height="32" Width="32" VerticalAlignment="Center" />
+                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="Please select a 'Strategy Vector' from your local storage device:" />
+                    </StackPanel>
+                </DataTemplate>
+            </GroupBox.HeaderTemplate>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Grid.Row="0"  materialDesign:HintAssist.Hint="File Path"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <RepeatButton Grid.Column="1" Grid.Row="0" Width="100" ToolTip="Resource name: MaterialDesignRaisedButton">
+                    Browse
+                </RepeatButton>
+            </Grid>
+        </GroupBox>
     </Grid>
 </UserControl>

@@ -1,8 +1,9 @@
 ﻿<Window  x:Class="materialDesignTesting.MainWindow"
-                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:tz="http://schemas.abtsoftware.co.uk/transitionz"
         xmlns:local="clr-namespace:materialDesignTesting"
         Title="Tender System Analysis" Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -24,6 +25,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Amber.Accent.xaml" />
                 <ResourceDictionary Source="mvvmTemplates.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="b2vc"></BooleanToVisibilityConverter>
             <DataTemplate DataType="{x:Type system:DateTime}">
                 <StackPanel Margin="16">
                     <TextBlock>England win the World Cup:</TextBlock>
@@ -97,35 +99,34 @@
                             </Grid.RowDefinitions>
 
 
-                            <ContentControl Visibility="{Binding ShowMenu}" Grid.Row="0">
+                            <ContentControl Visibility="{Binding ShowMenu}" Grid.Row="0" tz:Transitionz.Opacity="{tz:OpacityParams From=0, To=1, Duration=200, TransitionOn=Visibility}" tz:Transitionz.Translate="{tz:TranslateParams From='10,0', To='0,0', Duration=200, TransitionOn=Visibility}" tz:Transitionz.Visibility="{Binding ElementName=CheckBox, Path=IsChecked, Converter={StaticResource b2vc}}">
                                 <materialDesign:Card  Background="{DynamicResource MaterialDesignBackground}">
                                     <StackPanel>
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="True" Header="User's Game Settings:">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                                <Button Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserLoadStrategyViewModel}"/>
-                                                <Button Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Set Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserManualStrategyViewModel}"/>
+                                                <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserLoadStrategyViewModel}"/>
+                                                <Button Background="#FFB30F"  Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Set Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserManualStrategyViewModel}"/>
                                             </StackPanel>
                                         </Expander>
                                         <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="True" Header="Opponet's Game Settings:">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                                <Button Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
-                                                <Button Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
+                                                <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
+                                                <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
                                             </StackPanel>
                                         </Expander>
                                         <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="True" Header="Estimate Strategy">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                                <Button Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Estimate Stratrgy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:EstimateStrategyViewModel}"/>
+                                                <!--<Button Background="#849324" Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Estimate Stratrgy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:EstimateStrategyViewModel}"/>-->
+                                                <Button Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.Value="-1"  materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="Estimate Strategy" />
                                             </StackPanel>
                                         </Expander>
                                     </StackPanel>
                                 </materialDesign:Card>
                             </ContentControl>
-
                             <ContentControl Visibility="{Binding ShowOView}" Content="{Binding CurrentViewModel}" Grid.Row="0"/>
-                            <Button Visibility="{Binding ShowOView}" Margin="5" Grid.Row="1" Content="Save" Command="{Binding BackToWizardCommand}" CommandParameter="{x:Type local:LoginViewModel}"/>
-                            
+                            <Button Visibility="{Binding ShowOView}" Margin="5" Grid.Row="1" Content="Save" Command="{Binding BackToWizardCommand}" CommandParameter="{x:Type local:LoginViewModel}" />
                         </Grid>
                     </ScrollViewer>
                     <!-- End Of Main Content! -->

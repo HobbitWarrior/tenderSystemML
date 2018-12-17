@@ -21,7 +21,17 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="DarkKhaki">
-            
+    <Grid>
+        <GroupBox Header="Set Manual Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16">
+            <GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ImageArea" Height="32" Width="32" VerticalAlignment="Center" />
+                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}" />
+                    </StackPanel>
+                </DataTemplate>
+            </GroupBox.HeaderTemplate>
+            <Image Source="Resources/Contact.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </GroupBox>
     </Grid>
 </UserControl>
