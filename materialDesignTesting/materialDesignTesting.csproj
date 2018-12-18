@@ -73,6 +73,7 @@
       <DependentUpon>EstimateStrategyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="EstimateStrategyViewModel.cs" />
+    <Compile Include="fileManager.cs" />
     <Compile Include="OpponentLoadStrategyView.xaml.cs">
       <DependentUpon>OpponentLoadStrategyView.xaml</DependentUpon>
     </Compile>
