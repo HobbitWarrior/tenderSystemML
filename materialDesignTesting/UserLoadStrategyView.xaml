@@ -22,7 +22,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Load Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Height="100">
+        <GroupBox Header="Load Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Height="150">
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -40,7 +40,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Grid.Row="0"  materialDesign:HintAssist.Hint="File Path"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox Grid.Column="0" Grid.Row="0"  materialDesign:HintAssist.Hint="File Path"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
                 <RepeatButton Grid.Column="1" Grid.Row="0" Width="100" ToolTip="Resource name: MaterialDesignRaisedButton">
                     Browse
                 </RepeatButton>

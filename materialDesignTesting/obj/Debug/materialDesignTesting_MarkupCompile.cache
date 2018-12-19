@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Alex-Power10\Documents\ml\tenederSystemML\materialDesignTesting\obj\Debug\
+C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\
 materialDesignTesting
 none
 false
 DEBUG;TRACE
-C:\Users\Alex-Power10\Documents\ml\tenederSystemML\materialDesignTesting\App.xaml
+C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\App.xaml
 101879013247
 
-282121695379
-17-1763266853
+25-540696306
+171150448449
 EstimateStrategyView.xaml;MainMenuWIndow.xaml;MainWindow.xaml;LoginUC.xaml;mvvmTemplates.xaml;OpponentLoadStrategyView.xaml;OpponentManualStrategyView.xaml;UserLoadStrategyView.xaml;UserManualStrategyView.xaml;UserUS.xaml;
 
-True
+False
 
