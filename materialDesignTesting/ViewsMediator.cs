@@ -42,6 +42,7 @@ namespace materialDesignTesting
             catch( Exception ex )
             {
                 //Assuming the exception was raised due to a non existing key.
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }
