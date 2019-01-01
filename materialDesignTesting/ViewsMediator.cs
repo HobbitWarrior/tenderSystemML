@@ -14,8 +14,8 @@ namespace materialDesignTesting
         public event PropertyChangedEventHandler PropertyChanged;
 
         /*<summary>
-* The following method tracks the progress in each section of the game setting wizard.
-* </summary>*/
+        * The following method tracks the progress in each section of the game setting wizard.
+        S* </summary>*/
         public static void setWizardProgress ( String Tkey, progress Tvalue)
         {
             if (wizardProgress == null)

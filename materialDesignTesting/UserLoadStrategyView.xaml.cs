@@ -22,6 +22,7 @@ namespace materialDesignTesting
     {
         public UserLoadStrategyView()
         {
+            DataContext = new UserLoadStrategyViewModel();
             InitializeComponent();
         }
     }

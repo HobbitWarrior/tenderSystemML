@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace materialDesignTesting
 {
-    class LoginViewModel 
+    class LoginViewModel
     {
+     
+        public LoginViewModel()
+        {
+
+        }
+
+
     }
 }

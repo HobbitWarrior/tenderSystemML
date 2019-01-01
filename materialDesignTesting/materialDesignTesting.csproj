@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommandHandler.cs" />
     <Compile Include="EstimateStrategyView.xaml.cs">
       <DependentUpon>EstimateStrategyView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +92,7 @@
       <DependentUpon>MainMenuWIndow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainMenuWindowViewModel.cs" />
+    <Compile Include="SelectableViewModel.cs" />
     <Compile Include="UserLoadStrategyView.xaml.cs">
       <DependentUpon>UserLoadStrategyView.xaml</DependentUpon>
     </Compile>
