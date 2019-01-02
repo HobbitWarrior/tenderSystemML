@@ -9,6 +9,8 @@ using System.Windows.Input;
 
 namespace materialDesignTesting
 {
+    //<summary>Dont foreget to wirte summary</summary>
+    //Author: Alex Zeltser
     class UserLoadStrategyViewModel :INotifyPropertyChanged
     {
         public UserLoadStrategyViewModel()
@@ -17,12 +19,12 @@ namespace materialDesignTesting
         }
 
         private bool canExecute;
-        private ICommand clickCommand;
-        public ICommand ClickCommand
+        private ICommand clickOnBrowseButton;
+        public ICommand ClickOnBrowseButton
         {
             get
             {
-                return clickCommand ?? (clickCommand = new CommandHandler(() => MyAction(), canExecute));
+                return clickOnBrowseButton ?? (clickOnBrowseButton = new CommandHandler(() => openDialog(), canExecute));
             }
         }
 
@@ -40,7 +42,9 @@ namespace materialDesignTesting
             }
         }
 
-        public void MyAction()
+
+        //<summary>The following method is handling the opening of a new dialog event</summary>
+        public void openDialog()
         {
             Console.WriteLine("Just called a button click event!!!! Yay! :)");
 
@@ -50,14 +54,25 @@ namespace materialDesignTesting
 
             // Launch OpenFileDialog by calling ShowDialog method
             Nullable<bool> result = openFileDlg.ShowDialog();
-            // Get the selected file name and display in a TextBox.
+            // Get the selected file name and display in a TextBox.S
             // Load content of file in a TextBlock
             if (result == true)
             {
                 FileName= openFileDlg.FileName;
                 //this method will read all the contents of the provided file
                 //FileName = System.IO.File.ReadAllText(openFileDlg.FileName);
-                Console.WriteLine(String.Format("the opendialog.filename:  {0}", FileName));
+                Console.WriteLine("the opendialog.filename:  {0}", FileName);
+                //A temp method, returns a 1000 dimensional Vector.
+                //(Is this the correct mathematical term????? Geez :/ )
+                genetrateRandomVector(1000);
+
+                Console.WriteLine("The follwing vectors were generated: ");
+                Console.WriteLine("User: ");
+                foreach ( double value in ViewsMediator.User )
+                    Console.Write("{0} ", value);
+                Console.WriteLine("\nOpponent: ");
+                foreach (double value in ViewsMediator.Opponent)
+                    Console.Write("{0} ", value);
             }
         }
 
@@ -68,6 +83,15 @@ namespace materialDesignTesting
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+
+        //<summary>A temp stub function that instantiates the two probability vectors</summary
+        private void genetrateRandomVector(int n)
+        {
+            fileManager fl = new fileManager();
+            ViewsMediator.User = fl.generateRandomVector(1000);
+            ViewsMediator.Opponent = fl.generateRandomVector(1000);
         }
     }
 }

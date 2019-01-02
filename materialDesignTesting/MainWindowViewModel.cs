@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -27,7 +28,9 @@ namespace materialDesignTesting
 
             set
             {
-                showMenu = value; RaisePropertyChanged();
+                showMenu = value;
+                //call a method that checks the current status of the wizard stages and adjusts the Expanders.
+                RaisePropertyChanged();
             }
 
         }
@@ -65,17 +68,27 @@ namespace materialDesignTesting
             set { currentViewModel = value; RaisePropertyChanged(); }
         }
 
-
+        //What is this for god sake?
         private static String hideMenus = "Visible";
-
-       
-
         public String HideMenus
         {
             get { return hideMenus; }
             set { hideMenus = value; RaisePropertyChanged(); }
         }
+        //end of the 'what is it for god sake?' code
 
+
+
+
+        //<value>ObservableList that controls the Expanders</value>
+        public ObservableCollection<String> expandersExpansionToggler;
+        //<summary>updates the progress of the menus.
+        //called on each return from a stage in the wizard</summary>
+        public void updateMenus()
+        {
+            if (expandersExpansionToggler==null)
+                expandersExpansionToggler = new ObservableCollection<String>();
+        }
         private RelayCommand<Type> navigateCommand;
         public RelayCommand<Type> NavigateCommand
         {

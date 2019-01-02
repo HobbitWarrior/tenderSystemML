@@ -2,31 +2,71 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace materialDesignTesting
 {
+    //<summary>A class that will contain all the data that needs to be shared between the menus of the program, and it will also 
+    //keep the progress of completion of the wizard that is essential for the running of the Prediction Algorithm.
+    //Author: Alex Zeltser</summary>
     class ViewsMediator : INotifyPropertyChanged
     {
-        private static Dictionary<String, progress> wizardProgress;
+        //<value>Tracks the progress of the wizard</value>
+        private static Dictionary<String, progress> wizardProgress = new Dictionary<string, progress>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+        private static List<double> user =new List<double>();
+        private static List<double> opponent = new List<double>();
+
+        //<ummary> the following properties will control the probablity???????? vectors of the players. </summary>
+        public static List<double> User {
+            get
+            {
+                return user;
+            }
+            set
+            {
+                if (value != null)
+                    user = value;
+            }
+        }
+
+        
+        public static  List<double> Opponent
+        {
+            get
+            {
+                return opponent;
+            }
+            set
+            {
+                if (value != null)
+                    opponent = value;
+            }
+        }
         /*<summary>
         * The following method tracks the progress in each section of the game setting wizard.
-        S* </summary>*/
-        public static void setWizardProgress ( String Tkey, progress Tvalue)
+        * </summary>*/
+        public static bool setWizardProgress ( String Tkey, progress Tvalue)
         {
-            if (wizardProgress == null)
-            {
-                wizardProgress = new Dictionary<string, progress>();
-                if (!(String.IsNullOrEmpty(Tkey)) && Tvalue >= 0)
-                    wizardProgress.Add(Tkey, Tvalue);
-                else
-                    wizardProgress.Add(Tkey, progress.blank);
+                if (Tvalue >= 0)
+                {
+                    try
+                    {
+                        wizardProgress.Add(Tkey, Tvalue);
+                        return true;
+                    }
+                    // ArgumentException inherits from ArgumentNullException
+                    catch(ArgumentException AE)
+                    {
+                        return false;
+                    }
             }
-                      
+            return false;      
         }
         /*<summary>
          * controlls the expander of each section via binding
@@ -46,5 +86,16 @@ namespace materialDesignTesting
                 return false;
             }
         }
+
+        //<summary> Implementation of the INotifyPropertyChanged event raising</summary>
+        private void RaisePropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+
     }
 }

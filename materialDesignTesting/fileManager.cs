@@ -7,12 +7,22 @@ using System.Threading.Tasks;
 
 namespace materialDesignTesting
 {
+    /* <summary>The class implemets the IO operations of a CSV file.
+     * Written by Alex Zeltser
+     * probably will be depreceted</summary>*/
     class fileManager
     {
+
         private string directory;
+        //<value>Returns the direcory of the file path</value>
         public string Directory { get; set; }
         private string fileName;
         public string FileName { get; set; }
+        public fileManager()
+        {
+            Directory = "";
+            FileName = "";
+        }
         public fileManager(string directory)
         {
             if (String.IsNullOrEmpty(directory))
@@ -101,6 +111,21 @@ namespace materialDesignTesting
                 return null;
             }
 
+        }
+
+
+        //<summary> gereates a vector of random values</summary>
+        //<param name="n"> represents the size of the vector</param>
+        //<return>a list of double precision random values in the provided size n</return>
+        public List<double> generateRandomVector(int n)
+        {
+            List<double> vector = new List<double>();
+
+            Random rnd = new Random();
+            for (int i = 0; i < n; i++)
+                vector.Add(rnd.NextDouble());
+
+            return vector;
         }
     }
 }
