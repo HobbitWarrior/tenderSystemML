@@ -22,7 +22,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Load Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Height="150">
+        <GroupBox Header="Load User's Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Height="150">
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

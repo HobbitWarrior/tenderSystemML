@@ -14,10 +14,55 @@ namespace materialDesignTesting
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private object currentViewModel;
+        public Dictionary<String,Object> viewModels;
+
+        //<sammary>
+        //The following properties control the Wizard's Expanders
+        //</sammary>
+        public String _userExpander = ViewsMediator.userExpander;
+        public String _opponentExpander = ViewsMediator.opponentExpander;
+        public String _calcualteExpander = ViewsMediator.calculateExpander;
+        public String UserExpander
+        {
+            set
+            {
+                _userExpander = value;
+                RaisePropertyChanged();
+            }
+            get
+            {
+                return _userExpander;
+            }
+        }
+
+        public String OpponentExpander
+        {
+            set
+            {
+                _opponentExpander = value;
+                RaisePropertyChanged();
+            }
+            get
+            {
+                return _opponentExpander;
+            }
+        }
+
+        public String CalculateExpander
+        {
+            set
+            {
+                _calcualteExpander = value;
+                RaisePropertyChanged();
+            }
+            get
+            {
+                return _calcualteExpander;
+            }
+        }
 
         private string showMenu;
         private string showOView;
-        private int viewsTogglingCounter = 0;
         public string ShowMenu
         {
             get
@@ -47,16 +92,10 @@ namespace materialDesignTesting
 
             set
             {
-                showOView = value; RaisePropertyChanged();
+                showOView = value;
+                RaisePropertyChanged();
             }
 
-        }
-
-
-        public void ToggleMenuVisibility()
-        {
-            ShowMenu = (ShowMenu == "Visible" ? "Hidden" : "Visible");
-            ShowOView = (ShowOView == "Visible" ? "Hidden" : "Visible");
         }
 
         public object CurrentViewModel
@@ -68,18 +107,7 @@ namespace materialDesignTesting
             set { currentViewModel = value; RaisePropertyChanged(); }
         }
 
-        //What is this for god sake?
-        private static String hideMenus = "Visible";
-        public String HideMenus
-        {
-            get { return hideMenus; }
-            set { hideMenus = value; RaisePropertyChanged(); }
-        }
-        //end of the 'what is it for god sake?' code
-
-
-
-
+       
         //<value>ObservableList that controls the Expanders</value>
         public ObservableCollection<String> expandersExpansionToggler;
         //<summary>updates the progress of the menus.
@@ -94,17 +122,17 @@ namespace materialDesignTesting
         {
             get
             {
-                return navigateCommand
-                  ?? (navigateCommand = new RelayCommand<Type>(
+                return  (navigateCommand = new RelayCommand<Type>(
                     vmType =>
                     {
                         //toggle menus visibility and then navigate
                         ShowMenu = (ShowMenu == "Visible" ? "Hidden" : "Visible");
                         ShowOView = (ShowOView == "Visible" ? "Hidden" : "Visible");
-
-                        //Bind a 'CurrentViewModel Set' eventTo the button
+                        //Bind a 'CurrentViewModel Set' event To the button
                         CurrentViewModel = null;
-                        CurrentViewModel = Activator.CreateInstance(vmType);
+                        //CurrentViewModel = Activator.CreateInstance(vmType);
+                        ChangeViewModel(vmType);
+                        Console.WriteLine("Just Changed the CurrentViewModel to: {0} , \nShowMenu is {1}, \nShowView is {2}",CurrentViewModel, ShowMenu,ShowOView);
                     }));
             }
         }
@@ -119,28 +147,45 @@ namespace materialDesignTesting
         }
 
 
-        private void OnClick_backToWizardMenu(object sender, RoutedEventArgs e)
-        {
-            ShowMenu = "Visible";
-            ShowOView = "Hidden";
-        }
-
-
         private RelayCommand<Type> backToWizardCommand;
         public RelayCommand<Type> BackToWizardCommand
         {
             get
             {
-               return backToWizardCommand
-                  ?? (backToWizardCommand = new RelayCommand<Type>(
+               return  (backToWizardCommand = new RelayCommand<Type>(
                     (Type)=>
                     {
                         ShowMenu = "Visible";
                         ShowOView = "Hidden";
+                        UserExpander = ViewsMediator.userExpander;
+                        OpponentExpander = ViewsMediator.opponentExpander;
+                        CalculateExpander = ViewsMediator.calculateExpander;
+                        navigateCommand = null;
                     }));
             }
         }
 
+
+
+        public MainWindowViewModel()
+        {
+            viewModels = new Dictionary<String, object>();
+            viewModels.Add("materialDesignTesting.UserLoadStrategyViewModel",new UserLoadStrategyViewModel());
+            viewModels.Add("materialDesignTesting.UserManualStrategyViewModel",new UserManualStrategyViewModel());
+            viewModels.Add("materialDesignTesting.OpponentLoadStrategyViewModel",new OpponentLoadStrategyViewModel());
+            viewModels.Add("materialDesignTesting.OpponentManualStrategyViewModel",new OpponentManualStrategyViewModel());
+            //add additional views of game settings
+        }
+
+
+
+        private void ChangeViewModel(Type viewModelKey)
+        {
+            if (!viewModels.ContainsKey(viewModelKey.FullName))
+                viewModels.Add(viewModelKey.FullName,Activator.CreateInstance(viewModelKey));
+
+            CurrentViewModel = viewModels[viewModelKey.FullName];
+        }
 
     }
 

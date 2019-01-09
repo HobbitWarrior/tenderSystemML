@@ -62,11 +62,14 @@ namespace materialDesignTesting
                 //this method will read all the contents of the provided file
                 //FileName = System.IO.File.ReadAllText(openFileDlg.FileName);
                 Console.WriteLine("the opendialog.filename:  {0}", FileName);
-                //A temp method, returns a 1000 dimensional Vector.
-                //(Is this the correct mathematical term????? Geez :/ )
+                //A temp method, returns a 1000 dimensional Vector
                 genetrateRandomVector(1000);
 
-                Console.WriteLine("The follwing vectors were generated: ");
+                //set expander to false
+                ViewsMediator.userExpander = "False";
+                ViewsMediator.opponentExpander = "True";
+
+                Console.WriteLine("The following vectors were generated: ");
                 Console.WriteLine("User: ");
                 foreach ( double value in ViewsMediator.User )
                     Console.Write("{0} ", value);

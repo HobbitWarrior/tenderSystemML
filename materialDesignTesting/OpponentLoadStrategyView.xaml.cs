@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 namespace materialDesignTesting
 {
     /// <summary>
-    /// Interaction logic for OpponentLoadStrategy.xaml
+    /// Interaction logic for OpponentLoadStrategyView.xaml
     /// </summary>
-    public partial class OpponentLoadStrategy : UserControl
+    public partial class OpponentLoadStrategyView : UserControl
     {
-        public OpponentLoadStrategy()
+        public OpponentLoadStrategyView()
         {
-            //InitializeComponent();
+            DataContext = new OpponentLoadStrategyViewModel();
+            InitializeComponent();
         }
     }
 }

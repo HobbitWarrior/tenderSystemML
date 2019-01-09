@@ -51,6 +51,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -75,10 +77,10 @@
     </Compile>
     <Compile Include="EstimateStrategyViewModel.cs" />
     <Compile Include="fileManager.cs" />
+    <Compile Include="OpponentLoadStrategyViewModel.cs" />
     <Compile Include="OpponentLoadStrategyView.xaml.cs">
       <DependentUpon>OpponentLoadStrategyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OpponentLoadStrategyViewModel.cs" />
     <Compile Include="OpponentManualStrategyView.xaml.cs">
       <DependentUpon>OpponentManualStrategyView.xaml</DependentUpon>
     </Compile>
@@ -174,6 +176,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -16,13 +16,20 @@ namespace materialDesignTesting
         //<value>Tracks the progress of the wizard</value>
         private static Dictionary<String, progress> wizardProgress = new Dictionary<string, progress>();
 
+        //<value>The following variables control the wizard's expander</value>
+        public static String userExpander = "True";
+        public static String opponentExpander = "True";
+        public static String calculateExpander = "True";
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-
+        //<value>User's result vector</value>
         private static List<double> user =new List<double>();
+        //<value>Opponent's result vector</value>
         private static List<double> opponent = new List<double>();
 
-        //<ummary> the following properties will control the probablity???????? vectors of the players. </summary>
+        //<summary> the following properties will control the probablity???????? vectors of the players. </summary>
         public static List<double> User {
             get
             {
@@ -48,45 +55,6 @@ namespace materialDesignTesting
                     opponent = value;
             }
         }
-        /*<summary>
-        * The following method tracks the progress in each section of the game setting wizard.
-        * </summary>*/
-        public static bool setWizardProgress ( String Tkey, progress Tvalue)
-        {
-                if (Tvalue >= 0)
-                {
-                    try
-                    {
-                        wizardProgress.Add(Tkey, Tvalue);
-                        return true;
-                    }
-                    // ArgumentException inherits from ArgumentNullException
-                    catch(ArgumentException AE)
-                    {
-                        return false;
-                    }
-            }
-            return false;      
-        }
-        /*<summary>
-         * controlls the expander of each section via binding
-         * (Non Static)
-         * </summary>
-         */
-        public Boolean getWizardProgress( String Tkey )
-        {
-            try
-            {
-                return wizardProgress[Tkey] == progress.loaded ? true : false;
-            }
-            catch( Exception ex )
-            {
-                //Assuming the exception was raised due to a non existing key.
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-        }
-
         //<summary> Implementation of the INotifyPropertyChanged event raising</summary>
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -95,7 +63,5 @@ namespace materialDesignTesting
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
-
     }
 }
