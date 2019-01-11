@@ -21,6 +21,7 @@ namespace materialDesignTesting
         //</sammary>
         public String _userExpander = ViewsMediator.userExpander;
         public String _opponentExpander = ViewsMediator.opponentExpander;
+        public String _gameSettingsExpander = ViewsMediator.gameSettingsExpander;
         public String _calcualteExpander = ViewsMediator.calculateExpander;
         public String UserExpander
         {
@@ -45,6 +46,18 @@ namespace materialDesignTesting
             get
             {
                 return _opponentExpander;
+            }
+        }
+        public String GameSettingsExpander
+        {
+            set
+            {
+                _gameSettingsExpander = value;
+                RaisePropertyChanged();
+            }
+            get
+            {
+                return _gameSettingsExpander;
             }
         }
 
@@ -159,6 +172,7 @@ namespace materialDesignTesting
                         ShowOView = "Hidden";
                         UserExpander = ViewsMediator.userExpander;
                         OpponentExpander = ViewsMediator.opponentExpander;
+                        GameSettingsExpander = ViewsMediator.gameSettingsExpander;
                         CalculateExpander = ViewsMediator.calculateExpander;
                         navigateCommand = null;
                     }));
@@ -174,6 +188,7 @@ namespace materialDesignTesting
             viewModels.Add("materialDesignTesting.UserManualStrategyViewModel",new UserManualStrategyViewModel());
             viewModels.Add("materialDesignTesting.OpponentLoadStrategyViewModel",new OpponentLoadStrategyViewModel());
             viewModels.Add("materialDesignTesting.OpponentManualStrategyViewModel",new OpponentManualStrategyViewModel());
+            viewModels.Add("materialDesignTesting.GameSettingsViewModel", new GameSettingsViewModel());
             //add additional views of game settings
         }
 

@@ -33,5 +33,9 @@
     <DataTemplate DataType="{x:Type local:EstimateStrategyViewModel}">
         <local:EstimateStrategyView/>
     </DataTemplate>
-    
+
+    <DataTemplate DataType="{x:Type local:GameSettingsViewModel}">
+        <local:GameSettingsView/>
+    </DataTemplate>
+
 </ResourceDictionary>

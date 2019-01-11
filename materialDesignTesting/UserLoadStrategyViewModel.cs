@@ -31,7 +31,6 @@ namespace materialDesignTesting
 
         private String fileName = "[PlaceHolder]";
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public String FileName
         {
@@ -79,7 +78,7 @@ namespace materialDesignTesting
             }
         }
 
-
+        public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "")
         {
             if (PropertyChanged != null)

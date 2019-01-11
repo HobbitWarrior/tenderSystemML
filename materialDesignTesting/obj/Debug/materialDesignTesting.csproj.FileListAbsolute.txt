@@ -67,6 +67,8 @@ C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\m
 C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.pdb
 C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\bin\Debug\SciChart.Wpf.UI.Transitionz.dll
 C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\bin\Debug\SciChart.Wpf.UI.Transitionz.xml
-C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.csprojAssemblyReference.cache
 C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.csproj.CoreCompileInputs.cache
 C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.csproj.CopyComplete
+C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\GameSettingsView.g.cs
+C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\GameSettingsView.baml
+C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.csprojAssemblyReference.cache

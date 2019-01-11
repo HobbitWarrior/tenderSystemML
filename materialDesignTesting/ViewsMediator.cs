@@ -13,22 +13,38 @@ namespace materialDesignTesting
     //Author: Alex Zeltser</summary>
     class ViewsMediator : INotifyPropertyChanged
     {
-        //<value>Tracks the progress of the wizard</value>
-        private static Dictionary<String, progress> wizardProgress = new Dictionary<string, progress>();
 
+        #region Expander Progress Variables
         //<value>The following variables control the wizard's expander</value>
         public static String userExpander = "True";
         public static String opponentExpander = "True";
+        public static String gameSettingsExpander = "True";
         public static String calculateExpander = "True";
+        #endregion
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        #region Game Settings Variables
+        //<summary>Game General Settings Variables</summary>
+        //<value>Number Of Games</value>
+        public static int NumberOfGames;
 
+        //<value>Define who will play first</value>
+        public static String GameOrder;
+
+        //<value>Prize Amount</value>
+        public static int PrizeAmount;
+
+        //<value>Bid Value</value>
+        public static int BidValue;
+        #endregion
+
+       
+        #region Game Expectations Vectors
         //<value>User's result vector</value>
         private static List<double> user =new List<double>();
         //<value>Opponent's result vector</value>
         private static List<double> opponent = new List<double>();
-
+        #endregion
         //<summary> the following properties will control the probablity???????? vectors of the players. </summary>
         public static List<double> User {
             get
@@ -55,6 +71,8 @@ namespace materialDesignTesting
                     opponent = value;
             }
         }
+        #region INotifyPropertyChanged Interface Implementation
+        public event PropertyChangedEventHandler PropertyChanged;
         //<summary> Implementation of the INotifyPropertyChanged event raising</summary>
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -63,5 +81,6 @@ namespace materialDesignTesting
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        #endregion
     }
 }

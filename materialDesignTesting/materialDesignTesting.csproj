@@ -77,6 +77,10 @@
     </Compile>
     <Compile Include="EstimateStrategyViewModel.cs" />
     <Compile Include="fileManager.cs" />
+    <Compile Include="GameSettingsView.xaml.cs">
+      <DependentUpon>GameSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameSettingsViewModel.cs" />
     <Compile Include="OpponentLoadStrategyViewModel.cs" />
     <Compile Include="OpponentLoadStrategyView.xaml.cs">
       <DependentUpon>OpponentLoadStrategyView.xaml</DependentUpon>
@@ -109,6 +113,10 @@
     <Compile Include="UserViewModel.cs" />
     <Compile Include="ViewsMediator.cs" />
     <Page Include="EstimateStrategyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
