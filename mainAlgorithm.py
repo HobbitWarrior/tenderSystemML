@@ -20,6 +20,7 @@ class Algorithm:
     w = 1
 
     print(winningExpectations1)
+    
 
     def calcualteWinningExpectationAnsdProbability(self, action, state):
         if action:
