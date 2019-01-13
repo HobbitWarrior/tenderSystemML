@@ -1,0 +1,10 @@
+import numpy as np
+
+class initExpect:
+    #global variables
+    #Opponents Expectaion
+    qEx = None
+    #Total wins per bid
+    BidCount = None
+    #Winning bids counter
+    pWinBidCount = None

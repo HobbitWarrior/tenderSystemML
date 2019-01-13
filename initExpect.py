@@ -14,7 +14,7 @@ class initExpect:
     
     
     def __init__(self):
-        self.calculateExpectation(10,10)
+        self.calculateExpectation(np.arange(0,1,0.1),10)
         #TBD
 
     #The function will raffle a random real number between [0.,1.]
@@ -28,7 +28,7 @@ class initExpect:
         for i in range(10):
             rand = rnd.uniform(0.0,1.0)
             print("%d : %f"%(i+1,rand))
-            print(q)
+            print(q[0])
             if rand <= 1:
                 print("its less LOL")
         
