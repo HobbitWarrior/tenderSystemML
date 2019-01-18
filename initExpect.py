@@ -1,5 +1,6 @@
 import numpy as np
 import random as rnd
+import math as math
 
 
 
@@ -21,7 +22,7 @@ class initExpect:
     #Opponents probability vector
     q = None
     
-    def __init__(self,qSize=1000):
+    def __init__(self,qSize=10000):
         #self.calculateExpectation(np.arange(0,1,0.1),10,20)
         self.q = np.zeros(qSize)
         self.p = np.zeros(qSize)
@@ -68,45 +69,63 @@ class initExpect:
     
     def singleRoundSimulation(self,i):
         rNum = rnd.uniform(0.0,1.0)
-        if( rNum > self.q[i] ):
+        if( rNum >= self.q[i] ):
             self.p[i]=rNum
+            #print("Updating probabilty for %d: %f"%(i,rNum))
             return True
         return False
 
 
 
 
-    def findInitialUserStrategy(self,n0=10,m=3,k0=10,N=1000,y=10):
+    def findInitialUserStrategy(self,n0=10,m=3,k0=10,N=1000,y=10,z=5):
+        np.set_printoptions(threshold=np.nan,suppress=True)
         #the following class is an implementation that is based
         # on the algorithm that
         #was propesed in the research paper part 1 
         #of our project
         #can be found on page 9 --- Methods
         #first threshold
-        for x in range(0,k0*m):
-            print("values after round %d:"%x)
-            print(self.p)
-            for i in range(0,self.q.size):
-                if(not self.singleRoundSimulation(i)):
+        for j in range(0,n0):
+            #print(self.p)
+            for i in range(0,m*k0):
+                #check array overflow
+                if(self.q.size<=i):
+                    break
+                #simulate a single round in the game
+                if( not self.singleRoundSimulation(i) ):
                     break
         
         #second Threshold -section 2, page 9
-        t=0
-        while t < (N/y):
-            for j in range(0,y):
-                for i in range(0,self.q.size):
-                    if(not self.singleRoundSimulation(i)):
+        for j in range(0,math.ceil(N/y)):
+            for i in range(0,m*j*k0):
+                    #check overflow
+                    if(self.q.size<=i):
+                        print("breaking... %d - %d"%(i,self.q.size))
                         break
-                #update number of iterations
-                t+=m*j*k0
+                    #simulate a single round in the game
+                    if( not self.singleRoundSimulation(i) ):
+                        break
             print("Values after the second threshold: ")
-            print(self.p)
+           # print(self.p)
             
         #third threshold - section 3 - not done yet
         #need to think how to implement it, since we
         #don't know the expectation yet at this point
-        
-                
+        #fourth threshold - section 4
+        for j in range(0,math.ceil(N/z)):
+            for i in range(0,m*j*k0):
+                    #check overflow
+                    if(self.q.size<=i):
+                        break
+                    #simulate a single round in the game
+                    if( not self.singleRoundSimulation(i) ):
+                        print("didn't find a higher probability, values remain unchanged :\\")
+                        break
+            print("Values after the 4th threshold: ")
+            #print(self.p)
+            #Wrtie results to file
+            np.savetxt("resultaArr.csv", self.p,fmt="%0.10f", delimiter=",")
             
         
     
