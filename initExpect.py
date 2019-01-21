@@ -26,7 +26,8 @@ class initExpect:
         #self.calculateExpectation(np.arange(0,1,0.1),10,20)
         self.q = np.zeros(qSize)
         self.p = np.zeros(qSize)
-        self.findInitialUserStrategy()
+        #self.findInitialUserStrategy()
+        self.calculateOutcome()
         
         
 ########################  Just plain rubbish!!!! Jesus        #################
@@ -127,6 +128,62 @@ class initExpect:
             #Wrtie results to file
             np.savetxt("resultaArr.csv", self.p,fmt="%0.10f", delimiter=",")
             
+            
+            
+    userOutcome = None
+    opponentOutcome = None
+        ##################################################################
+        ##########Ze'evs Algorithms Realization###########################
+        ##################################################################
+    def calculateOutcome(self,N=100,maxMove=1000,opponenetOutcome=None,K=2000):
+        self.userOutcome = np.zeros(maxMove)
+        
+        self.q = np.arange(0.0001,1,0.0001)
+        self.p = np.zeros(maxMove)
+        
+        if self.opponentOutcome is None:
+            self.opponentOutcome = np.zeros(maxMove)
+            print(self.opponentOutcome.size)
+        for i in range(0,N):
+            for iMove in range(0,maxMove):
+                if(iMove%2 == 0):#users move
+                    usersMove = rnd.uniform(0.0,1.0)
+                    if(usersMove>self.q[iMove]):
+                        #User won
+                        #save the current probability,
+                        #since it will be beneficial for the user to play this round
+                        self.p[iMove] = usersMove
+                        #keep setting the entire outcome vector to the max,
+                        #ie. simulate a win of the user in the entire steps
+                        #from this point on.
+                        for j in range(iMove,maxMove):
+                            self.userOutcome[j]=self.userOutcome[j]+K-(iMove-1)
+                            self.opponentOutcome[j]=self.opponentOutcome[j]-(iMove-2)
+                            #exit the current game :P jeez this shit is effing ridiculus
+                            break
+                else:
+                    opponentsMove = rnd.uniform(0.0,1.0)
+                    if opponentsMove>self.p[iMove]:
+                        #simulates a win by the opponent
+                        #Since the opponent won, 
+                        #set user's probility vector in this index to the 
+                        #opponent's random probability value complement
+                        self.p[iMove]=1-opponentsMove
+                        
+                        for j in range(iMove,maxMove):
+                            self.opponentOutcome[j]=self.opponentOutcome[j]+K-(iMove-1)
+                            self.userOutcome[j]=self.userOutcome[j]-(iMove-2)
+                            #exit the current game :P jeez this shit is effing ridiculus
+                            break
+        print("Just exited the %dth game! Yay!!!! :)"%i)
+        print("printing the arrays:")
+        np.set_printoptions(threshold=np.inf,suppress=True)
+        print("users Outcome Vector:")            
+        print(self.userOutcome)
+        print("aaaaaaaaaaan opponents Outcome Vector:")            
+        print(self.opponentOutcome)    
+        print("and last but not least, give a huge round of applause to the P vector:")        
+        print(self.p)
         
     
 test = initExpect()
