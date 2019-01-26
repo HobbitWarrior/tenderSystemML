@@ -81,6 +81,10 @@
       <DependentUpon>GameSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameSettingsViewModel.cs" />
+    <Compile Include="graphView.xaml.cs">
+      <DependentUpon>graphView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphViewModel.cs" />
     <Compile Include="OpponentLoadStrategyViewModel.cs" />
     <Compile Include="OpponentLoadStrategyView.xaml.cs">
       <DependentUpon>OpponentLoadStrategyView.xaml</DependentUpon>
@@ -89,6 +93,10 @@
       <DependentUpon>OpponentManualStrategyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="OpponentManualStrategyViewModel.cs" />
+    <Compile Include="OpponentsMixedStrategyVectorView.xaml.cs">
+      <DependentUpon>OpponentsMixedStrategyVectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpponentsMixedStrategyVectorViewModel.cs" />
     <Compile Include="ProgressEnums.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="LoginUC.xaml.cs">
@@ -117,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GameSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="graphView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OpponentManualStrategyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpponentsMixedStrategyVectorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

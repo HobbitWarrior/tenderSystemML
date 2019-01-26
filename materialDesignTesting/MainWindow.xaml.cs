@@ -73,5 +73,15 @@ namespace materialDesignTesting
                 }
             }
         }
+
+        private void sapir(object sender, RoutedEventArgs e)
+        {
+            System.Console.WriteLine("you just clicked on me :) it tickles :)");
+        }
+
+        private void ListBoxItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Console.Write("just clicked");
+        }
     }
 }

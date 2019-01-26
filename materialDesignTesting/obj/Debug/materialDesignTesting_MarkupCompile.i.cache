@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\obj\Debug\
+C:\Users\sapir\Documents\GitHub\tenederSystemML\materialDesignTesting\obj\Debug\
 materialDesignTesting
 none
 false
 DEBUG;TRACE
-C:\Users\Alex\Documents\arcore\tenederSystemML\materialDesignTesting\App.xaml
-11616556325
+C:\Users\sapir\Documents\GitHub\tenederSystemML\materialDesignTesting\App.xaml
+13-1057779699
 
-33-1673886774
-191565176061
-EstimateStrategyView.xaml;GameSettingsView.xaml;MainMenuWIndow.xaml;MainWindow.xaml;LoginUC.xaml;mvvmTemplates.xaml;OpponentLoadStrategyView.xaml;OpponentManualStrategyView.xaml;UserLoadStrategyView.xaml;UserManualStrategyView.xaml;UserUS.xaml;
+37-926684152
+19-412523408
+EstimateStrategyView.xaml;GameSettingsView.xaml;graphView.xaml;MainMenuWIndow.xaml;MainWindow.xaml;LoginUC.xaml;mvvmTemplates.xaml;OpponentLoadStrategyView.xaml;OpponentManualStrategyView.xaml;OpponentsMixedStrategyVectorView.xaml;UserLoadStrategyView.xaml;UserManualStrategyView.xaml;UserUS.xaml;
 
 False
 

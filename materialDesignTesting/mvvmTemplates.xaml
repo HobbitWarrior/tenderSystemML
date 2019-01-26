@@ -17,7 +17,11 @@
     <DataTemplate DataType="{x:Type local:UserLoadStrategyViewModel}">
         <local:UserLoadStrategyView/>
     </DataTemplate>
-    
+
+    <DataTemplate DataType="{x:Type local:GraphViewModel}">
+        <local:graphView/>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type local:UserManualStrategyViewModel}">
         <local:UserManualStrategyView/>
     </DataTemplate>

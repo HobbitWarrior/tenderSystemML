@@ -57,6 +57,7 @@
                         <ListBoxItem Content="Guess what?"></ListBoxItem>
                         <ListBoxItem Content="Yes!!! That's right!"></ListBoxItem>
                         <ListBoxItem Content="Another Bloody feature."></ListBoxItem>
+                        <ListBoxItem Content="Graph." Mouse.MouseDown="ListBoxItem_MouseDown"></ListBoxItem>
                     </ListBox>
                     <!--    End of Hamburger left menus :) -->
                 </DockPanel>
@@ -119,6 +120,10 @@
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding GameSettingsExpander, NotifyOnSourceUpdated=True}" Header="Game General Settings:">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                                                 <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Game Settings" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GameSettingsViewModel}"/>
+                                                <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="ShowGraph" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}"/>
+                                                <materialDesign:Badged Badge="3">
+                                                    <Button Width="1020" Content="Sapir Rulz" Click="sapir"/>
+                                                </materialDesign:Badged>
                                             </StackPanel>
                                         </Expander>
                                         <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />

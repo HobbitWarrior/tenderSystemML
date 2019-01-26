@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace materialDesignTesting
 {
-    //<summary>Dont forget to wirte summary</summary>
-    //Author: Alex Zeltser
-    class UserLoadStrategyViewModel :INotifyPropertyChanged
+    class GraphViewModel : INotifyPropertyChanged
     {
-        public UserLoadStrategyViewModel()
+        public GraphViewModel()
         {
-            canExecute = true;     
+            canExecute = true;
         }
 
         private bool canExecute;
@@ -35,7 +33,8 @@ namespace materialDesignTesting
         public String FileName
         {
             get { return fileName; }
-            set {
+            set
+            {
                 fileName = value;
                 RaisePropertyChanged();
             }
@@ -57,7 +56,7 @@ namespace materialDesignTesting
             // Load content of file in a TextBlock
             if (result == true)
             {
-                FileName= openFileDlg.FileName;
+                FileName = openFileDlg.FileName;
                 //this method will read all the contents of the provided file
                 //FileName = System.IO.File.ReadAllText(openFileDlg.FileName);
                 Console.WriteLine("the opendialog.filename:  {0}", FileName);
@@ -70,7 +69,7 @@ namespace materialDesignTesting
 
                 Console.WriteLine("The following vectors were generated: ");
                 Console.WriteLine("User: ");
-                foreach ( double value in ViewsMediator.User )
+                foreach (double value in ViewsMediator.User)
                     Console.Write("{0} ", value);
                 Console.WriteLine("\nOpponent: ");
                 foreach (double value in ViewsMediator.Opponent)
