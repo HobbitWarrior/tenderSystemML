@@ -13,70 +13,91 @@ namespace materialDesignTesting
     {
         public GraphViewModel()
         {
-            canExecute = true;
         }
 
-        private bool canExecute;
-        private ICommand clickOnBrowseButton;
-        public ICommand ClickOnBrowseButton
+        #region Fields Binding (properties)
+        private int _sliderValue = 25;
+
+        public double mean
         {
-            get
-            {
-                return clickOnBrowseButton ?? (clickOnBrowseButton = new CommandHandler(() => openDialog(), canExecute));
+                get
+                {
+                return ViewsMediator.Mean; 
+                }
+               set
+                {
+                    ViewsMediator.Mean= value;
+                    System.Console.WriteLine("the mean is: {0}", ViewsMediator.Mean);
+                    RaisePropertyChanged();
+                }
+        }
+        public double variance
+        {
+                get
+                {
+                return ViewsMediator.Variance;
             }
-        }
+                set
+                {
+                    ViewsMediator.Variance= value;
+                    RaisePropertyChanged(); 
+                }
+         }
+        public double budgetSpent
+         {
+                get
+                {
+                    return ViewsMediator.BudgetSpent;
+                }
+                set
+                {
+                    ViewsMediator.BudgetSpent = value;
+                     RaisePropertyChanged();
+            }
+         }
+        public double averageGain
+         {
+                get
+                {
+                return ViewsMediator.AverageGain;
+                }
+                set
+                {
+                    ViewsMediator.AverageGain = value;
+                }
+         }
 
 
-        private String fileName = "[PlaceHolder]";
-
-
-        public String FileName
+        public int sliderValue
         {
-            get { return fileName; }
             set
             {
-                fileName = value;
-                RaisePropertyChanged();
+                if(value<=50 && value >=1)
+                {
+                    this._sliderValue = value;
+                    RaisePropertyChanged();
+                }
             }
-        }
-
-
-        //<summary>The following method is handling the opening of a new dialog event</summary>
-        public void openDialog()
-        {
-            Console.WriteLine("Just called a button click event!!!! Yay! :)");
-
-            //Open dialog
-            // Create OpenFileDialog
-            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
-
-            // Launch OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = openFileDlg.ShowDialog();
-            // Get the selected file name and display in a TextBox.S
-            // Load content of file in a TextBlock
-            if (result == true)
+            get
             {
-                FileName = openFileDlg.FileName;
-                //this method will read all the contents of the provided file
-                //FileName = System.IO.File.ReadAllText(openFileDlg.FileName);
-                Console.WriteLine("the opendialog.filename:  {0}", FileName);
-                //A temp method, returns a 1000 dimensional Vector
-                genetrateRandomVector(1000);
-
-                //set expander to false
-                ViewsMediator.userExpander = "False";
-                ViewsMediator.opponentExpander = "True";
-
-                Console.WriteLine("The following vectors were generated: ");
-                Console.WriteLine("User: ");
-                foreach (double value in ViewsMediator.User)
-                    Console.Write("{0} ", value);
-                Console.WriteLine("\nOpponent: ");
-                foreach (double value in ViewsMediator.Opponent)
-                    Console.Write("{0} ", value);
+                return this._sliderValue;
             }
         }
+        #endregion
 
+        //private ICommand clickOnBrowseButton;
+        //public ICommand ClickOnBrowseButton
+        //{
+        //    get
+        //    {
+        //        return clickOnBrowseButton ?? (clickOnBrowseButton = new CommandHandler(() => null, true));
+        //    }
+        //}
+
+
+
+
+      
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -86,13 +107,5 @@ namespace materialDesignTesting
             }
         }
 
-
-        //<summary>A temp stub function that instantiates the two probability vectors</summary
-        private void genetrateRandomVector(int n)
-        {
-            fileManager fl = new fileManager();
-            ViewsMediator.User = fl.generateRandomVector(1000);
-            ViewsMediator.Opponent = fl.generateRandomVector(1000);
-        }
     }
 }

@@ -9,7 +9,7 @@
             TextElement.FontSize="13"
             TextOptions.TextFormattingMode="Ideal" 
             TextOptions.TextRenderingMode="Auto"
-            FontFamily="{StaticResource MaterialDesignFont}" Height="400.298" Width="524.553" >
+            FontFamily="{StaticResource MaterialDesignFont}" >
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Load User's Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="0,-30,10,10">
+        <GroupBox Header="Load User's Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}">
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -35,23 +35,41 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Row="3" Grid.Column="0"  materialDesign:HintAssist.Hint="{Binding FileName}"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" Margin="-75,-129,0,10" Grid.ColumnSpan="3"/>
-                <materialDesign:PackIcon Grid.Row="3" Grid.Column="1" Kind="ContentSave" Height="57"  Width="67"/>
-                <Label x:Name="label1" Grid.Row="3" Grid.Column="2" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <materialDesign:PackIcon Grid.Row="3" Grid.Column="3" Kind="BorderColor" Height="83" Width="74" />
-                <Label x:Name="label" Grid.Row="3" Grid.Column="4" Content="Add new qi step" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                <materialDesign:PackIcon Grid.Row="3" Grid.Column="5" Kind="Rubbish" Height="61" Width="73"/>
-                <Label x:Name="label2" Grid.Row="3" Grid.Column="6" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical"  HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="ContentSave" Height="57"  Width="67"/>
+                    <Label x:Name="Save" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="2"  HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="BorderColor" Height="57" Width="67" />
+                    <Label x:Name="newQStep" Content="Add new q[i]" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon  Kind="Rubbish" Height="57" Width="67" />
+                    <Label x:Name="delete" Grid.Row="3" Grid.Column="6" Content="Delete"  VerticalAlignment="Top"/>
+                </StackPanel>
+                
+                <ToolBarTray  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Top">
+                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="True">
+                        <Button ToolTip="Save">
+                            <materialDesign:PackIcon Kind="ContentSave" />
+                        </Button>
+                        <Button Command="Cut" ToolTip="Delete">
+                            <materialDesign:PackIcon Kind="Rubbish" />
+                        </Button>
+                        <Button Command="Copy" ToolTip="Add New Q[i]">
+                            <materialDesign:PackIcon Kind="BorderColor" />
+                        </Button>
+                        <Separator />
+                    </ToolBar>
+                </ToolBarTray>
             </Grid>
         </GroupBox>
     </Grid>

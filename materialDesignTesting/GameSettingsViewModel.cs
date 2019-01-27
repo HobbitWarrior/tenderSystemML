@@ -23,6 +23,7 @@ namespace materialDesignTesting
             set
             {
                 ViewsMediator.NumberOfGames = value;
+                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.NumberOfGames);
                 RaisePropertyChanged();
             }
         }
@@ -37,6 +38,7 @@ namespace materialDesignTesting
             set
             {
                 ViewsMediator.GameOrder = value;
+                Console.WriteLine("GameOrder has changed to: {0}", ViewsMediator.GameOrder);
                 RaisePropertyChanged();
             }
         }
@@ -50,6 +52,7 @@ namespace materialDesignTesting
             set
             {
                 ViewsMediator.PrizeAmount = value;
+                Console.WriteLine("PrizeAmount has changed to: {0}", ViewsMediator.PrizeAmount);
                 RaisePropertyChanged();
             }
         }

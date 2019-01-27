@@ -9,6 +9,7 @@ using System.Windows.Input;
 
 namespace materialDesignTesting
 {
+    /*TODO: create the connection between the file ocntents loading and viewsmediator appropriate properites*/
     class OpponentLoadStrategyViewModel : INotifyPropertyChanged 
     {
         public OpponentLoadStrategyViewModel()

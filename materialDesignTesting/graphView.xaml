@@ -39,20 +39,39 @@
                     <RowDefinition Height="131*"/>
                     <RowDefinition Height="131*"/>
                     <RowDefinition Height="131*"/>
-                    <RowDefinition Height="131*"/> 
+                    <RowDefinition Height="131*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200*"/>
-                    <ColumnDefinition Width="181*"/>
-                    <ColumnDefinition Width="509*"/>
+                    <ColumnDefinition Width="180*"/>
+                    <ColumnDefinition Width="80*"/>
                     <ColumnDefinition Width="0*"/>
                 </Grid.ColumnDefinitions>
-                <Label   Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="4" x:Name="label" Content="Learning strategy statistitics" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Background="White" FontFamily="Arial Black" FontSize="12" FontWeight="Bold" Foreground="#DD4E34C7"/>
-                <TextBox Grid.Column="2" Grid.Row="2" materialDesign:HintAssist.Hint="Mean"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
-                <TextBox Grid.Column="2" Grid.Row="3" materialDesign:HintAssist.Hint="Variance" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <TextBox Grid.Column="2" Grid.Row="4" materialDesign:HintAssist.Hint="Budget Spent"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <TextBox Grid.Column="2" Grid.Row="5" materialDesign:HintAssist.Hint="Average gain" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <Slider Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"  Minimum="1"  Maximum="50"  Value="25"  ValueChanged="Slider_ValueChanged" Margin="10,96,391,33.5" RenderTransformOrigin="0.495,0.554" />
+                <Label Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="4" x:Name="label" Content="Learning strategy statistitics" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Background="White" FontFamily="Arial Black" FontSize="28" FontWeight="Bold" Foreground="#DD4E34C7"/>
+                <TextBox Margin="25,0,25,0" Grid.Column="2" Grid.Row="2" materialDesign:HintAssist.Hint="Mean"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" >
+                    <TextBox.Text>
+                        <Binding Path="mean" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Margin="25,0,25,0" Grid.Column="2" Grid.Row="3" materialDesign:HintAssist.Hint="Variance" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <TextBox.Text>
+                        <Binding Path="variance" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Margin="25,0,25,0" Grid.Column="2" Grid.Row="4" materialDesign:HintAssist.Hint="Budget Spent"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" >
+                    <TextBox.Text>
+                        <Binding Path="budgetSpent" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Margin="25,0,25,0" Grid.Column="2" Grid.Row="5" materialDesign:HintAssist.Hint="Average gain" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <TextBox.Text>
+                        <Binding Path="averageGain" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+                <Slider Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"  Minimum="1"  Maximum="50"  Value="{Binding Path=sliderValue, UpdateSourceTrigger=PropertyChanged}"  ValueChanged="Slider_ValueChanged" Margin="10,96,391,33.5" RenderTransformOrigin="0.495,0.554" />
+                <WindowsFormsHost x:Name="graphDisplayerWindowsForms" >
+                    <!-- try the walkthrough at the link: https://www.wpf-tutorial.com/misc-controls/the-windowsformshost-control/  -->
+                </WindowsFormsHost>
             </Grid>
         </GroupBox>
     </Grid>

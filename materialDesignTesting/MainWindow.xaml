@@ -5,7 +5,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:tz="http://schemas.abtsoftware.co.uk/transitionz"
         xmlns:local="clr-namespace:materialDesignTesting"
-        Title="Tender System Analysis" Height="800" Width="1100"
+        Title="Tender System Analysis" Height="750" Width="864"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -50,14 +50,21 @@
                    <!--    Hamburger left menus :) -->
                     <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
                              PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
-                        <ListBoxItem Content="Main"></ListBoxItem>
-                        <ListBoxItem Content="Log In"></ListBoxItem>
-                        <ListBoxItem Content="Sign Up"></ListBoxItem>
-                        <ListBoxItem Content="Some Shitty Feature"></ListBoxItem>
-                        <ListBoxItem Content="Guess what?"></ListBoxItem>
-                        <ListBoxItem Content="Yes!!! That's right!"></ListBoxItem>
-                        <ListBoxItem Content="Another Bloody feature."></ListBoxItem>
-                        <ListBoxItem Content="Graph." Mouse.MouseDown="ListBoxItem_MouseDown"></ListBoxItem>
+                        <ListBoxItem >
+                            <Button x:Name="mainButton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
+                                Main
+                            </Button>
+                        </ListBoxItem>
+                        <ListBoxItem >
+                            <Button x:Name="logInButton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
+                                Log In
+                            </Button>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <Button x:Name="graphButton" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
+                                Show Graphs and Stats
+                            </Button>
+                        </ListBoxItem>
                     </ListBox>
                     <!--    End of Hamburger left menus :) -->
                 </DockPanel>
@@ -120,10 +127,7 @@
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding GameSettingsExpander, NotifyOnSourceUpdated=True}" Header="Game General Settings:">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                                                 <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Game Settings" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GameSettingsViewModel}"/>
-                                                <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="ShowGraph" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}"/>
-                                                <materialDesign:Badged Badge="3">
-                                                    <Button Width="1020" Content="Sapir Rulz" Click="sapir"/>
-                                                </materialDesign:Badged>
+                                                <!--<Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="ShowGraph" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}"/>-->
                                             </StackPanel>
                                         </Expander>
                                         <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />

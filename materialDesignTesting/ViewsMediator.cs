@@ -38,7 +38,14 @@ namespace materialDesignTesting
         public static int BidValue;
         #endregion
 
-       
+        #region Grpah Display Variables
+        public static double Mean;
+        public static double Variance;
+        public static double BudgetSpent;
+        public static double AverageGain;
+        public static object Graph; //not sure yet how it will be displayed :P
+        #endregion
+
         #region Game Expectations Vectors
         //<value>User's result vector</value>
         private static List<double> user =new List<double>();
