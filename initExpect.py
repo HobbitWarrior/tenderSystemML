@@ -83,7 +83,7 @@ class initExpect:
         np.set_printoptions(threshold=np.nan,suppress=True)
         #the following class is an implementation that is based
         # on the algorithm that
-        #was propesed in the research paper part 1 
+        #was prpposed in the research paper part 1 
         #of our project
         #can be found on page 9 --- Methods
         #first threshold
@@ -135,18 +135,24 @@ class initExpect:
         ##################################################################
         ##########Ze'evs Algorithms Realization###########################
         ##################################################################
-    def calculateOutcome(self,N=100,maxMove=1000,opponenetOutcome=None,K=2000):
+    def calculateOutcome(self,isFirst=False,N=100,maxMove=1000,opponenetOutcome=None,K=2000):
         self.userOutcome = np.zeros(maxMove)
         
         self.q = np.arange(0.0001,1,0.0001)
         self.p = np.zeros(maxMove)
+        
+        #toggling the turn of the user
+        #based on the input parameter: boolean isFirst
+        usersTurn = isFirst^1
+        
+            
         
         if self.opponentOutcome is None:
             self.opponentOutcome = np.zeros(maxMove)
             print(self.opponentOutcome.size)
         for i in range(0,N):
             for iMove in range(0,maxMove):
-                if(iMove%2 == 0):#users move
+                if(iMove%2 == usersTurn):
                     usersMove = rnd.uniform(0.0,1.0)
                     if(usersMove>self.q[iMove]):
                         #User won
@@ -159,7 +165,7 @@ class initExpect:
                         for j in range(iMove,maxMove):
                             self.userOutcome[j]=self.userOutcome[j]+K-(iMove-1)
                             self.opponentOutcome[j]=self.opponentOutcome[j]-(iMove-2)
-                            #exit the current game :P jeez this shit is effing ridiculus
+                            #exit the current game :P jeez this shit is effing ridiculous
                             break
                 else:
                     opponentsMove = rnd.uniform(0.0,1.0)
@@ -173,7 +179,7 @@ class initExpect:
                         for j in range(iMove,maxMove):
                             self.opponentOutcome[j]=self.opponentOutcome[j]+K-(iMove-1)
                             self.userOutcome[j]=self.userOutcome[j]-(iMove-2)
-                            #exit the current game :P jeez this shit is effing ridiculus
+                            #exit the current game :P jeez this shit is effing ridiculous
                             break
         print("Just exited the %dth game! Yay!!!! :)"%i)
         print("printing the arrays:")
@@ -184,7 +190,7 @@ class initExpect:
         print(self.opponentOutcome)    
         print("and last but not least, give a huge round of applause to the P vector:")        
         print(self.p)
-        
+        print(usersTurn)
     
 test = initExpect()
 
