@@ -14,7 +14,7 @@ class Auction(Game):
     K = 1000
     step = 1
     
-    def __init__(self,isFirst=False,N=100,maxMove=1000,opponenetOutcome=None,K=2000):
+    def __init__(self,isFirst=False,N=100,maxMove=1000,opponentOutcome=None,K=2000):
         self.reset()
     @property
     def name(self):
@@ -85,13 +85,13 @@ class Auction(Game):
         Returns:
             Expactations[step]."""
     def calculateExpecation(self):
-        self.EUser[self.step] = ( self.userOutcome[self.step]*self.p[self.step] + (-self.step)*self.p[self.step] ) * ( 1 if self.step==1 else self.EUser[self.step-2] )
+        self.EUser[self.step] = ( self.userOutcome[self.step,0]*self.p[self.step] + (-self.step)*self.p[self.step] ) * ( 1 if self.step==1 else self.EUser[self.step-2] )
         return self.EUser[self.step]
         
     
     
-    def calculateOutcome(self,isFirst=False,N=100,maxMove=1000,opponenetOutcome=None,K=2000):
-        self.userOutcome = np.zeros(maxMove)
+    def calculateOutcome(self,isFirst=False,N=100,maxMove=1000,opponentOutcome=None,K=2000):
+        self.userOutcome = np.zeros((maxMove,maxMove))
         
         self.q = np.arange(0.0001,1,0.0001)
         self.p = np.zeros(maxMove)
@@ -101,7 +101,7 @@ class Auction(Game):
         usersTurn = isFirst^1
         
         if self.opponentOutcome is None:
-            self.opponentOutcome = np.zeros(maxMove)
+            self.opponentOutcome = np.zeros((maxMove,maxMove))
             #print(self.opponentOutcome.size)
         for i in range(0,N):
             for iMove in range(0,maxMove):
@@ -116,8 +116,10 @@ class Auction(Game):
                         #ie. simulate a win of the user in the entire rounds
                         #from this point on.
                         for j in range(iMove,maxMove):
-                            self.userOutcome[j]=self.userOutcome[j]+K-(iMove-1)
-                            self.opponentOutcome[j]=self.opponentOutcome[j]-(iMove-2)
+                            self.userOutcome[j,0] = self.userOutcome[j,0]+K-(iMove-1)
+                            self.userOutcome[j,1] = -j
+                            self.opponentOutcome[j,0]=self.opponentOutcome[j,0]-(iMove-2)
+                            self.opponentOutcome[j,1] = -j
                             #exit the current game :P jeez this shit is effing ridiculous
                             break
                 else:
@@ -130,7 +132,9 @@ class Auction(Game):
                         self.p[iMove]=1-opponentsMove
                         
                         for j in range(iMove,maxMove):
-                            self.opponentOutcome[j]=self.opponentOutcome[j]+K-(iMove-1)
-                            self.userOutcome[j]=self.userOutcome[j]-(iMove-2)
+                            self.opponentOutcome[j,0]=self.opponentOutcome[j,0]+K-(iMove-1)
+                            self.opponentOutcome[j,0] = -j
+                            self.userOutcome[j,0]=self.userOutcome[j,0]-(iMove-2)
+                            self.userOutcome[j,1] = -j
                             #exit the current game :P jeez this shit is effing ridiculous
                             break
