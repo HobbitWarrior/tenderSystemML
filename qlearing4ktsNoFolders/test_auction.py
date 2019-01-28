@@ -9,7 +9,7 @@ from keras import backend as K
 K.set_image_dim_ordering('th')
 
 grid_size = 2000
-nb_frames = 4
+nb_frames = 1000
 nb_actions = 2
 
 hidden_size = 100

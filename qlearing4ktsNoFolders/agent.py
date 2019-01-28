@@ -38,7 +38,7 @@ class Agent:
 #			raise Exception('Multi node input is not supported.')
 		game_output_shape = (1, None) + game.get_frame().shape
 		if len(game_output_shape) != len(self.model.get_input_shape_at(0)):
-			raise Exception('Dimension mismatch. Input shape of the model should be compatible with the game.')
+			raise Exception('Dimension mismatch. Input shape of the model should be compatible with the game. %d %d'%(len(game_output_shape),len(self.model.get_input_shape_at(0))))
 		else:
 			for i in range(len(self.model.get_input_shape_at(0))):
 				if self.model.get_input_shape_at(0)[i] and game_output_shape[i] and self.model.get_input_shape_at(0)[i] != game_output_shape[i]:
