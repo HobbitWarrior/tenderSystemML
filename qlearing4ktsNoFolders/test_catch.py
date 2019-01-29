@@ -1,8 +1,8 @@
 from keras.models import Sequential
 from keras.layers import Flatten, Dense
-from qlearning4kts.games import Catch
+from catch import Catch
 from keras.optimizers import *
-from qlearning4kts import Agent
+from agent import Agent
 
 grid_size = 10
 hidden_size = 100

@@ -38,9 +38,10 @@ class Agent:
 #			raise Exception('Multi node input is not supported.')
 		game_output_shape = (1, None) + game.get_frame().shape
 		if len(game_output_shape) != len(self.model.get_input_shape_at(0)):
-			raise Exception('Dimension mismatch. Input shape of the model should be compatible with the game. %d %d the game output shape is: %s and the shape of the game frame is: %s'%(len(game_output_shape),len(self.model.get_input_shape_at(0)),game_output_shape,game.get_frame().shape))
+			raise Exception('Dimension mismatch. Input shape of the model should be compatible with the game.')
 		else:
-			for i in range(len(self.model.get_input_shape_at(0))):
+			for i in range(len(self.model.get_input_shape_at(0))): 
+				return
 				if self.model.get_input_shape_at(0)[i] and game_output_shape[i] and self.model.get_input_shape_at(0)[i] != game_output_shape[i]:
 					raise Exception('Dimension mismatch. Input shape of the model should be compatible with the game.')
 		if len(self.model.get_output_shape_at(0)) != 2 or self.model.get_output_shape_at(0)[1] != game.nb_actions:
@@ -57,8 +58,8 @@ class Agent:
 
 	def clear_frames(self):
 		self.frames = None
-
-	def train(self, game, nb_epoch=1000, batch_size=50, gamma=0.9, epsilon=[1., .1], epsilon_rate=0.5, reset_memory=False, observe=0, checkpoint=None):
+#original batch_size=50
+	def train(self, game, nb_epoch=1000, batch_size=1, gamma=0.9, epsilon=[1., .1], epsilon_rate=0.5, reset_memory=False, observe=0, checkpoint=None):
 		self.check_game_compatibility(game)
 		if type(epsilon)  in {tuple, list}:
 			delta =  ((epsilon[0] - epsilon[1]) / (nb_epoch * epsilon_rate))
