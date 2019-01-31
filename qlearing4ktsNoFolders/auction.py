@@ -1,10 +1,21 @@
 import numpy as np
 from game import Game
 import random
-from __builtin__ import True, False, None
-from pickle import NONE
+from matplotlib.pyplot import step
 
 class Auction(Game):
+    
+        
+    @property
+    def name(self):
+        return "Auction"
+    
+    """Returns: number of possible moves in a round: {bid, pass}"""
+    @property
+    def nb_actions(self):
+        return 2
+    
+    
     
     q = None
     p = None
@@ -13,13 +24,13 @@ class Auction(Game):
     userOutcome = None
     opponentOutcome = None
     
+    
     userAverage = None
     opponentAverage = None
     
-    
-    
     EUser = None
     EOpponent = None
+    
     
     UserARoundCount = None
     OpponentARoundCount = None
@@ -32,11 +43,6 @@ class Auction(Game):
     isUserFirst = None
     
     
-    
-    
-    
-    
-    
     gameOver = False
     isUserWon = False
     K = 1000
@@ -45,30 +51,32 @@ class Auction(Game):
     
     def __init__(self,isFirst=False,N=100,maxMove=1000,opponentOutcome=None,K=2000, p=None, q=None, isUserFirst=True):
         #initiate global fields
-        self.testSimulGame()
-        return 
+        #self.testSimulGame()
+        #return 
     
     
-        self.maxMove = maxMove
-        self.EUser = np.zeros((self.maxMove))
-        self.EOpponent = np.zeros((self.maxMove))
-        self.userOutcome = np.zeros(self.maxMove)
-        self.UserARoundCount = np.zeros(self.maxMove)
-        self.OpponentARoundCount = np.zeros(self.maxMove)
-        self.UserERoundCount = np.zeros(self.maxMove)
-        self.UserARoundCount = np.zeros(self.maxMove)
+        K = maxMove
+        self.EUser = np.zeros((K))
+        self.EOpponent = np.zeros((K))
+        self.userOutcome = np.zeros(K)
+        self.UserARoundCount = np.zeros(K)
+        self.OpponentARoundCount = np.zeros(K)
+        self.UserERoundCount = np.zeros(K)
+        self.UserARoundCount = np.zeros(K)
         
         
-        self.userAverage = np.zeros(self.maxMove)
-        self.opponentAverage = np.zeros(self.maxMove)
+        self.userAverage = np.zeros(K)
+        self.opponentAverage = np.zeros(K)
         self.isUserFirst = isUserFirst
         
-        if not p:
-            p = np.ones(maxMove)
-        if not q:
-            q = np.arange(0.0001,1,0.0001)
-            
-        self.reset()
+        if not self.p:
+            self.p = np.ones(maxMove)
+        if not self.q:
+            self.q = np.arange(0.0001,1,0.0001)
+         
+        self.calcualteBasicAlgorithm()
+        print(self.userAverage)   
+        #self.reset()
         
         
         
@@ -102,26 +110,135 @@ class Auction(Game):
         if self.isUserFirst :
             for i in range(0,pFinal):
                 if i%2 == 0:
-                    p = p*self.p[i]
+                    p = p*self.self.p[i]
                 else:
                     p = p*self.q[i]
         return p
                 
-            
-        
-        
-        
-        
-    @property
-    def name(self):
-        return "Auction"
-	
-    """Returns: number of possible moves in a round: {bid, pass}"""
-    @property
-    def nb_actions(self):
-        return 2
-	
     
+    
+    def findKs(self,K,w=10):
+        size = self.userAverage.size
+        k0tag = 0
+        
+        for i in range(0,size):
+            if k0tag < self.userAverage[i]:
+                k0tag = self.userAverage[i]
+        min=0
+        minIndex = 0 
+        for i in range(0,k0tag):
+            if min > self.userAverage[i]:
+                min = self.userAverage[i]
+                minIndex = i
+        
+        min = min if (min > (-K/w)) else (-K/w)   
+        return min , minIndex 
+                
+    
+    def calcualteBasicAlgorithm(self,n0=10,m=3,K=1000,N=1000,y=10,z=5):
+        '''first step'''
+        for i in range(0,n0):
+            endGame = False
+            i = 0
+            while not endGame:
+                r = random.random()
+                if r < self.p[i]:
+                    i+=1
+                    r = random.random()
+                    if r < self.q[i]:
+                        i+=1
+                    else:
+                        endGame = True
+                        break
+                else:
+                    endaGame = True
+                    break
+            self.updateAverage(m*K, i, K)
+            self.updateDistributions(m*K, i, K)
+        
+        
+        '''second step'''
+        for i in range(0,N/y):
+            j = 2
+            endGame = False
+            i = 0
+            while not endGame:
+                r = random.random()
+                if r < self.p[i]:
+                    if (K - i) < -K:
+                        endaGame = True
+                        break
+                    else:
+                        i += 1
+                        r = random.random()
+                        if r < self.q[i]:
+                            i+=1
+                        else:
+                            endGame = True
+                            break
+                else:
+                    endaGame = True
+                    break
+                
+            self.updateAverage(m*j*K, i, K)
+            self.updateDistributions(m*j*K, i, K)
+            j += 1
+        
+        
+        
+        '''Third and fourth steps'''
+        for i in range(0,1+N/z):
+            k0min , k0minIndex = self.findKs(K, w)
+            if k0min != 0:
+                for i in range(0,k0min):
+                    endGame = False
+                    i = 0
+                    while not endGame:
+                        r = random.random()
+                        if r < self.p[i]:
+                            i+=1
+                            r = random.random()
+                            if r < self.q[i]:
+                                i+=1
+                            else:
+                                endGame = True
+                                break
+                        else:
+                            endaGame = True
+                            break
+                    self.updateAverage(k0minIndex, i, K)
+                    self.updateDistributions(k0minIndex, i, K)
+        '''Fifth step'''
+        max = 0
+        maxIndex = 0
+        for i in range(0,self.userAverage.size):
+            if max > self.userAverage[i] :
+                max = self.userAverage[i]
+                maxIndex = i
+        
+        #Subtract from N the number of games played so far 
+        rN = N-(1+N/z+N/y+n0)      
+        if self.userAverage[maxIndex] >= 0:
+            for i in  range(0,rn):
+                for i in range(0,maxIndex):
+                    endGame = False
+                    i = 0
+                    while not endGame:
+                        r = random.random()
+                        if r < self.p[i]:
+                            i+=1
+                            r = random.random()
+                            if r < self.q[i]:
+                                i+=1
+                            else:
+                                endGame = True
+                                break
+                        else:
+                            endaGame = True
+                            break
+                    self.updateAverage(k0minIndex, i, K)
+                    self.updateDistributions(k0minIndex, i, K)
+
     """Resets the game, TODO: Further explanation later-TBD :P """
     def reset(self):
         #default game setting
@@ -137,7 +254,7 @@ class Auction(Game):
         if not action:
             self.passGame()
          #Check if we played maxMoves
-        elif self.step > self.maxMove:
+        elif self.step > K:
              self.passGame()
         #if the player is still has a positive income, he will stay in the game
         elif  self.calculateExpecation() < (self.K - self.step):
@@ -159,7 +276,7 @@ class Auction(Game):
         return self.userOutcome
 
     def get_score(self):
-        return (self.maxMove-self.step)
+        return (K-self.step)
 
     def is_over(self):
         return self.gameOver
@@ -196,7 +313,7 @@ class Auction(Game):
         we do not include its calculation, or even consider it in our decision making at this
         phase.
         Returns:
-            Expectations[step]."""
+            Expectations[step]. """
     def calculateExpecation(self):
         #TODO: to write the loss expectation
         self.EUser[0,self.step] = ( self.userOutcome[0,self.step]*self.p[self.step] + (-self.step)*self.p[self.step] ) * ( 1 if self.step==1 else self.EUser[0,self.step-2] )
@@ -282,7 +399,7 @@ class Auction(Game):
         while not endGame:
             i=i+1
             r = random.random()
-            if r < p[i]:        #player plays
+            if r < self.p[i]:        #player plays
                 i=i+1
                 r = random.random() 
                 if  r < q[i]:   #Opponent plays too
