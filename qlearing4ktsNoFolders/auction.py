@@ -1,30 +1,116 @@
 import numpy as np
 from game import Game
 import random
-from __builtin__ import True, False
+from __builtin__ import True, False, None
+from pickle import NONE
 
 class Auction(Game):
     
     q = None
     p = None
+    
+    
     userOutcome = None
     opponentOutcome = None
+    
+    userAverage = None
+    opponentAverage = None
+    
+    
+    
     EUser = None
     EOpponent = None
+    
+    UserARoundCount = None
+    OpponentARoundCount = None
+    
+    
+    UserERoundCount = None
+    OpponentERoundCount = None
+    
+    
+    isUserFirst = None
+    
+    
+    
+    
+    
+    
+    
     gameOver = False
     isUserWon = False
     K = 1000
     step = 1
     maxMove = None
     
-    def __init__(self,isFirst=False,N=100,maxMove=1000,opponentOutcome=None,K=2000):
+    def __init__(self,isFirst=False,N=100,maxMove=1000,opponentOutcome=None,K=2000, p=None, q=None, isUserFirst=True):
         #initiate global fields
         self.testSimulGame()
         return 
+    
+    
         self.maxMove = maxMove
-        self.EUser = np.zeros((2,self.maxMove))
-        self.EOpponent = np.zeros((2,self.maxMove))
+        self.EUser = np.zeros((self.maxMove))
+        self.EOpponent = np.zeros((self.maxMove))
+        self.userOutcome = np.zeros(self.maxMove)
+        self.UserARoundCount = np.zeros(self.maxMove)
+        self.OpponentARoundCount = np.zeros(self.maxMove)
+        self.UserERoundCount = np.zeros(self.maxMove)
+        self.UserARoundCount = np.zeros(self.maxMove)
+        
+        
+        self.userAverage = np.zeros(self.maxMove)
+        self.opponentAverage = np.zeros(self.maxMove)
+        self.isUserFirst = isUserFirst
+        
+        if not p:
+            p = np.ones(maxMove)
+        if not q:
+            q = np.arange(0.0001,1,0.0001)
+            
         self.reset()
+        
+        
+        
+        
+    def updateAverage(self,k0,userLastRound,K):
+        for i in range(userLastRound,k0,2):
+            self.userOutcome[i] = self.userOutcome[i] + (K-userLastRound)
+            self.UserARoundCount[i] += 1
+            
+        for i in  range(0,k0-1,2):
+            self.userOutcome[i] = self.userOutcome[i] - i
+            self.UserARoundCount[i] += 1
+            
+        for i in range(0,k0,2):
+            self.userAverage[i] = self.userOutcome[i] / self.UserARoundCount
+            
+            
+    def updateDistributions(self,k0,listOfEndGames,K):
+        distr = 0
+        for i in listOfEndGames:
+            distr = distr + (K-k0)*self.calcProbability(i)
+            self.UserERoundCount += 1
+        self.EUser = distr / self.UserERoundCount
+        
+        
+    #TODO: check how to update backward distribution
+        
+        
+    def calcProbability(self,pFinal):
+        p = 1
+        if self.isUserFirst :
+            for i in range(0,pFinal):
+                if i%2 == 0:
+                    p = p*self.p[i]
+                else:
+                    p = p*self.q[i]
+        return p
+                
+            
+        
+        
+        
         
     @property
     def name(self):
