@@ -246,6 +246,7 @@ class Auction(Game):
         #reset number of steps
         self.step = 1
         
+    """"Q learning algorithm, still needs some revision"""
     """Implementation of a single round of a game, a single round consists of two moves, the player's move and the opponent's response,
         the order of playing my vary. """    
     def play(self, action):
@@ -307,70 +308,7 @@ class Auction(Game):
         self.isUserWon = True
         self.gameOver = True
         return
-    
-    """ Calculates the possible expectation from the auction so far,
-        Since the opponents possible move is considered a hidden information
-        we do not include its calculation, or even consider it in our decision making at this
-        phase.
-        Returns:
-            Expectations[step]. """
-    def calculateExpecation(self):
-        #TODO: to write the loss expectation
-        self.EUser[0,self.step] = ( self.userOutcome[0,self.step]*self.p[self.step] + (-self.step)*self.p[self.step] ) * ( 1 if self.step==1 else self.EUser[0,self.step-2] )
-        return self.EUser[0,self.step]
-        
-    
-    
-    def calculateOutcome(self,isFirst=False,N=100,maxMove=1000,opponentOutcome=None,K=2000):
-        
-        self.userOutcome = np.zeros((2,maxMove))
-        
-        self.q = np.arange(0.0001,1,0.0001)
-        self.p = np.zeros(maxMove)
-        
-        #toggling the turn of the user
-        #based on the input parameter: boolean isFirst
-        usersTurn = isFirst^1
-        
-        if self.opponentOutcome is None:
-            self.opponentOutcome = np.zeros((2,maxMove))
-            #print(self.opponentOutcome.size)
-        for i in range(0,N):
-            for iMove in range(0,maxMove):
-                if(iMove%2 == usersTurn):
-                    usersMove = np.random.uniform(0.0,1.0)
-                    if(usersMove>self.q[iMove]):
-                        #User won
-                        #keep setting the entire outcome vector to the max,
-                        #ie. simulate a win of the user in the entire rounds
-                        #from this point on.
-                        for j in range(iMove,maxMove):
-                            self.userOutcome[0,j] = self.userOutcome[0,j]+K-(iMove-1)
-                            self.userOutcome[1,j] = -j
-                            self.opponentOutcome[0,j]=self.opponentOutcome[0,j]-(iMove-2)
-                            self.opponentOutcome[1,j] = -j
-                            #exit the current game :P jeez this shit is effing ridiculous
-                            break
-                else:
-                    opponentsMove = np.random.uniform(0.0,1.0)
-                    if opponentsMove>self.p[iMove]:
-                        #simulates a win by the opponent
-                        #Since the opponent won, 
-                        #set user's probability vector in this index to the 
-                        #opponent's random probability value complement
-                        self.p[iMove]=1-opponentsMove
-                        
-                        for j in range(iMove,maxMove):
-                            self.opponentOutcome[0,j]=self.opponentOutcome[0,j]+K-(iMove-1)
-                            self.opponentOutcome[1,j] = -j
-                            self.userOutcome[0,j]=self.userOutcome[0,j]-(iMove-2)
-                            self.userOutcome[1,j] = -j
-                            #exit the current game :P jeez this shit is effing ridiculous
-                            break
-                        
-                        
-                                       
-                        
+ 
                         
     def averageInGames(self,p,q, K, nGames):
         X = np.zeros(nGames)
