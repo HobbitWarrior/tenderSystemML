@@ -120,6 +120,7 @@
       <DependentUpon>UserUS.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserViewModel.cs" />
+    <Compile Include="vectorFileHandler.cs" />
     <Compile Include="ViewsMediator.cs" />
     <Page Include="EstimateStrategyView.xaml">
       <SubType>Designer</SubType>
