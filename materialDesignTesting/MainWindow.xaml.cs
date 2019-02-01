@@ -83,5 +83,14 @@ namespace materialDesignTesting
         {
             System.Console.Write("just clicked");
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            externalProcessRunner epr = new externalProcessRunner();
+            while (!epr.isDone)
+                continue;
+            System.Console.WriteLine(epr.myString);
+            
+        }
     }
 }

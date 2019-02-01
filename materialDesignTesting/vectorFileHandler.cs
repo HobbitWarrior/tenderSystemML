@@ -15,7 +15,7 @@ namespace materialDesignTesting
     vectorFileHandler test = new vectorFileHandler();    
     public List<double> realval = new List<double>();
     public List<double> read_val = new List<double>();
-       bool x;
+    bool x;
   public string path = @"C:\projTest\vector.txt";
   public string output = @"C:\projTest\wtest.txt";
     

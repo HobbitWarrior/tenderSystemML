@@ -52,6 +52,9 @@ namespace materialDesignTesting
         //<value>Opponent's result vector</value>
         private static List<double> opponent = new List<double>();
         #endregion
+
+
+        public static string pythonRunResult = "";
         //<summary> the following properties will control the probablity???????? vectors of the players. </summary>
         public static List<double> User {
             get
