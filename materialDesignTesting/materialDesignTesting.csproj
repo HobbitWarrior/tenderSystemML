@@ -77,6 +77,7 @@
       <DependentUpon>EstimateStrategyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="EstimateStrategyViewModel.cs" />
+    <Compile Include="externalProcessRunner.cs" />
     <Compile Include="fileManager.cs" />
     <Compile Include="GameSettingsView.xaml.cs">
       <DependentUpon>GameSettingsView.xaml</DependentUpon>
@@ -120,6 +121,7 @@
       <DependentUpon>UserUS.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserViewModel.cs" />
+    <Compile Include="vectorFileHandler.cs" />
     <Compile Include="ViewsMediator.cs" />
     <Page Include="EstimateStrategyView.xaml">
       <SubType>Designer</SubType>
