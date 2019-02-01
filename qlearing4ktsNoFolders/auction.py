@@ -56,17 +56,17 @@ class Auction(Game):
     
     
         K = maxMove
-        self.EUser = np.zeros((K))
-        self.EOpponent = np.zeros((K))
-        self.userOutcome = np.zeros(K)
-        self.UserARoundCount = np.zeros(K)
-        self.OpponentARoundCount = np.zeros(K)
-        self.UserERoundCount = np.zeros(K)
-        self.UserARoundCount = np.zeros(K)
+        self.EUser = np.zeros((100*K))
+        self.EOpponent = np.zeros((100*K))
+        self.userOutcome = np.zeros(100*K)
+        self.UserARoundCount = np.zeros(100*K)
+        self.OpponentARoundCount = np.zeros(100*K)
+        self.UserERoundCount = np.zeros(100*K)
+        self.UserARoundCount = np.zeros(100*K)
         
         
-        self.userAverage = np.zeros(K)
-        self.opponentAverage = np.zeros(K)
+        self.userAverage = np.zeros(100*K)
+        self.opponentAverage = np.zeros(100*K)
         self.isUserFirst = isUserFirst
         
         if not self.p:
@@ -91,15 +91,15 @@ class Auction(Game):
             self.UserARoundCount[i] += 1
             
         for i in range(0,k0,2):
-            self.userAverage[i] = self.userOutcome[i] / self.UserARoundCount
+            self.userAverage[i] = self.userOutcome[i] / self.UserARoundCount[i]
             
             
     def updateDistributions(self,k0,listOfEndGames,K):
         distr = 0
-        for i in listOfEndGames:
-            distr = distr + (K-k0)*self.calcProbability(i)
-            self.UserERoundCount += 1
-        self.EUser = distr / self.UserERoundCount
+       # for i in listOfEndGames:
+       #     distr = distr + (K-k0)*self.calcProbability(i)
+       #     self.UserERoundCount += 1
+       # self.EUser = distr / self.UserERoundCount
         
         
     #TODO: check how to update backward distribution
@@ -135,7 +135,7 @@ class Auction(Game):
         return min , minIndex 
                 
     
-    def calcualteBasicAlgorithm(self,n0=10,m=3,K=1000,N=1000,y=10,z=5):
+    def calcualteBasicAlgorithm(self,n0=10,m=3,K=1000,N=1000,y=10,z=5,w=5):
         '''first step'''
         for i in range(0,n0):
             endGame = False
@@ -154,7 +154,7 @@ class Auction(Game):
                     endaGame = True
                     break
             self.updateAverage(m*K, i, K)
-            self.updateDistributions(m*K, i, K)
+            #self.updateDistributions(m*K, i, K)
         
         
         '''second step'''
@@ -233,7 +233,7 @@ class Auction(Game):
                             else:
                                 endGame = True
                                 break
-                        else:
+                        else: 
                             endaGame = True
                             break
                     self.updateAverage(k0minIndex, i, K)
