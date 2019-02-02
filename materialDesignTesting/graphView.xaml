@@ -11,7 +11,8 @@
             TextOptions.TextFormattingMode="Ideal" 
             TextOptions.TextRenderingMode="Auto"
             Background="{DynamicResource MaterialDesignPaper}"
-            FontFamily="{StaticResource MaterialDesignFont}" >
+            FontFamily="{StaticResource MaterialDesignFont}" 
+             x:Name="graphViewUserControl">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -71,10 +72,10 @@
                         <Binding Path="averageGain" UpdateSourceTrigger="PropertyChanged"/>
                     </TextBox.Text>
                 </TextBox>
-                <Slider Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"  Minimum="{Binding leftSlidebarTail, UpdateSourceTrigger=PropertyChanged}"  Maximum="{Binding leftSlideBarHead, UpdateSourceTrigger=PropertyChanged}"  Value="{Binding Path=sliderValueLeft, UpdateSourceTrigger=PropertyChanged}"  ValueChanged="Slider_ValueChanged" />
+                <Slider Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"  Minimum="{Binding leftSlidebarTail, UpdateSourceTrigger=PropertyChanged}"  Maximum="{Binding leftSlideBarHead, UpdateSourceTrigger=PropertyChanged}"  Value="{Binding Path=sliderValueLeft, UpdateSourceTrigger=PropertyChanged}"  ValueChanged="Slider_ValueChanged"/>
                 <Slider Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"  Minimum="{Binding leftSlidebarTail, UpdateSourceTrigger=PropertyChanged}"  Maximum="{Binding leftSlideBarHead, UpdateSourceTrigger=PropertyChanged}"  Value="{Binding Path=sliderValueRight, UpdateSourceTrigger=PropertyChanged}"  ValueChanged="Slider_ValueChanged" FlowDirection="RightToLeft" />
-                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="5">
-                    <lvc:CartesianChart x:Name="lvcHistogram" Series="{Binding SeriesCollection}" LegendLocation="None" DataTooltip="{Binding Datatooltip}"  Zoom="{Binding ZoomingMode}">
+                <Grid x:Name="graphGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="5">
+                    <lvc:CartesianChart x:Name="lvcHistogram" Series="{Binding SeriesCollection}" LegendLocation="None" DataTooltip="{Binding Datatooltip}"  Zoom="{Binding ZoomingMode}" ScrollMode="X" ScrollHorizontalFrom="{Binding From, Mode=TwoWay}" ScrollHorizontalTo="{Binding To, Mode=TwoWay}">
                         <lvc:CartesianChart.AxisX>
                             <lvc:Axis Title="K0" Labels="{Binding Labels}"></lvc:Axis>
                         </lvc:CartesianChart.AxisX>

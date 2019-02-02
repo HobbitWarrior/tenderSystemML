@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 
 using LiveCharts;
 using LiveCharts.Wpf;
+using LiveCharts.Defaults;
 
 namespace materialDesignTesting
 {
@@ -27,12 +28,39 @@ namespace materialDesignTesting
         public GraphViewModel()
         {
             SeriesCollection = loadHistogramValues(50);
-
-            //lvcHistogram.DataTooltip = null;
             Labels = xLabels(1000);
             Formatter = value => value.ToString("N");
+            From =0;
+            To = 1000;
+        }
+        #region graph scrolling controls
+        private Func<double, string> _formatter;
+        private double _from;
+        private double _to;
+
+
+        public object Mapper { get; set; }
+        //public GearedValues<LiveCharts.Defaults.DateTimePoint> Values { get; set; }
+        public double From
+        {
+            get { return _from; }
+            set
+            {
+                _from = value;
+                RaisePropertyChanged("From");
+            }
+        }
+        public double To
+        {
+            get { return _to; }
+            set
+            {
+                _to = value;
+                RaisePropertyChanged("To");
+            }
         }
 
+        #endregion
         #region Graph View and Controllers
 
         //sliderbars min and maximum fields
