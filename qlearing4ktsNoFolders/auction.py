@@ -56,17 +56,17 @@ class Auction(Game):
     
     
         K = maxMove
-        self.EUser = np.zeros((100*K))
-        self.EOpponent = np.zeros((100*K))
-        self.userOutcome = np.zeros(100*K)
-        self.UserARoundCount = np.zeros(100*K)
-        self.OpponentARoundCount = np.zeros(100*K)
-        self.UserERoundCount = np.zeros(100*K)
-        self.UserARoundCount = np.zeros(100*K)
+        self.EUser = np.zeros((N*K))
+        self.EOpponent = np.zeros((N*K))
+        self.userOutcome = np.zeros(N*K)
+        self.UserARoundCount = np.zeros(N*K)
+        self.OpponentARoundCount = np.zeros(N*K)
+        self.UserERoundCount = np.zeros(N*K)
+        self.UserARoundCount = np.zeros(N*K)
         
         
-        self.userAverage = np.zeros(100*K)
-        self.opponentAverage = np.zeros(100*K)
+        self.userAverage = np.zeros(N*K)
+        self.opponentAverage = np.zeros(N*K)
         self.isUserFirst = isUserFirst
         
         if not self.p:
@@ -75,7 +75,9 @@ class Auction(Game):
             self.q = np.arange(0.0001,1,0.0001)
          
         self.calcualteBasicAlgorithm()
-        print(self.userAverage)   
+        np.savetxt("userOutcome.csv", self.userOutcome, delimiter=",",fmt='%9.9f') 
+        np.savetxt("userAverage.csv", self.userAverage, delimiter=",",fmt='%9.9f')  
+        np.savetxt("userExpectation.csv", self.EUser, delimiter=",",fmt='%9.9f')  
         #self.reset()
         
         

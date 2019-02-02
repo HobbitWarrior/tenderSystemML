@@ -23,11 +23,23 @@ namespace materialDesignTesting
         public graphView()
         {
             InitializeComponent();
+            graphViewModelRef = ((GraphViewModel)(this.DataContext));
         }
+
+        ///<summary>GraphViewModel reference</summary>
+        private GraphViewModel graphViewModelRef;
+
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            graphViewModelRef = ((GraphViewModel)(this.DataContext));
+            graphViewModelRef.zoomingBySlider();
+            System.Console.WriteLine("just attempted to zooom by a slider :P");
+        }
 
+        public void ToogleZoomingMode(object sender, RoutedEventArgs e)
+        {
+            graphViewModelRef.ToogleZoomingMode(sender, e);
         }
     }
 }

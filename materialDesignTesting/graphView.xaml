@@ -2,7 +2,8 @@
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:system="clr-namespace:System;assembly=mscorlib"
-            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"       
+            xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
             xmlns:local="clr-namespace:materialDesignTesting"
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
             TextElement.FontWeight="Regular"
@@ -20,6 +21,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Amber.Accent.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        <!--<zoomingAndPanning:ZoomingModeCoverter x:Key="ZoomingModeCoverter"></zoomingAndPanning:ZoomingModeCoverter>-->
     </UserControl.Resources>
     <Grid>
         <GroupBox Header="Graph Window" Style="{DynamicResource MaterialDesignCardGroupBox}"  >
@@ -35,6 +37,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="41*"/>
                     <RowDefinition Height="220*"/>
+                    <RowDefinition Height="131*"/>
                     <RowDefinition Height="131*"/>
                     <RowDefinition Height="131*"/>
                     <RowDefinition Height="131*"/>
@@ -68,10 +71,18 @@
                         <Binding Path="averageGain" UpdateSourceTrigger="PropertyChanged"/>
                     </TextBox.Text>
                 </TextBox>
-                <Slider Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"  Minimum="1"  Maximum="50"  Value="{Binding Path=sliderValue, UpdateSourceTrigger=PropertyChanged}"  ValueChanged="Slider_ValueChanged" Margin="10,96,391,33.5" RenderTransformOrigin="0.495,0.554" />
-                <WindowsFormsHost x:Name="graphDisplayerWindowsForms" >
-                    <!-- try the walkthrough at the link: https://www.wpf-tutorial.com/misc-controls/the-windowsformshost-control/  -->
-                </WindowsFormsHost>
+                <Slider Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"  Minimum="{Binding leftSlidebarTail, UpdateSourceTrigger=PropertyChanged}"  Maximum="{Binding leftSlideBarHead, UpdateSourceTrigger=PropertyChanged}"  Value="{Binding Path=sliderValueLeft, UpdateSourceTrigger=PropertyChanged}"  ValueChanged="Slider_ValueChanged" />
+                <Slider Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"  Minimum="{Binding leftSlidebarTail, UpdateSourceTrigger=PropertyChanged}"  Maximum="{Binding leftSlideBarHead, UpdateSourceTrigger=PropertyChanged}"  Value="{Binding Path=sliderValueRight, UpdateSourceTrigger=PropertyChanged}"  ValueChanged="Slider_ValueChanged" FlowDirection="RightToLeft" />
+                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="5">
+                    <lvc:CartesianChart x:Name="lvcHistogram" Series="{Binding SeriesCollection}" LegendLocation="None" DataTooltip="{Binding Datatooltip}"  Zoom="{Binding ZoomingMode}">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="K0" Labels="{Binding Labels}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Sold Apps" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </Grid>
             </Grid>
         </GroupBox>
     </Grid>
