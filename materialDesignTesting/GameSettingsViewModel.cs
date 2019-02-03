@@ -91,11 +91,7 @@ namespace materialDesignTesting
 
         #endregion
         #region methods
-        private Boolean validateIntegerField(int field)
-        {
-            //if(field)
-            return false;
-        }
+        //TODO: implement some field validation and tracking the filling of values in the  fields, and on completion of the form inform the snackbar
         #endregion
     }
 }

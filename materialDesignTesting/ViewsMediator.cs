@@ -10,8 +10,8 @@ namespace materialDesignTesting
 {
 
     /// <summary>
-    /// A class that will contain all the data that needs to be shared between the menus of the program, and it will also 
-    ///keep the progress of completion of the wizard that is essential for the running of the Prediction Algorithm.
+    /// A class that will contains all the data that is shared between the menus of the program, 
+    /// all the properties and fields are static and accessible all over the app.
     /// </summary>
 
 
@@ -30,16 +30,16 @@ namespace materialDesignTesting
         #region Game Settings Variables
         //<summary>Game General Settings Variables</summary>
         //<value>Number Of Games</value>
-        public static int NumberOfGames;
+        public static int NumberOfGames=0;
 
         //<value>Define who will play first</value>
-        public static String GameOrder;
+        public static String GameOrder="";
 
         //<value>Prize Amount</value>
-        public static int PrizeAmount;
+        public static int PrizeAmount=0;
 
         //<value>Bid Value</value>
-        public static int BidValue;
+        public static int BidValue=0;
         #endregion
 
         #region Grpah Display Variables
@@ -50,11 +50,23 @@ namespace materialDesignTesting
         public static object Graph; //not sure yet how it will be displayed :P
         #endregion
 
-        #region Game Expectations Vectors
+        #region Game Probability Vectors
         //<value>User's result vector</value>
         private static List<double> user = new List<double>();
         //<value>Opponent's result vector</value>
         private static List<double> opponent = new List<double>();
+        #endregion
+
+        #region Game results vectors
+        /// <summary>
+        /// properties that will store the results that are returned from the Python script.
+        /// </summary>
+        private static List<double> userExpectation = new List<double>();
+        private static List<double> opponentExpectation = new List<double>();
+        private static List<double> userAverage = new List<double>();
+        private static List<double> opponentAverage = new List<double>();
+        private static List<double> userOutcome = new List<double>();
+        private static List<double> opponentOutcome = new List<double>();
         #endregion
 
         #region SnackBar message queue

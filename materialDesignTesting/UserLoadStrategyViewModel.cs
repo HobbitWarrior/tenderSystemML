@@ -82,9 +82,11 @@ namespace materialDesignTesting
                 genetrateRandomVector(1000);
 
 
-                //queues a success message in the snackBar
+                //queues a success message in the snackBar ---remove later, just for testing!!! AZ
                 MainWindow.Snackbar.MessageQueue.Enqueue("File Successfully Loaded");
                 vectorFileHandler vfm = new vectorFileHandler();
+                // end of remove.
+
                 userVector = vfm.readFromFile("userOutcome.csv");
                 if (userVector.Count > 0)
                 {
