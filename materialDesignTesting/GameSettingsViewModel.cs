@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace materialDesignTesting
 {
+
+
+    /// <summary>
+    /// This class is initialize the parameters of the game
+    /// </summary>
     class GameSettingsViewModel : INotifyPropertyChanged
     {
         #region Variables

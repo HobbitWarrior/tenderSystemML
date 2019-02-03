@@ -6,6 +6,10 @@ using System.IO;
 namespace materialDesignTesting
 {
 
+    /// <summary>
+    /// this class messing with communicating with files
+    /// </summary>
+
 
 
     public class vectorFileHandler
@@ -32,7 +36,19 @@ namespace materialDesignTesting
 
         }
 
-  public  bool WriteToFile(string output ,List<double>val)
+
+
+        /// <summary>
+        /// this function writen to file
+        /// </summary>
+        /// <param name="output">the path of the file that we want to writ.</param>
+        ///  <param name="val">list that stores the contents that we want to writ to file.</param>
+        /// <returns>
+        /// return 1 if the writing was successful ,else return 0  
+        /// </returns>
+
+
+        public bool WriteToFile(string output ,List<double>val)
 {
    
     
@@ -60,7 +76,16 @@ namespace materialDesignTesting
 
 }
 
-  public  List<double> readFromeFile(string path)
+
+        /// <summary>
+        /// this function is read from file
+        /// </summary>
+        /// <param name="path">the path of the file that we want to read.</param>
+        /// <returns>
+        /// return list that stores the contents of the file  
+        /// </returns>
+
+        public List<double> readFromeFile(string path)
         {
             string[] text;
             List<double> realval = new List<double>();

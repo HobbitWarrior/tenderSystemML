@@ -11,14 +11,18 @@ using System.Windows.Input;
 
 namespace materialDesignTesting
 {
+    ///<sammary>
+    ///This is the root class view model, all the windows of the application are include from it.A content control tag in the class,acts as a container of the user controls of the other windows in the application. 
+    ///</sammary>
+
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private object currentViewModel;
         public Dictionary<String,Object> viewModels;
 
-        //<sammary>
-        //The following properties control the Wizard's Expanders
-        //</sammary>
+        ///<sammary>
+       ///The following properties control the Wizard's Expanders
+       ///</sammary>
         public String _userExpander = ViewsMediator.userExpander;
         public String _opponentExpander = ViewsMediator.opponentExpander;
         public String _gameSettingsExpander = ViewsMediator.gameSettingsExpander;

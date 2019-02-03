@@ -10,6 +10,10 @@ using System.Windows.Input;
 namespace materialDesignTesting
 {
     /*TODO: create the connection between the file ocntents loading and viewsmediator appropriate properites*/
+
+    /// <summary>
+    /// In this class give the option to load Opponent's strategy
+    /// </summary>
     class OpponentLoadStrategyViewModel : INotifyPropertyChanged 
     {
         public OpponentLoadStrategyViewModel()
@@ -44,7 +48,9 @@ namespace materialDesignTesting
         }
 
 
-        //<summary>The following method is handling the opening of a new dialog event</summary>
+        ///<summary>
+        ///The following method is handling the opening of a new dialog event
+        ///</summary>
         public void openDialog()
         {
             Console.WriteLine("Just called a button click event!!!! Yay! :)");
@@ -89,7 +95,9 @@ namespace materialDesignTesting
         }
 
 
-        //<summary>A temp stub function that instantiates the two probability vectors</summary
+        ///<summary>
+        ///A temp stub function that instantiates the two probability vectors
+        ///</summary
         private void genetrateRandomVector(int n)
         {
             fileManager fl = new fileManager();
