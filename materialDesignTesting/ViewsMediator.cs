@@ -105,6 +105,22 @@ namespace materialDesignTesting
                     opponent = value;
             }
         }
+        /// <summary>
+        /// The following list will fill the vectors with dummy values in the amount of possible rounds in a game.
+        /// Will be used after the user entered the NumberOfGames.
+        /// </summary>
+        /// <param name="size"></param>
+        public static void populateLists(int size)
+        {
+            for(int i=0;i<size;i++)
+            {
+                user.Add(0);
+                opponent.Add(0);
+            }
+        }
+
+
+
         #region INotifyPropertyChanged Interface Implementation
         public event PropertyChangedEventHandler PropertyChanged;
         ///<summary> Implementation of the INotifyPropertyChanged event raising</summary>

@@ -35,6 +35,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -55,7 +56,7 @@
                     <materialDesign:PackIcon  Kind="Rubbish" Height="57" Width="67" />
                     <Label x:Name="delete" Grid.Row="3" Grid.Column="6" Content="Delete"  VerticalAlignment="Top"/>
                 </StackPanel>
-                
+
                 <ToolBarTray  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Top">
                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="True">
                         <Button ToolTip="Save">
@@ -70,6 +71,25 @@
                         <Separator />
                     </ToolBar>
                 </ToolBarTray>
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="5">
+                    <StackPanel x:Name="vectorContainer" Orientation="Horizontal">
+                        <ListBox x:Name="lb" ItemsSource="{Binding manualVector}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Content="{Binding Path=index}"/>
+                                        <TextBox Text="{Binding Path=value}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
         </GroupBox>
     </Grid>

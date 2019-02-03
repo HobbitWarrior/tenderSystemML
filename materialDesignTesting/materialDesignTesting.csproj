@@ -96,6 +96,7 @@
       <DependentUpon>graphView.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphViewModel.cs" />
+    <Compile Include="listBoxVector.cs" />
     <Compile Include="OpponentLoadStrategyViewModel.cs" />
     <Compile Include="OpponentLoadStrategyView.xaml.cs">
       <DependentUpon>OpponentLoadStrategyView.xaml</DependentUpon>
