@@ -15,7 +15,8 @@ namespace materialDesignTesting
     /// </summary>
     class GameSettingsViewModel : INotifyPropertyChanged
     {
-        #region Variables
+        #region Fields
+        private Dictionary<String, int> trackFields = new Dictionary<string, int>();
         #endregion
 
         #region Properties
@@ -89,6 +90,12 @@ namespace materialDesignTesting
         }
 
         #endregion
-
+        #region methods
+        private Boolean validateIntegerField(int field)
+        {
+            //if(field)
+            return false;
+        }
+        #endregion
     }
 }

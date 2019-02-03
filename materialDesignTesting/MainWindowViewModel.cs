@@ -179,6 +179,19 @@ namespace materialDesignTesting
                         GameSettingsExpander = ViewsMediator.gameSettingsExpander;
                         CalculateExpander = ViewsMediator.calculateExpander;
                         navigateCommand = null;
+
+
+                        ///<summary>
+                        ///After each return from a window in the wizard print to the snackbar an update about the results or errors
+                        ///after the messages were enqueued, remove them from the list.
+                        /// </summary>
+                        if (ViewsMediator.messagesForSnacky.Count >= 1)
+                            foreach (String message in ViewsMediator.messagesForSnacky)
+                            {
+                                MainWindow.Snackbar.MessageQueue.Enqueue(message);
+                            }
+                        ViewsMediator.messagesForSnacky.Clear();
+
                     }));
             }
         }

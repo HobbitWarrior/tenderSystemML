@@ -110,6 +110,13 @@
                             <ContentControl Visibility="{Binding ShowMenu}" Grid.Row="0" tz:Transitionz.Opacity="{tz:OpacityParams From=0, To=1, Duration=200, TransitionOn=Visibility}" tz:Transitionz.Translate="{tz:TranslateParams From='10,0', To='0,0', Duration=200, TransitionOn=Visibility}" tz:Transitionz.Visibility="{Binding ElementName=CheckBox, Path=IsChecked, Converter={StaticResource b2vc}}">
                                 <materialDesign:Card  Background="{DynamicResource MaterialDesignBackground}">
                                     <StackPanel>
+                                        <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding GameSettingsExpander, NotifyOnSourceUpdated=True}" Header="Game General Settings:">
+                                            <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                                <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Game Settings" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GameSettingsViewModel}"/>
+                                                <!--<Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="ShowGraph" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}"/>-->
+                                            </StackPanel>
+                                        </Expander>
+                                        <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding UserExpander, NotifyOnSourceUpdated=True}" Header="User's Game Settings:">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                                                 <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserLoadStrategyViewModel}"/>
@@ -121,13 +128,6 @@
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                                                 <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
                                                 <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
-                                            </StackPanel>
-                                        </Expander>
-                                        <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
-                                        <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding GameSettingsExpander, NotifyOnSourceUpdated=True}" Header="Game General Settings:">
-                                            <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                                <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Game Settings" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GameSettingsViewModel}"/>
-                                                <!--<Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="ShowGraph" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}"/>-->
                                             </StackPanel>
                                         </Expander>
                                         <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />

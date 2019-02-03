@@ -52,12 +52,20 @@ namespace materialDesignTesting
 
         #region Game Expectations Vectors
         //<value>User's result vector</value>
-        private static List<double> user =new List<double>();
+        private static List<double> user = new List<double>();
         //<value>Opponent's result vector</value>
         private static List<double> opponent = new List<double>();
         #endregion
 
-
+        #region SnackBar message queue
+        /// <summary>
+        /// Stores the messages for the snackBar, informs the user about events in the app.
+        /// </summary>
+        public static List<string> messagesForSnacky = new List<string>();
+        #endregion
+        #region global flags and progress trackers
+        public static progress trackWizardProgress = 0; 
+        #endregion
         public static string pythonRunResult = "";
         //<summary> the following properties will control the probablity???????? vectors of the players. </summary>
         public static List<double> User {
@@ -72,8 +80,8 @@ namespace materialDesignTesting
             }
         }
 
-        
-        public static  List<double> Opponent
+
+        public static List<double> Opponent
         {
             get
             {

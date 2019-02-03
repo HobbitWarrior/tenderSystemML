@@ -14,7 +14,8 @@ namespace materialDesignTesting
     public enum progress:int
     {
         blank   = 0,
-        loaded  = 1,
-        manual  = 2,
+        settings = 1,
+        user = 2,
+        opponent = 3
     };
 }

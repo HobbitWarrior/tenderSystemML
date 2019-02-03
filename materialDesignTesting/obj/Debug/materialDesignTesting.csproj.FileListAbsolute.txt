@@ -198,7 +198,6 @@ C:\Users\sapir\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\m
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\materialDesignTesting.exe.config
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\materialDesignTesting.exe
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\materialDesignTesting.pdb
-\\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.csprojAssemblyReference.cache
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\EstimateStrategyView.g.cs
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\GameSettingsView.g.cs
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\graphView.g.cs
@@ -289,3 +288,4 @@ C:\newPro\tenderSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.e
 C:\newPro\tenderSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.pdb
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\WindowsInput.dll
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\WindowsInput.xml
+\\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.csprojAssemblyReference.cache
