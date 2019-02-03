@@ -242,3 +242,5 @@ C:\Users\sapir\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\m
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\LiveCharts.xml
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\LiveCharts.Wpf.pdb
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\LiveCharts.Wpf.xml
+\\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\WindowsInput.dll
+\\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\bin\Debug\WindowsInput.xml

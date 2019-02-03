@@ -30,34 +30,28 @@ namespace materialDesignTesting
             SeriesCollection = loadHistogramValues(50);
             Labels = xLabels(1000);
             Formatter = value => value.ToString("N");
-            From =0;
-            To = 1000;
         }
+
         #region graph scrolling controls
-        private Func<double, string> _formatter;
-        private double _from;
-        private double _to;
-
-
-        public object Mapper { get; set; }
-        //public GearedValues<LiveCharts.Defaults.DateTimePoint> Values { get; set; }
-        public double From
+        private double _minX=6;
+        public double MinX
         {
-            get { return _from; }
-            set
-            {
-                _from = value;
-                RaisePropertyChanged("From");
-            }
+            get { return _minX; }
+            set { _minX = value > 0 ? value : 0; ZoomIn(-2); }
         }
-        public double To
+
+        private double _maxX=6;
+        public double MaxX
         {
-            get { return _to; }
-            set
-            {
-                _to = value;
-                RaisePropertyChanged("To");
-            }
+            get { return _maxX; }
+            set { _maxX = value < 100 ? value : 100 ; ZoomIn(2); }
+        }
+
+
+        public void ZoomIn(double zoomVal)
+        {
+            if(zoomVal <100)
+                _maxX = zoomVal;
         }
 
         #endregion
