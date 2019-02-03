@@ -10,7 +10,12 @@ using System.Windows.Input;
 namespace materialDesignTesting
 {
     //<summary>Dont forget to wirte summary</summary>
-    //Author: Alex Zeltser
+
+
+
+    /// <summary>
+    /// In this class give the option to load user's strategy
+    /// </summary>
     class UserLoadStrategyViewModel :INotifyPropertyChanged
     {
         public UserLoadStrategyViewModel()
@@ -42,7 +47,9 @@ namespace materialDesignTesting
         }
 
 
-        //<summary>The following method is handling the opening of a new dialog event</summary>
+        ///<summary>
+        ///The following method is handling the opening of a new dialog event
+        ///</summary>
         public void openDialog()
         {
             Console.WriteLine("Just called a button click event!!!! Yay! :)");
@@ -79,6 +86,8 @@ namespace materialDesignTesting
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "")
         {
             if (PropertyChanged != null)
@@ -88,7 +97,9 @@ namespace materialDesignTesting
         }
 
 
-        //<summary>A temp stub function that instantiates the two probability vectors</summary
+        ///<summary>
+        ///A temp stub function that instantiates the two probability vectors
+        ///</summary
         private void genetrateRandomVector(int n)
         {
             fileManager fl = new fileManager();

@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 namespace materialDesignTesting
 {
     /* <summary>The class implemets the IO operations of a CSV file.
-     * Written by Alex Zeltser
      * probably will be depreceted</summary>*/
+
+
+    /// <summary>
+    /// The class implemets the IO operations of a CSV file.
+    /// </summary>
     class fileManager
     {
 
@@ -23,11 +27,13 @@ namespace materialDesignTesting
             Directory = "";
             FileName = "";
         }
+
         public fileManager(string directory)
         {
             if (String.IsNullOrEmpty(directory))
                 Directory = directory;
         }
+
         public fileManager(string directory,string fileName) : this(directory)
         {
             if (String.IsNullOrEmpty(fileName))

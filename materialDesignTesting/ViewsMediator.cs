@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 
 namespace materialDesignTesting
 {
-    //<summary>A class that will contain all the data that needs to be shared between the menus of the program, and it will also 
-    //keep the progress of completion of the wizard that is essential for the running of the Prediction Algorithm.
-    //Author: Alex Zeltser</summary>
+
+    /// <summary>
+    /// A class that will contain all the data that needs to be shared between the menus of the program, and it will also 
+    ///keep the progress of completion of the wizard that is essential for the running of the Prediction Algorithm.
+    /// </summary>
+
+
     class ViewsMediator : INotifyPropertyChanged
     {
 
@@ -83,7 +87,7 @@ namespace materialDesignTesting
         }
         #region INotifyPropertyChanged Interface Implementation
         public event PropertyChangedEventHandler PropertyChanged;
-        //<summary> Implementation of the INotifyPropertyChanged event raising</summary>
+        ///<summary> Implementation of the INotifyPropertyChanged event raising</summary>
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "")
         {
             if (PropertyChanged != null)

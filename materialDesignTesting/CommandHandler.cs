@@ -7,11 +7,10 @@ using System.Windows.Input;
 
 namespace materialDesignTesting
 {
-    /*<Summary>
-     * the Following class is a helper class to handle button click commands events.
-     * it implements the ICommand interface.
-    </summary>
-         */
+
+    /// <summary>
+    /// the Following class is a helper class to handle button click commands events.it implements the ICommand interface.
+    /// </summary>
     public class CommandHandler : ICommand
     {
         private Action _action;
