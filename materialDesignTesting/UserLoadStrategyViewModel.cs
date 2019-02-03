@@ -22,7 +22,7 @@ namespace materialDesignTesting
         {
             canExecute = true;     
         }
-
+        #region fields and properties
         private bool canExecute;
         private ICommand clickOnBrowseButton;
         public ICommand ClickOnBrowseButton
@@ -47,6 +47,16 @@ namespace materialDesignTesting
         }
 
 
+        private List<Double> _userVector = new List<double>();
+        public List<Double> userVector
+        {
+            get { return _userVector; }
+            set { _userVector = (_userVector!= value && value != null) ? value : _userVector; }
+        }
+
+        #endregion
+
+
         ///<summary>
         ///The following method is handling the opening of a new dialog event
         ///</summary>
@@ -60,8 +70,8 @@ namespace materialDesignTesting
 
             // Launch OpenFileDialog by calling ShowDialog method
             Nullable<bool> result = openFileDlg.ShowDialog();
-            // Get the selected file name and display in a TextBox.S
-            // Load content of file in a TextBlock
+            // Gets the selected file name and display it in a TextBox.S
+            //load the contents ffrom the file in a TextBlock
             if (result == true)
             {
                 FileName= openFileDlg.FileName;
@@ -71,17 +81,30 @@ namespace materialDesignTesting
                 //A temp method, returns a 1000 dimensional Vector
                 genetrateRandomVector(1000);
 
-                //set expander to false
-                ViewsMediator.userExpander = "False";
-                ViewsMediator.opponentExpander = "True";
 
-                Console.WriteLine("The following vectors were generated: ");
-                Console.WriteLine("User: ");
-                foreach ( double value in ViewsMediator.User )
-                    Console.Write("{0} ", value);
-                Console.WriteLine("\nOpponent: ");
-                foreach (double value in ViewsMediator.Opponent)
-                    Console.Write("{0} ", value);
+                //queues a success message in the snackBar
+                MainWindow.Snackbar.MessageQueue.Enqueue("File Successfully Loaded");
+                vectorFileHandler vfm = new vectorFileHandler();
+                userVector = vfm.readFromFile("userOutcome.csv");
+                if (userVector.Count > 0)
+                {
+                    //store in the view mediator
+                    ViewsMediator.User = userVector;
+                    //set expander to false
+                    ViewsMediator.userExpander = "False";
+                    ViewsMediator.opponentExpander = "True";
+
+                    Console.WriteLine("The following vectors were generated: ");
+                    Console.WriteLine("User: ");
+                    foreach (double value in ViewsMediator.User)
+                        Console.Write("{0} ", value);
+                    Console.WriteLine("\nOpponent: ");
+                    foreach (double value in ViewsMediator.Opponent)
+                        Console.Write("{0} ", value);
+
+                    //queues a success message in the snackBar
+                    MainWindow.Snackbar.MessageQueue.Enqueue("File Successfully Loaded");
+                }
             }
         }
 

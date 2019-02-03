@@ -7,7 +7,7 @@ namespace materialDesignTesting
 {
 
     /// <summary>
-    /// this class messing with communicating with files
+    /// A helper class to read CSV files 
     /// </summary>
 
 
@@ -16,7 +16,7 @@ namespace materialDesignTesting
     {
 
 
-    vectorFileHandler test = new vectorFileHandler();    
+   // vectorFileHandler test = new vectorFileHandler();    
     public List<double> realval = new List<double>();
     public List<double> read_val = new List<double>();
     bool x;
@@ -41,7 +41,7 @@ namespace materialDesignTesting
         /// <summary>
         /// this function writen to file
         /// </summary>
-        /// <param name="output">the path of the file that we want to writ.</param>
+        /// <param name="output">the path of the file that we want to write.</param>
         ///  <param name="val">list that stores the contents that we want to writ to file.</param>
         /// <returns>
         /// return 1 if the writing was successful ,else return 0  
@@ -49,20 +49,12 @@ namespace materialDesignTesting
 
 
         public bool WriteToFile(string output ,List<double>val)
-{
-   
-    
-     try
-     {
-
-       //  if (!File.Exists(output))
-      //   {
-         //    Console.WriteLine("file not exist");
-         //    File.Create(output);
-        // }
-         StringBuilder builder = new StringBuilder();
-         foreach( double item in val )
-             builder.Append(String.Format("{0} ",item));
+        {
+            try
+            {
+            StringBuilder builder = new StringBuilder();
+            foreach( double item in val )
+                 builder.Append(String.Format("{0} ",item));
 
          File.WriteAllText(output, builder.ToString());
          return true;
@@ -113,8 +105,30 @@ namespace materialDesignTesting
             return null;
         }
 
-
-
+        /// <summary>
+        /// Reads a vector from the provided file, removes commas, spaces and newline chars
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public List<Double> readFromFile(String file)
+        {
+            if (String.IsNullOrEmpty(file))
+                return new List<double>();
+            try
+            {
+                var lines = File.ReadAllLines(file);
+                List<Double> vector = new List<double>();
+                foreach (string line in lines)
+                    vector.Add(Convert.ToDouble(line.Replace(",", "").Replace("\n", "").Replace(" ","")));
+                System.Console.WriteLine(vector);
+                return vector;
+            }
+            catch(Exception ex)
+            {
+                System.Console.WriteLine("error in reading file.\n {0}", ex.Message);
+            }
+            return null;
+        }
 
 
 
