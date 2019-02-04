@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\App.xaml
-13-1057779699
+14-1756252032
 
-36-458939209
+38-1059041180
 23-237215549
-EstimateStrategyView.xaml;GameSettingsView.xaml;graphView.xaml;MainMenuWIndow.xaml;MainWindow.xaml;LoginUC.xaml;mvvmTemplates.xaml;OpponentLoadStrategyView.xaml;OpponentManualStrategyView.xaml;OpponentsMixedStrategyVectorView.xaml;UserLoadStrategyView.xaml;UserManualStrategyView.xaml;UserUS.xaml;
+EstimateStrategyView.xaml;GameSettingsView.xaml;graphView.xaml;LoadingView.xaml;MainMenuWIndow.xaml;MainWindow.xaml;LoginUC.xaml;mvvmTemplates.xaml;OpponentLoadStrategyView.xaml;OpponentManualStrategyView.xaml;OpponentsMixedStrategyVectorView.xaml;UserLoadStrategyView.xaml;UserManualStrategyView.xaml;UserUS.xaml;
 
 False
 

@@ -134,7 +134,7 @@
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding CalculateExpander, NotifyOnSourceUpdated=True}" Header="Estimate Strategy">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                                                 <!--<Button Background="#849324" Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Estimate Stratrgy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:EstimateStrategyViewModel}"/>-->
-                                                <Button Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.Value="-1"  materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="Estimate Strategy" Click="Button_Click" />
+                                                <Button Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.Value="-1"  materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="Estimate Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoadingViewModel}"/>
                                             </StackPanel>
                                         </Expander>
                                     </StackPanel>

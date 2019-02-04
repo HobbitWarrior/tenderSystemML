@@ -13,7 +13,11 @@
     <DataTemplate DataType="{x:Type local:MainMenuWindowViewModel}">
         <local:MainMenuWIndow/>
     </DataTemplate>
-    
+
+    <DataTemplate DataType="{x:Type local:LoadingViewModel}">
+        <local:LoadingView/>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type local:UserLoadStrategyViewModel}">
         <local:UserLoadStrategyView/>
     </DataTemplate>

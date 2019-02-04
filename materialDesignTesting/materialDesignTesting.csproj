@@ -97,6 +97,10 @@
     </Compile>
     <Compile Include="GraphViewModel.cs" />
     <Compile Include="listBoxVector.cs" />
+    <Compile Include="LoadingView.xaml.cs">
+      <DependentUpon>LoadingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingViewModel.cs" />
     <Compile Include="OpponentLoadStrategyViewModel.cs" />
     <Compile Include="OpponentLoadStrategyView.xaml.cs">
       <DependentUpon>OpponentLoadStrategyView.xaml</DependentUpon>
@@ -142,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="graphView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
