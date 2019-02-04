@@ -23,6 +23,9 @@ namespace materialDesignTesting
         public UserManualStrategyView()
         {
             InitializeComponent();
+            //Enqueue a message to inform the user of successful values input.
+            //unfortunetly its a fake message
+            MainWindow.Snackbar.MessageQueue.Enqueue("Vector Saved Successfuly");
         }
     }
 }

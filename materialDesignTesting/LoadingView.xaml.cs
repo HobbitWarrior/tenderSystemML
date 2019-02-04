@@ -23,6 +23,7 @@ namespace materialDesignTesting
         public LoadingView()
         {
             InitializeComponent();
+            //MainWindow.Snackbar.MessageQueue.Enqueue("Done :)");
         }
     }
 }

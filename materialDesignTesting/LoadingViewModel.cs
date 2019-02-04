@@ -16,8 +16,7 @@ namespace materialDesignTesting
     class LoadingViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-     
+        
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "")
         {
             if (PropertyChanged != null)
