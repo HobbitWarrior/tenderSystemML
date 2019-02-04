@@ -83,7 +83,7 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical">
                                         <Label Content="{Binding Path=index}"/>
-                                        <TextBox Text="{Binding Path=value}"/>
+                                        <TextBox Text="{Binding Path=value}" TextAlignment="Center" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

@@ -26,6 +26,8 @@ namespace materialDesignTesting
 
             if( ViewsMediator.User.Count>0)
             {
+                listBoxVector.refToVector = ViewsMediator.User;
+                //ViewsMediator.User = new List<double>(100);
                 int i = 0;
                 foreach( double cell in ViewsMediator.User)
                 {

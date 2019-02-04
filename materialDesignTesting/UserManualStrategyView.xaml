@@ -21,7 +21,77 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="BlueViolet">
+    <Grid>
+        <GroupBox Header="Enter Manually User's Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}">
+            <GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Upload" Height="32" Width="32" VerticalAlignment="Center" />
+                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="Define Mixed Strategy" />
+                    </StackPanel>
+                </DataTemplate>
+            </GroupBox.HeaderTemplate>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical"  HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="ContentSave" Height="57"  Width="67"/>
+                    <Label x:Name="Save" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="2"  HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="BorderColor" Height="57" Width="67" />
+                    <Label x:Name="newQStep" Content="Add new q[i]" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon  Kind="Rubbish" Height="57" Width="67" />
+                    <Label x:Name="delete" Grid.Row="3" Grid.Column="6" Content="Delete"  VerticalAlignment="Top"/>
+                </StackPanel>
 
+                <ToolBarTray  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Top">
+                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="True">
+                        <Button ToolTip="Save">
+                            <materialDesign:PackIcon Kind="ContentSave" />
+                        </Button>
+                        <Button Command="Cut" ToolTip="Delete">
+                            <materialDesign:PackIcon Kind="Rubbish" />
+                        </Button>
+                        <Button Command="Copy" ToolTip="Add New Q[i]">
+                            <materialDesign:PackIcon Kind="BorderColor" />
+                        </Button>
+                        <Separator />
+                    </ToolBar>
+                </ToolBarTray>
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+                    <StackPanel x:Name="vectorContainer" Orientation="Horizontal">
+                        <ListBox x:Name="lb" ItemsSource="{Binding manualVector}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Content="{Binding Path=index}"/>
+                                        <TextBox Text="{Binding Path=value}" TextAlignment="Center" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </GroupBox>
     </Grid>
 </UserControl>
