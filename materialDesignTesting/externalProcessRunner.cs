@@ -52,7 +52,7 @@ namespace materialDesignTesting
         }
         /// <summary>
         /// the following method will call an external python script,
-        /// and return an arrays of the JSON response.
+        /// and return an array of the JSON response.
         /// </summary>
         /// <returns></returns>
         public resultArrays runCmd()
@@ -74,8 +74,5 @@ namespace materialDesignTesting
                 }
             }
         }
-
-
-
     }
 }

@@ -36,7 +36,7 @@ namespace materialDesignTesting
             resultArrays[] r = ser.Deserialize<resultArrays[]>(json);
             System.Console.WriteLine("this is the json respone:");
 
-
+            //remove later girl
             System.Console.WriteLine("result array");
             double[] array = r[0].outcome;
             foreach (double val in array)
@@ -51,6 +51,7 @@ namespace materialDesignTesting
             array = r[0].expectation;
             foreach (double val in array)
                 System.Console.Write("{0}", val);
+            //end of remove
            
             return r[0];
         }

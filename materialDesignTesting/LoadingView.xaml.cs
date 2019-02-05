@@ -25,7 +25,9 @@ namespace materialDesignTesting
             InitializeComponent();
             //MainWindow.Snackbar.MessageQueue.Enqueue("Done :)");
             externalProcessRunner epr = new externalProcessRunner();
-            ViewsMediator.gameResults = epr.runCmd();
+            //validate and save the results in the view mediator
+            if ((ViewsMediator.gameResults = epr.runCmd()) == null)
+                throw new Exception("Something went wrong, the external script runner 'externalProccessRunner' did not return results array.");
         }
     }
 }
