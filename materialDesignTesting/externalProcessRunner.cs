@@ -10,10 +10,10 @@ namespace materialDesignTesting
 {
     class externalProcessRunner
     {
-        // full path of python interpreter  
+        // full path of python interpreter
         //string python = @"E:/Python37";
         string python = @"cmd.exe";
-        // python app to call  
+        // python app to call
         string myPythonApp = @" /c python E:/Demo.py";
         externalProcessRunner(string pythonPath, String scriptPath)
         {
@@ -44,14 +44,14 @@ namespace materialDesignTesting
                 str+= String.Format("{0} ", Val);
             return str;
         }
-        
-        // Create new process start info 
+
+        // Create new process start info
         public bool isDone = false;
         public externalProcessRunner()
         {
         }
         /// <summary>
-        /// the following method will call an external python script, 
+        /// the following method will call an external python script,
         /// and return an arrays of the JSON response.
         /// </summary>
         /// <returns></returns>
