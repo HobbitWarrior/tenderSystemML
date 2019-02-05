@@ -59,14 +59,9 @@ namespace materialDesignTesting
 
         #region Game results vectors
         /// <summary>
-        /// properties that will store the results that are returned from the Python script.
+        /// an object tha will contain the game results for analytics
         /// </summary>
-        private static List<double> userExpectation = new List<double>();
-        private static List<double> opponentExpectation = new List<double>();
-        private static List<double> userAverage = new List<double>();
-        private static List<double> opponentAverage = new List<double>();
-        private static List<double> userOutcome = new List<double>();
-        private static List<double> opponentOutcome = new List<double>();
+        public static resultArrays gameResults;
         #endregion
 
         #region SnackBar message queue

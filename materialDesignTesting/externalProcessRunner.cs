@@ -49,39 +49,13 @@ namespace materialDesignTesting
         public bool isDone = false;
         public externalProcessRunner()
         {
-            run_cmd();
-            //ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
-
-            //// make sure we can read the output from stdout, and disable the shell
-            //myProcessStartInfo.UseShellExecute = false;
-            //myProcessStartInfo.RedirectStandardOutput = true;
-            ////Build the arguments String.
-            //myProcessStartInfo.Arguments = String.Format("{0} {1}", myPythonApp, convertArrToString(args));
-            //Process myProcess = new Process();
-            //// assign start information to the process 
-            //myProcess.StartInfo = myProcessStartInfo;
-
-            //// start process 
-            //myProcess.Start();
-
-            //// Read the standard output of the app we called.  
-            //    using (StreamReader reader = myProcess.StandardOutput)
-            //    {
-            //        string myString = reader.ReadToEnd();
-            //         //write the result to the console and save them in the static viewsMediator
-            //        System.Console.WriteLine(myString);
-            //        ViewsMediator.pythonRunResult = myString;
-            //        // wait exit signal from the app we called 
-            //        myProcess.WaitForExit();
-
-            //        // close the process 
-            //        myProcess.Close();
-            //        isDone = true;
-
-            //    }
         }
-
-        public void run_cmd()
+        /// <summary>
+        /// the following method will call an external python script, 
+        /// and return an arrays of the JSON response.
+        /// </summary>
+        /// <returns></returns>
+        public resultArrays runCmd()
         {
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo();
             myProcessStartInfo.FileName = python;
@@ -94,6 +68,9 @@ namespace materialDesignTesting
                 {
                     string result = reader.ReadToEnd();
                     Console.Write(result);
+                    jsonHandler jh = new jsonHandler(result);
+                    resultArrays ra = jh.deserialize();
+                    return ra;
                 }
             }
         }

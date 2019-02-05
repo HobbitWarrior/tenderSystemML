@@ -92,7 +92,7 @@ namespace materialDesignTesting
 
 
 
-        #endregion
+        #endregion 
         //#region scrolling controllers and events
 
         //private void Axis_OnRangeChanged(RangeChangedEventArgs eventargs)

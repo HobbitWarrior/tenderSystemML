@@ -84,13 +84,23 @@ namespace materialDesignTesting
             System.Console.Write("just clicked");
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //a string to emulate a json that is received from the stdout
+            String json = "[{\"average\":[0.0,0.0,0.0,0.0],\"expectation\":[0.0,0.0,0.0,0.0],\"outcome\":[0.0,0.0,0.0,0.0]}]";
+            jsonHandler jh = new jsonHandler(json);
+            resultArrays ra = jh.deserialize();
+            ViewsMediator.gameResults = ra;
+            System.Console.Write("just something to hold a break point");
+        }
+
         //private void Button_Click(object sender, RoutedEventArgs e)
         //{
         //    externalProcessRunner epr = new externalProcessRunner();
         //    while (!epr.isDone)
         //        continue;
         //    System.Console.WriteLine(epr.myString);
-            
+
         //}
     }
 }

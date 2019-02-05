@@ -25,6 +25,7 @@ namespace materialDesignTesting
             InitializeComponent();
             //MainWindow.Snackbar.MessageQueue.Enqueue("Done :)");
             externalProcessRunner epr = new externalProcessRunner();
+            ViewsMediator.gameResults = epr.runCmd();
         }
     }
 }

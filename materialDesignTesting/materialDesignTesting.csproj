@@ -58,6 +58,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -96,6 +98,7 @@
       <DependentUpon>graphView.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphViewModel.cs" />
+    <Compile Include="jsonHandler.cs" />
     <Compile Include="listBoxVector.cs" />
     <Compile Include="LoadingView.xaml.cs">
       <DependentUpon>LoadingView.xaml</DependentUpon>
@@ -122,6 +125,7 @@
       <DependentUpon>MainMenuWIndow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainMenuWindowViewModel.cs" />
+    <Compile Include="resultArrays.cs" />
     <Compile Include="SelectableViewModel.cs" />
     <Compile Include="UserLoadStrategyView.xaml.cs">
       <DependentUpon>UserLoadStrategyView.xaml</DependentUpon>
