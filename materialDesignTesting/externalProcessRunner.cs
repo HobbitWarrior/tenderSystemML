@@ -93,6 +93,7 @@ namespace materialDesignTesting
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
+                    System.Console.WriteLine("This is the returned values");
                     Console.Write(result);
                 }
             }
