@@ -291,3 +291,6 @@ C:\newPro\tenderSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.p
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\materialDesignTesting.csprojAssemblyReference.cache
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\LoadingView.g.cs
 \\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\LoadingView.baml
+C:\newPro\tenderSystemML\materialDesignTesting\bin\Debug\WindowsInput.xml
+C:\newPro\tenderSystemML\materialDesignTesting\obj\Debug\LoadingView.g.cs
+C:\newPro\tenderSystemML\materialDesignTesting\obj\Debug\LoadingView.baml
