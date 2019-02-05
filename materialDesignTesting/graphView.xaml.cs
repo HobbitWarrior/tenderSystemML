@@ -17,6 +17,11 @@ using System.Runtime.InteropServices;
 using WindowsInput.Native;
 using WindowsInput;
 
+
+using LiveCharts;
+using LiveCharts.Wpf;
+using LiveCharts.Defaults;
+
 namespace materialDesignTesting
 {
     /// <summary>
@@ -34,19 +39,58 @@ namespace materialDesignTesting
         ///<summary>GraphViewModel reference</summary>
         private GraphViewModel graphViewModelRef;
 
-        #region slider events
-        [DllImport("User32.dll")]
-        private static extern bool SetCursorPos(int X, int Y);
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
+        #region slider events 
 
+        private void ResetZoomOnClick(object sender, RoutedEventArgs e)
+        {
+            //Use the axis MinValue/MaxValue properties to specify the values to display.
+            //use double.Nan to clear it.
+            X.MinValue = double.NaN;
+            X.MaxValue = double.NaN;
+            Y.MinValue = double.NaN;
+            Y.MaxValue = double.NaN;
         }
 
-        public void ToogleZoomingMode(object sender, RoutedEventArgs e)
+        private double previousSliderValue=0;
+        private void ResetZoomOnClick(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            System.Console.WriteLine("just attempted to zoom by the mousewheel YAY!!! :P");
-            graphViewModelRef.ToogleZoomingMode(sender, e);
+            if(previousSliderValue != ZoomingSlidy.Value)
+            {
+                //X.MinValue = double.NaN;
+                //X.MaxValue = double.NaN;
+                //Y.MinValue = double.NaN;
+                //Y.MaxValue = double.NaN;
+                lvcHistogram.Zoom = ZoomingOptions.X;
+                lvcHistogram.Pan = PanningOptions.X;
+                if (previousSliderValue < ZoomingSlidy.Value)
+                {
+                    //X.MinValue = double.NaN;
+                    //X.MaxValue = double.NaN;
+                    //Y.MinValue = double.NaN;
+                    //Y.MaxValue = double.NaN;
+                    previousSliderValue = ZoomingSlidy.Value;
+                    X.MinValue = Convert.ToDouble(Math.Ceiling(X.MinValue + ZoomingSlidy.Value / 100));
+                    //X.MaxValue = Convert.ToDouble(Math.Ceiling(X.MaxValue - ZoomingSlidy.Value / 100));
+                    //Y.MinValue = Convert.ToDouble(Y.MinValue + ZoomingSlidy.Value);
+                    //Y.MaxValue = Convert.ToDouble(Y.MaxValue - ZoomingSlidy.Value);
+                }
+                else
+                {
+                    //X.MinValue = double.NaN;
+                    //X.MaxValue = double.NaN;
+                    //Y.MinValue = double.NaN;
+                    //Y.MaxValue = double.NaN;
+                    previousSliderValue = ZoomingSlidy.Value;
+                    X.MinValue = Convert.ToDouble(Math.Ceiling(X.MinValue - ZoomingSlidy.Value / 100));
+                    //X.MaxValue = Convert.ToDouble(Math.Ceiling(X.MaxValue + ZoomingSlidy.Value / 100));
+                    //Y.MinValue = Convert.ToDouble(Y.MinValue - ZoomingSlidy.Value);
+                    //Y.MaxValue = Convert.ToDouble(Y.MaxValue - ZoomingSlidy.Value);
+                }
+            }
+            System.Console.WriteLine("Attempted to change the graphs zoom");
         }
+
+
 
         #endregion
         //#region scrolling controllers and events
