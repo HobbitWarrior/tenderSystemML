@@ -77,19 +77,16 @@ namespace materialDesignTesting
                     isDone = true;
 
                 }
+        }
 
-
-
-
-
-
-
-            ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = "my/full/path/to/python.exe";
-            start.Arguments = string.Format("{0} {1}", cmd, args);
-            start.UseShellExecute = false;
-            start.RedirectStandardOutput = true;
-            using (Process process = Process.Start(start))
+        public void run_cmd()
+        {
+            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo();
+            myProcessStartInfo.FileName = "my/full/path/to/python.exe";
+            myProcessStartInfo.Arguments = String.Format("{0} {1}", myPythonApp, convertArrToString(args));
+            myProcessStartInfo.UseShellExecute = false;
+            myProcessStartInfo.RedirectStandardOutput = true;
+            using (Process process = Process.Start(myProcessStartInfo))
             {
                 using (StreamReader reader = process.StandardOutput)
                 {
@@ -97,11 +94,9 @@ namespace materialDesignTesting
                     Console.Write(result);
                 }
             }
-
-
         }
 
 
-      
+
     }
 }
