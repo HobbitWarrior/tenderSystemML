@@ -23,6 +23,7 @@ namespace materialDesignTesting
         public EstimateStrategyView()
         {
             InitializeComponent();
+            externalProcessRunner epr = new externalProcessRunner();
         }
     }
 }
