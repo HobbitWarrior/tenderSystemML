@@ -27,7 +27,19 @@ namespace materialDesignTesting
     {
         public GraphViewModel()
         {
-            SeriesCollection = loadHistogramValues(50);
+            //SeriesCollection = loadSeriesCollection(graphType.outcome);
+
+            SeriesCollection _SeriesCollection = new SeriesCollection();
+            Task.Factory.StartNew(() =>
+            {
+                 _SeriesCollection = loadSeriesCollection(graphType.outcome);
+            }).ContinueWith(t =>
+            {
+                SeriesCollection = _SeriesCollection;
+            });
+
+
+
             Labels = xLabels(1000);
             Formatter = value => value.ToString("N");
         }
@@ -102,7 +114,8 @@ namespace materialDesignTesting
                 return null;
             }
         }
-
+        #endregion
+        #region Chart Values
 
         public SeriesCollection loadHistogramValues(int size)
         {
