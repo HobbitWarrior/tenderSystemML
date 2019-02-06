@@ -130,7 +130,7 @@ namespace materialDesignTesting
         /// 
         /// </summary>
         /// <param name="graph"></param>
-        /// <returns></returns>
+        /// <returns></returns> 
         public SeriesCollection loadSeriesCollection(graphType graph)
         {
             double[] graphValues=null;
