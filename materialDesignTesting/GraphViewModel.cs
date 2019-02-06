@@ -27,7 +27,7 @@ namespace materialDesignTesting
     {
         public GraphViewModel()
         {
-            SeriesCollection = loadHistogramValues(50);
+            SeriesCollection = loadSeriesCollection(graphType.average);
             Labels = xLabels(1000);
             Formatter = value => value.ToString("N");
         }
