@@ -29,6 +29,7 @@ namespace materialDesignTesting
             if ((ViewsMediator.gameResults = epr.runCmd()) == null)
                 throw new Exception("Something went wrong, the external script runner 'externalProccessRunner' did not return results array.");
             //if the calculation is done change the transition between the wizard windows button controller.
+            System.Console.WriteLine("finished reading from the pipe, loading graphs");
             ViewsMediator.isDoneCalcualtingQ = true;
         }
     }

@@ -101,11 +101,16 @@ namespace materialDesignTesting
         /// <summary>
         /// transition between the windows of the wizard button controller.
         /// </summary>
+        private string _wizardNavigator = "Save";
         public string wizardNavigator
         {
             get
             {
-                return (ViewsMediator.isDoneCalcualtingQ ? "View Results" : "Save");
+                return _wizardNavigator;
+            }
+            set
+            {
+                _wizardNavigator = ViewsMediator.isDoneCalcualtingQ ? "Show Results" : "Save";
             }
         }
 
@@ -183,11 +188,18 @@ namespace materialDesignTesting
                return  (backToWizardCommand = new RelayCommand<Type>(
                     (vmType)=>
                     {
-                        if(ViewsMediator.isDoneCalcualtingQ)
+                        if (ViewsMediator.isDoneCalcualtingQ)
+                        {
+                            //Bind a 'CurrentViewModel Set' event To the button
+                            CurrentViewModel = null;
+                            //CurrentViewModel = Activator.CreateInstance(vmType);
                             ChangeViewModel(vmType);
+                        }
                         else
+                        {
                             ShowMenu = "Visible";
-                        ShowOView = "Hidden";
+                            ShowOView = "Hidden";
+                        }
                         UserExpander = ViewsMediator.userExpander;
                         OpponentExpander = ViewsMediator.opponentExpander;
                         GameSettingsExpander = ViewsMediator.gameSettingsExpander;

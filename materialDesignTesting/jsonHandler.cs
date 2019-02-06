@@ -32,7 +32,7 @@ namespace materialDesignTesting
         public resultArrays deserialize()
         {
             JavaScriptSerializer ser = new JavaScriptSerializer();
-
+            System.Console.WriteLine(json);
             resultArrays[] r = ser.Deserialize<resultArrays[]>(json);
             System.Console.WriteLine("this is the json respone:");
 
