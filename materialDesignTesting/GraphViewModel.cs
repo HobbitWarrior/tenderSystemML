@@ -27,16 +27,12 @@ namespace materialDesignTesting
     {
         public GraphViewModel()
         {
-            //SeriesCollection = loadSeriesCollection(graphType.outcome);
-
-            SeriesCollection _SeriesCollection = new SeriesCollection();
-            Task.Factory.StartNew(() =>
-            {
-                 _SeriesCollection = loadSeriesCollection(graphType.outcome);
-            }).ContinueWith(t =>
-            {
-                SeriesCollection = _SeriesCollection;
-            });
+            SeriesCollection = loadSeriesCollection(graphType.outcome);
+            ////SeriesCollection = loadSeriesCollection(graphType.outcome);
+            //SeriesCollection SeriesCollection = new SeriesCollection();
+            //Application.Current.Dispatcher.Invoke((Action)delegate {
+            //    SeriesCollection = loadSeriesCollection(graphType.outcome);
+            //});
 
 
 
@@ -119,10 +115,10 @@ namespace materialDesignTesting
 
         public SeriesCollection loadHistogramValues(int size)
         {
-            SeriesCollection = new SeriesCollection();
+            SeriesCollection _seriesCollection = new SeriesCollection();
             for (int i = 0; i < size; i++)
             {
-                SeriesCollection.Add(new ColumnSeries
+                _seriesCollection.Add(new ColumnSeries
                 {
                     Title = String.Format("{0}", i),
                     Values = new ChartValues<double> { i }
@@ -130,13 +126,13 @@ namespace materialDesignTesting
             }
             for (int i = size; i > 0; i--)
             {
-                SeriesCollection.Add(new ColumnSeries
+                _seriesCollection.Add(new ColumnSeries
                 {
                     Title = String.Format("{0}", i),
                     Values = new ChartValues<double> { -i }
                 });
             }
-            return SeriesCollection;
+            return _seriesCollection;
         }
 
         /// <summary>
@@ -146,12 +142,6 @@ namespace materialDesignTesting
         /// <returns></returns>
         public SeriesCollection loadSeriesCollection(graphType graph)
         {
-            Task.Factory.StartNew(() =>
-            {
-
-            });
-
-
             double[] graphValues=null;
             if (graph == graphType.outcome)
                 graphValues = ViewsMediator.gameResults.outcome;
@@ -165,16 +155,17 @@ namespace materialDesignTesting
 
             if (graphValues != null)
             {
-                SeriesCollection = new SeriesCollection();
-                for (int i = 0; i < graphValues.Length; i++)
+                SeriesCollection _seriesCollection = new SeriesCollection();
+                int valuesInterval = (int)Math.Ceiling((double)(graphValues.Length / 200));
+                for (int i = 0; i < graphValues.Length; i+= valuesInterval)
                 {
-                    SeriesCollection.Add(new ColumnSeries
+                    _seriesCollection.Add(new ColumnSeries
                     {
                         Title = String.Format("{0}", i),
                         Values = new ChartValues<double> { graphValues[i] }
                     });
                 }
-                return SeriesCollection;
+                return _seriesCollection;
             }
             else
                 return loadHistogramValues(100);
