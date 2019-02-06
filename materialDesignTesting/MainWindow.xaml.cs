@@ -93,14 +93,5 @@ namespace materialDesignTesting
             ViewsMediator.gameResults = ra;
             System.Console.Write("just something to hold a break point");
         }
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    externalProcessRunner epr = new externalProcessRunner();
-        //    while (!epr.isDone)
-        //        continue;
-        //    System.Console.WriteLine(epr.myString);
-
-        //}
     }
 }

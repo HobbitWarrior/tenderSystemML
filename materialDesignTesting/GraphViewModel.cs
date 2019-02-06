@@ -126,6 +126,42 @@ namespace materialDesignTesting
             return SeriesCollection;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <returns></returns>
+        public SeriesCollection loadSeriesCollection(graphType graph)
+        {
+            double[] graphValues=null;
+            if (graph == graphType.outcome)
+                graphValues = ViewsMediator.gameResults.outcome;
+            else
+            {
+                if (graph == graphType.average)
+                    graphValues = ViewsMediator.gameResults.average;
+                else
+                    graphValues = ViewsMediator.gameResults.expectation;
+            }
+
+            if (graphValues != null)
+            {
+                SeriesCollection = new SeriesCollection();
+                for (int i = 0; i < graphValues.Length; i++)
+                {
+                    SeriesCollection.Add(new ColumnSeries
+                    {
+                        Title = String.Format("{0}", i),
+                        Values = new ChartValues<double> { graphValues[i] }
+                    });
+                }
+                return SeriesCollection;
+            }
+            else
+                return loadHistogramValues(100);
+
+        }
+
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }

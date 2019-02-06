@@ -73,6 +73,7 @@ namespace materialDesignTesting
         #region global flags and progress trackers
         public static progress trackWizardProgress = 0; 
         #endregion
+        //remove possibly
         public static string pythonRunResult = "";
         //<summary> the following properties will control the probablity???????? vectors of the players. </summary>
         public static List<double> User {
@@ -114,7 +115,7 @@ namespace materialDesignTesting
             }
         }
 
-
+        public static bool isDoneCalcualtingQ = false;
 
         #region INotifyPropertyChanged Interface Implementation
         public event PropertyChangedEventHandler PropertyChanged;

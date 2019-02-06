@@ -98,6 +98,17 @@ namespace materialDesignTesting
         }
 
 
+        /// <summary>
+        /// transition between the windows of the wizard button controller.
+        /// </summary>
+        public string wizardNavigator
+        {
+            get
+            {
+                return (ViewsMediator.isDoneCalcualtingQ ? "View Results" : "Save");
+            }
+        }
+
         public string ShowOView
         {
             get
@@ -170,9 +181,12 @@ namespace materialDesignTesting
             get
             {
                return  (backToWizardCommand = new RelayCommand<Type>(
-                    (Type)=>
+                    (vmType)=>
                     {
-                        ShowMenu = "Visible";
+                        if(ViewsMediator.isDoneCalcualtingQ)
+                            ChangeViewModel(vmType);
+                        else
+                            ShowMenu = "Visible";
                         ShowOView = "Hidden";
                         UserExpander = ViewsMediator.userExpander;
                         OpponentExpander = ViewsMediator.opponentExpander;

@@ -28,6 +28,8 @@ namespace materialDesignTesting
             //validate and save the results in the view mediator
             if ((ViewsMediator.gameResults = epr.runCmd()) == null)
                 throw new Exception("Something went wrong, the external script runner 'externalProccessRunner' did not return results array.");
+            //if the calculation is done change the transition between the wizard windows button controller.
+            ViewsMediator.isDoneCalcualtingQ = true;
         }
     }
 }
