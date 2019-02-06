@@ -29,7 +29,7 @@ namespace materialDesignTesting
         ///a temp variable to hold all the parameters that are sent to the function
         /// </summary>
         //String[] args = { "n0", "m", "y", "z", "w" };
-        Double[] args = { 4, 0.25 , 0.25 , 0.25 , 0.25 };
+        Double[] args = { 1000, 0.25 , 0.25 , 0.25 , 0.25 };
 
 
         /// <summary>

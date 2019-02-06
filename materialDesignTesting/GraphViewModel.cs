@@ -133,6 +133,12 @@ namespace materialDesignTesting
         /// <returns></returns> 
         public SeriesCollection loadSeriesCollection(graphType graph)
         {
+            Task.Factory.StartNew(() =>
+            {
+
+            });
+
+
             double[] graphValues=null;
             if (graph == graphType.outcome)
                 graphValues = ViewsMediator.gameResults.outcome;
@@ -159,7 +165,6 @@ namespace materialDesignTesting
             }
             else
                 return loadHistogramValues(100);
-
         }
 
         public SeriesCollection SeriesCollection { get; set; }
