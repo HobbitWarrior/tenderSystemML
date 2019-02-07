@@ -84,7 +84,7 @@
                             <lvc:Axis x:Name="X" Title="K0" Labels="{Binding Labels}"/>
                         </lvc:CartesianChart.AxisX>
                         <lvc:CartesianChart.AxisY>
-                            <lvc:Axis ScrollViewer.HorizontalScrollBarVisibility="Visible" x:Name="Y" Title="Expectations" LabelFormatter="{Binding Formatter}" ></lvc:Axis>
+                            <lvc:Axis ScrollViewer.HorizontalScrollBarVisibility="Visible" x:Name="Y" Title="Expectations" LabelFormatter="{Binding Formatter}"></lvc:Axis>
                         </lvc:CartesianChart.AxisY>
                     </lvc:CartesianChart>
                 </Grid>
