@@ -13,9 +13,8 @@ namespace materialDesignTesting
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //public ObservableCollection<listBoxVector> _manualVector = new ObservableCollection<listBoxVector>();
-        public ObservableCollection<listBoxVector> manualVector { get { return ViewsMediator.OpponentObservable; }
-        }
+        public ObservableCollection<listBoxVector> _manualVector = new ObservableCollection<listBoxVector>();
+        public ObservableCollection<listBoxVector> manualVector { get { return ViewsMediator.OpponentObservable; } set { ViewsMediator.OpponentObservable = value; } }
 
         public OpponentManualStrategyViewModel()
         {

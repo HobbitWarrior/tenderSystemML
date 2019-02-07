@@ -139,6 +139,7 @@ namespace materialDesignTesting
         public static void populateLists(int size)
         {
             opponent.Clear();
+            listBoxVector.refToVector = opponent;
             for(int i=0;i<size;i++)
             {
                 //user.Add(0);

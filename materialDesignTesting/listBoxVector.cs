@@ -33,6 +33,7 @@ namespace materialDesignTesting
                     {
                         refToVector[Convert.ToInt32(Index)] = Value = value;
                         System.Console.WriteLine("copied succesfuly {0}", refToVector[Convert.ToInt32(Index)]);
+                        RaisePropertyChanged();
                     }
                        
                 }

@@ -15,6 +15,7 @@ namespace materialDesignTesting
         string python = @"cmd.exe";
         // python app to call
         string myPythonApp = @" /c python C:/Auction.py";
+        public externalProcessRunner() { }
         externalProcessRunner(string pythonPath, String scriptPath)
         {
             //validate and initialize the values
