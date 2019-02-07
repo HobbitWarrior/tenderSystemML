@@ -116,18 +116,18 @@
                                                 <!--<Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="ShowGraph" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}"/>-->
                                             </StackPanel>
                                         </Expander>
-                                        <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                                        <!--<Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding UserExpander, NotifyOnSourceUpdated=True}" Header="User's Game Settings:">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                                                 <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserLoadStrategyViewModel}"/>
                                                 <Button Background="#FFB30F"  Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Set Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserManualStrategyViewModel}"/>
                                             </StackPanel>
-                                        </Expander>
+                                        </Expander>-->
                                         <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding OpponentExpander, NotifyOnSourceUpdated=True}" Header="Opponet's Game Settings:">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                                <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
-                                                <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
+                                                <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
+                                                <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
                                             </StackPanel>
                                         </Expander>
                                         <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />

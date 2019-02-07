@@ -24,16 +24,12 @@ namespace materialDesignTesting
 
         public UserManualStrategyViewModel()
         {
-            //remove girl
-            /*the following process should be called from the game settings MVVM, this is just a test*/
-            ViewsMediator.NumberOfGames = 100;
-            ViewsMediator.populateLists(ViewsMediator.NumberOfGames);
-            //end of remove girl
+ 
 
 
             if (ViewsMediator.User.Count > 0)
             {
-                listBoxVector.refToVector = ViewsMediator.Opponent;
+                listBoxVector.refToVector = ViewsMediator.User;
                 //ViewsMediator.User = new List<double>(100);
                 int i = 0;
                 foreach (double cell in ViewsMediator.User)

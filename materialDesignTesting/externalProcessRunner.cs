@@ -33,7 +33,7 @@ namespace materialDesignTesting
 
 
         /// <summary>
-        /// A helper function that combines a string array to a single string
+        /// A helper function that combines an array of strings to a single string
         /// </summary>
         /// <param name="arr"></param>
         /// <returns></returns>

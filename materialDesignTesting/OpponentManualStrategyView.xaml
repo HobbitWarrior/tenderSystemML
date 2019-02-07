@@ -44,18 +44,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical"  HorizontalAlignment="Center">
-                    <materialDesign:PackIcon Kind="ContentSave" Height="57"  Width="67"/>
-                    <Label x:Name="Save" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="2"  HorizontalAlignment="Center">
-                    <materialDesign:PackIcon Kind="BorderColor" Height="57" Width="67" />
-                    <Label x:Name="newQStep" Content="Add new q[i]" VerticalAlignment="Top"/>
-                </StackPanel>
-                <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Center">
-                    <materialDesign:PackIcon  Kind="Rubbish" Height="57" Width="67" />
-                    <Label x:Name="delete" Grid.Row="3" Grid.Column="6" Content="Delete"  VerticalAlignment="Top"/>
-                </StackPanel>
+                
 
                 <ToolBarTray  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Top">
                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="True">

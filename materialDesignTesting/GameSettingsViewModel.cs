@@ -20,62 +20,121 @@ namespace materialDesignTesting
         #endregion
 
         #region Properties
-        public int NumberOfGames
+        public int K
         {
             get
             {
-                return ViewsMediator.NumberOfGames;
+                return ViewsMediator.K;
             }
             set
             {
-                ViewsMediator.NumberOfGames = value;
-                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.NumberOfGames);
+                ViewsMediator.K = value;
+                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.K);
+                //update the value for the oppoent manual vector insertion
+                ViewsMediator.generateCollection();
+                RaisePropertyChanged();
+            }
+        }
+
+        public int n0
+        {
+            get
+            {
+                return ViewsMediator.n0;
+            }
+            set
+            {
+                ViewsMediator.n0 = value;
+                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.n0);
+                RaisePropertyChanged();
+            }
+        }
+        public int m
+        {
+            get
+            {
+                return ViewsMediator.m;
+            }
+            set
+            {
+                ViewsMediator.m = value;
+                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.m);
+                RaisePropertyChanged();
+            }
+        }
+        public int N
+        {
+            get
+            {
+                return ViewsMediator.N;
+            }
+            set
+            {
+                ViewsMediator.N = value;
+                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.N);
+                RaisePropertyChanged();
+            }
+        }
+        public int y
+        {
+            get
+            {
+                return ViewsMediator.y;
+            }
+            set
+            {
+                ViewsMediator.y = value;
+                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.y);
+                RaisePropertyChanged();
+            }
+        }
+        public int z
+        {
+            get
+            {
+                return ViewsMediator.z;
+            }
+            set
+            {
+                ViewsMediator.z = value;
+                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.z);
+                RaisePropertyChanged();
+            }
+        }
+        public int w
+        {
+            get
+            {
+                return ViewsMediator.w;
+            }
+            set
+            {
+                ViewsMediator.w= value;
+                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.w);
                 RaisePropertyChanged();
             }
         }
 
 
-        public String GamesOrder
+        private String _gameOrder = "User";
+        public String GameOrder
         {
             get
             {
-                return ViewsMediator.GameOrder;
+                return _gameOrder;
             }
             set
             {
-                ViewsMediator.GameOrder = value;
-                Console.WriteLine("GameOrder has changed to: {0}", ViewsMediator.GameOrder);
+                _gameOrder = value;
+                if (_gameOrder.Equals("System.Windows.Controls.ComboBoxItem: User"))
+                    ViewsMediator.isUserFirst = true;
+                else
+                    ViewsMediator.isUserFirst = false;
+                Console.WriteLine("NumberOfGames has changed to: {0}", _gameOrder);
                 RaisePropertyChanged();
             }
         }
 
-        public int PrizeAmount
-        {
-            get
-            {
-                return ViewsMediator.PrizeAmount;
-            }
-            set
-            {
-                ViewsMediator.PrizeAmount = value;
-                Console.WriteLine("PrizeAmount has changed to: {0}", ViewsMediator.PrizeAmount);
-                RaisePropertyChanged();
-            }
-        }
-
-        public int BidValue
-        {
-            get
-            {
-                return ViewsMediator.BidValue;
-            }
-            set
-            {
-                ViewsMediator.BidValue = value;
-                Console.WriteLine("bidValue has changed to: {0}", ViewsMediator.BidValue);
-                RaisePropertyChanged();
-            }
-        }
         #endregion
 
         #region INotifyPropertyChanged Implementation -- consider creating an abstract class

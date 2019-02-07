@@ -43,14 +43,6 @@ namespace materialDesignTesting
         {
             index = _index;
             value = _value;
-
-
-            //remove later bud
-            if (refToVector != null && refToVector.Count > 0)
-                System.Console.WriteLine("copied the vector by reference ");
-            else
-                System.Console.WriteLine("could not copy a reference to the vector, it may be empty or null");
-            //end of remove
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -13,27 +13,13 @@ namespace materialDesignTesting
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<listBoxVector> _manualVector = new ObservableCollection<listBoxVector>();
-        public ObservableCollection<listBoxVector> manualVector { get { return _manualVector; } }
+        //public ObservableCollection<listBoxVector> _manualVector = new ObservableCollection<listBoxVector>();
+        public ObservableCollection<listBoxVector> manualVector { get { return ViewsMediator.OpponentObservable; }
+        }
 
         public OpponentManualStrategyViewModel()
         {
-            /*the following process should be called from the game settings MVVM, this is just a test*/
-            ViewsMediator.NumberOfGames = 100;
-            ViewsMediator.populateLists(ViewsMediator.NumberOfGames);
 
-
-
-            if( ViewsMediator.User.Count>0)
-            {
-                listBoxVector.refToVector = ViewsMediator.User;
-                //ViewsMediator.User = new List<double>(100);
-                int i = 0;
-                foreach( double cell in ViewsMediator.User)
-                {
-                    manualVector.Add(new listBoxVector(String.Format("{0}", i++), cell));
-                }
-            }
         }
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -42,6 +28,7 @@ namespace materialDesignTesting
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        
 
     }
 }
