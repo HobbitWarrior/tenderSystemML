@@ -94,6 +94,7 @@
       <DependentUpon>GameSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameSettingsViewModel.cs" />
+    <Compile Include="graph.cs" />
     <Compile Include="graphType.cs" />
     <Compile Include="graphView.xaml.cs">
       <DependentUpon>graphView.xaml</DependentUpon>

@@ -91,7 +91,7 @@ namespace materialDesignTesting
         /// <summary>
         /// an object tha will contain the game results for analytics
         /// </summary>
-        public static resultArrays gameResults;
+        public static resultArrays gameResults = new resultArrays();
         #endregion
 
         #region SnackBar message queue

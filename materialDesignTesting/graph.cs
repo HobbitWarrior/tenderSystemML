@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace materialDesignTesting
 {
-    /// <summary>
-    /// a graph type enum.
-    /// </summary>
-    enum graphType
+    class graph
     {
-        outcome, average, expectation,none
-    };
+        public String graphType { get; set; }
+    }
 }

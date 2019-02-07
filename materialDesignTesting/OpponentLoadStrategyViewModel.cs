@@ -71,15 +71,15 @@ namespace materialDesignTesting
                 Console.WriteLine("the opendialog.filename:  {0}", FileName);
                 //A temp method, returns a 1000 dimensional Vector
                 genetrateRandomVector(1000);
+                vectorFileHandler vfh = new vectorFileHandler();
+                List<double> probabilityFromFileList = vfh.readFromFile(FileName);
+                if (probabilityFromFileList != null)
+                    ViewsMediator.Opponent = probabilityFromFileList;
 
                 //set expander to false
                 ViewsMediator.opponentExpander = "False";
 
-                Console.WriteLine("The following vectors were generated: ");
-                Console.WriteLine("User: ");
-                foreach (double value in ViewsMediator.User)
-                    Console.Write("{0} ", value);
-                Console.WriteLine("\nOpponent: ");
+                Console.WriteLine("Loaded an opponent probability vector: ");
                 foreach (double value in ViewsMediator.Opponent)
                     Console.Write("{0} ", value);
             }

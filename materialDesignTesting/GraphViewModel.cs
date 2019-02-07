@@ -27,15 +27,9 @@ namespace materialDesignTesting
     {
         public GraphViewModel()
         {
-            SeriesCollection = loadSeriesCollection(graphType.outcome);
-            ////SeriesCollection = loadSeriesCollection(graphType.outcome);
-            //SeriesCollection SeriesCollection = new SeriesCollection();
-            //Application.Current.Dispatcher.Invoke((Action)delegate {
-            //    SeriesCollection = loadSeriesCollection(graphType.outcome);
-            //});
-
-
-
+            SeriesCollection = loadSeriesCollection(graphType.expectation);
+            SeriesCollectionAverages = loadSeriesCollection(graphType.average);
+            SeriesCollectionOutcomes = loadSeriesCollection(graphType.outcome);
             Labels = xLabels(1000);
             Formatter = value => value.ToString("N");
         }
@@ -135,6 +129,124 @@ namespace materialDesignTesting
             return _seriesCollection;
         }
 
+
+        public SeriesCollection loadLineValues(int size)
+        {
+            SeriesCollection _seriesCollection = new SeriesCollection();
+            if(size%2==0)
+            {
+                _seriesCollection.Add(
+               new LineSeries
+               {
+                   Title = "Dummy Series",
+                   Values = new ChartValues<double> { 4, 6, 5, 2, 4 }
+               }
+             );
+            }
+            else
+            {
+                _seriesCollection.Add(
+               new LineSeries
+               {
+                   Title = "Dummy Series",
+                   Values = new ChartValues<double> {-10, 22, 3, 13, 10 ,97 }
+               }
+           );
+            }
+            return _seriesCollection;
+        }
+
+        #region graphs visibility togglers
+
+        private String _AverageGraphVisibility = "Hidden";
+        public String AverageGraphVisibility
+        {
+            get
+            {
+                return _AverageGraphVisibility;
+            }
+            set
+            {
+                _AverageGraphVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+        private String _ExpectationGraphVisibility = "Visible";
+        public String ExpectationGraphVisibility
+        {
+            get
+            {
+                return _ExpectationGraphVisibility;
+            }
+            set
+            {
+                _ExpectationGraphVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private String _OutcomeGraphVisibility = "Hidden";
+        public String OutcomeGraphVisibility
+        {
+            get
+            {
+                return _OutcomeGraphVisibility;
+            }
+            set
+            {
+                _OutcomeGraphVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private RelayCommand<Type> showExpectation;
+        public RelayCommand<Type> ShowExpectation
+        {
+            get
+            {
+                return showExpectation = new RelayCommand<Type>((type) =>
+                    {
+                        OutcomeGraphVisibility = "Hidden";
+                        AverageGraphVisibility = "Hidden";
+                        ExpectationGraphVisibility = "Visible";
+                    });
+            }
+        }
+
+        private RelayCommand<Type> showOutomce;
+        public RelayCommand<Type> ShowOutcome
+        {
+            get
+            {
+                return showOutomce = new RelayCommand<Type>((type) =>
+                {
+                    OutcomeGraphVisibility = "Visible";
+                    AverageGraphVisibility = "Hidden";
+                    ExpectationGraphVisibility = "Hidden";
+                    System.Console.WriteLine("just clicked on outcome");
+                });
+            }
+        }
+
+        private RelayCommand<Type> showAverage;
+        public RelayCommand<Type> ShowAverage
+        {
+            get
+            {
+                return showAverage = new RelayCommand<Type>((type) =>
+                {
+                    OutcomeGraphVisibility = "Hidden";
+                    AverageGraphVisibility = "Visible";
+                    ExpectationGraphVisibility = "Hidden";
+                });
+            }
+        }
+
+        #endregion
+
+
         /// <summary>
         ///
         /// </summary>
@@ -142,28 +254,33 @@ namespace materialDesignTesting
         /// <returns></returns>
         public SeriesCollection loadSeriesCollection(graphType graph)
         {
-            Task.Factory.StartNew(() =>
-            {
-
-            });
-
-
             double[] graphValues=null;
-            if (graph == graphType.outcome)
-                graphValues = ViewsMediator.gameResults.outcome;
-            else
+            if (graph == graphType.expectation)
             {
-                if (graph == graphType.average)
-                    graphValues = ViewsMediator.gameResults.average;
-                else
-                    graphValues = ViewsMediator.gameResults.expectation;
+                graphValues = ViewsMediator.gameResults.expectation == null ? null : ViewsMediator.gameResults.expectation;
+                return expectationGraph(graphValues);
             }
+            if(graph == graphType.outcome)
+            {
+                graphValues = ViewsMediator.gameResults.outcome == null ? null : ViewsMediator.gameResults.outcome;
+                return lineGraph(graphValues,"Outcomes");
+            }
+            if (graph == graphType.average)
+            {
+                graphValues = ViewsMediator.gameResults.average == null ? null : ViewsMediator.gameResults.average;
+                return lineGraph(graphValues, "Average");
+            }
+            else
+                return loadHistogramValues(50);
+        }
 
+        public SeriesCollection expectationGraph(double[] graphValues)
+        {
             if (graphValues != null)
             {
                 SeriesCollection _seriesCollection = new SeriesCollection();
                 int valuesInterval = (int)Math.Ceiling((double)(graphValues.Length / 200));
-                for (int i = 0; i < graphValues.Length; i+= valuesInterval)
+                for (int i = 0; i < graphValues.Length; i += valuesInterval)
                 {
                     _seriesCollection.Add(new ColumnSeries
                     {
@@ -177,15 +294,54 @@ namespace materialDesignTesting
                 return loadHistogramValues(100);
         }
 
+        public SeriesCollection lineGraph(double[] graphValues,String name)
+        {
+            if (graphValues != null)
+            {
+                SeriesCollection _seriesCollection = new SeriesCollection();
+                int valuesInterval = (int)Math.Ceiling((double)(graphValues.Length / 200));
+                ChartValues<double> graphChartValues = new ChartValues<double>();
+                for (int i=0; i<graphValues.Length;i+= valuesInterval)
+                    graphChartValues.Add(graphValues[i]);
+
+                _seriesCollection.Add(
+                    new LineSeries
+                    {
+                        Title = name,
+                        Values = graphChartValues
+                    });
+                return _seriesCollection;
+            }
+            else
+            {
+                Random randNum = new Random();
+                return loadLineValues(randNum.Next(0, 23));
+            }
+        }
+        
         public SeriesCollection SeriesCollection { get; set; }
+   
+        public SeriesCollection SeriesCollectionAverages { get; set; }
+
+        public SeriesCollection SeriesCollectionOutcomes { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
         #endregion
-
         #region Fields Binding (properties)
         private int _sliderValueLeft = 25;
         private int _sliderValueRight = 25;
-
+        private List<graph> _graphsTree = new List<graph>();
+        public List<graph> graphTree
+        {
+            get
+            {
+                return _graphsTree;
+            }
+            set
+            {
+                _graphsTree = value;
+            }
+        }
         public double mean
         {
             get

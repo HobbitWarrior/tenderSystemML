@@ -25,13 +25,13 @@ namespace materialDesignTesting
                 myPythonApp = scriptPath;
             }
         }
-
+        //remove
         /// <summary>
         ///a temp variable to hold all the parameters that are sent to the function
         /// </summary>
         //String[] args = { "n0", "m", "y", "z", "w" };
         Double[] args = { 1000, 0.25 , 0.25 , 0.25 , 0.25 };
-
+        //end of remove
 
         /// <summary>
         /// A helper function that combines an array of strings to a single string
@@ -60,6 +60,14 @@ namespace materialDesignTesting
             myProcessStartInfo.Arguments = String.Format("{0} {1}", myPythonApp, constructArgsFromUserInput());
             myProcessStartInfo.UseShellExecute = false;
             myProcessStartInfo.RedirectStandardOutput = true;
+
+            ///check the method of input (file or manual) if manual convert to a list
+            if(ViewsMediator.OpponentObservable.Count > 0)
+            {
+                foreach (listBoxVector lvb in ViewsMediator.OpponentObservable)
+                    ViewsMediator.Opponent.Add(lvb.value);
+            }
+
             using (Process process = Process.Start(myProcessStartInfo))
             {
                 using (StreamReader reader = process.StandardOutput)
@@ -85,8 +93,8 @@ namespace materialDesignTesting
             gameParams = gameParams + " " + Convert.ToString(ViewsMediator.z);
             gameParams = gameParams + " " + Convert.ToString(ViewsMediator.w);
             gameParams = gameParams + " " + Convert.ToString(ViewsMediator.isUserFirst);
-            foreach (listBoxVector lbv in ViewsMediator.OpponentObservable)
-                gameParams += " " + Convert.ToString(lbv.value);
+            foreach (double val in ViewsMediator.Opponent)
+                gameParams += " " + Convert.ToString(val);
             return gameParams;
 
 

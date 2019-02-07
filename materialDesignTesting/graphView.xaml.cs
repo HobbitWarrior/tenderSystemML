@@ -90,9 +90,14 @@ namespace materialDesignTesting
             System.Console.WriteLine("Attempted to change the graphs zoom");
         }
 
+        private void TreeViewItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            System.Console.Write("clicked on a tree item");
+        }
 
 
-        #endregion 
+
+        #endregion
         //#region scrolling controllers and events
 
         //private void Axis_OnRangeChanged(RangeChangedEventArgs eventargs)

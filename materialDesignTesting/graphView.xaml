@@ -36,7 +36,7 @@
             </GroupBox.HeaderTemplate>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="41*"/>
+                    <RowDefinition Height="300*"/>
                     <RowDefinition Height="220*"/>
                     <RowDefinition Height="131*"/>
                     <RowDefinition Height="131*"/>
@@ -46,13 +46,39 @@
                     <RowDefinition Height="131*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="120*"/>
                     <ColumnDefinition Width="500*"/>
                     <ColumnDefinition Width="180*"/>
                     <ColumnDefinition Width="100*"/>
                     <ColumnDefinition Width="80*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="4" x:Name="label" Content="Learning strategy statistitics" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Background="White" FontFamily="Arial Black" FontSize="28" FontWeight="Bold" Foreground="#DD4E34C7"/>
+                
+                
+                <!--Graph selection tree view-->
+                <TreeView Width="220" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                    <TreeViewItem Header="Graphs" IsExpanded="True" Width="240">
+                        <TreeViewItem  Width="200" MouseRightButtonUp="TreeViewItem_MouseRightButtonUp">
+                            <TreeViewItem.Header>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Content="Expectation" Command="{Binding ShowExpectation}" />
+                            </TreeViewItem.Header>
+                        </TreeViewItem>
+                        <TreeViewItem Width="200">
+                            <TreeViewItem.Header>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Content="Average" Command="{Binding ShowAverage}" />
+                            </TreeViewItem.Header>
+                        </TreeViewItem>
+                        <TreeViewItem Width="200">
+                            <TreeViewItem.Header>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Content="Outcome" Command="{Binding ShowOutcome}" />
+                            </TreeViewItem.Header>
+                        </TreeViewItem>>
+                    </TreeViewItem>
+                </TreeView>
+                <!--end of graphs tree view-->
+                
+                
+                
+                <Label Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="4" x:Name="label" Content="Learning strategy statistitics" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Background="White" FontFamily="Arial Black" FontSize="28" FontWeight="Bold" Foreground="#DD4E34C7"/>
                 <TextBox Margin="25,0,25,0" Grid.Column="3" Grid.Row="2" materialDesign:HintAssist.Hint="Mean"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" >
                     <TextBox.Text>
                         <Binding Path="mean" UpdateSourceTrigger="PropertyChanged"/>
@@ -78,13 +104,33 @@
                 <Slider x:Name="ZoomingSlidy" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal" Thumb.DragCompleted="ResetZoomOnClick"  Minimum="1" Maximum="100"/>
                 <Label Content="Pan" Grid.Row="7" Grid.Column="0"/>
                 <Slider Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"   Value="{Binding MaxX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Minimum="1" Maximum="100" FlowDirection="RightToLeft" />
-                <Grid x:Name="graphGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5">
+                <Grid x:Name="graphGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" Visibility="{Binding ExpectationGraphVisibility}">
                     <lvc:CartesianChart x:Name="lvcHistogram" ZoomingSpeed="1" Pan="X" Series="{Binding SeriesCollection}" LegendLocation="None" DataTooltip="{Binding Datatooltip}" Zoom="Xy">
                         <lvc:CartesianChart.AxisX>
                             <lvc:Axis x:Name="X" Title="K0" Labels="{Binding Labels}"/>
                         </lvc:CartesianChart.AxisX>
                         <lvc:CartesianChart.AxisY>
                             <lvc:Axis ScrollViewer.HorizontalScrollBarVisibility="Visible" x:Name="Y" Title="Expectations" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </Grid>
+                <Grid x:Name="graphGridAverages" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" Visibility="{Binding AverageGraphVisibility}">
+                    <lvc:CartesianChart x:Name="lvcHistogramAverages" ZoomingSpeed="1" Pan="X" Series="{Binding SeriesCollectionAverages}" LegendLocation="None" DataTooltip="{Binding Datatooltip}" Zoom="Xy">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis x:Name="aX" Title="K0" Labels="{Binding Labels}"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis ScrollViewer.HorizontalScrollBarVisibility="Visible" x:Name="aY" Title="Expectations" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </Grid>
+                <Grid x:Name="graphGridOutcomes" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" Visibility="{Binding OutcomeGraphVisibility}">
+                    <lvc:CartesianChart x:Name="lvcHistogramOutcomes" ZoomingSpeed="1" Pan="X" Series="{Binding SeriesCollectionOutcomes}" LegendLocation="None" DataTooltip="{Binding Datatooltip}" Zoom="Xy">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis x:Name="oX" Title="K0" Labels="{Binding Labels}"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis ScrollViewer.HorizontalScrollBarVisibility="Visible" x:Name="oY" Title="Expectations" LabelFormatter="{Binding Formatter}"></lvc:Axis>
                         </lvc:CartesianChart.AxisY>
                     </lvc:CartesianChart>
                 </Grid>

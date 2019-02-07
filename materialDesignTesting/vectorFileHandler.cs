@@ -20,21 +20,9 @@ namespace materialDesignTesting
     public List<double> realval = new List<double>();
     public List<double> read_val = new List<double>();
     bool x;
-  public string path = @"C:\projTest\vector.txt";
-  public string output = @"C:\projTest\wtest.txt";
-    
+    public string path = @"C:\projTest\vector.txt";
+    public string output = @"C:\projTest\wtest.txt";
 
-
-
-        public vectorFileHandler()
-        {
-            realval.Add(1);
-            realval.Add(2);
-            realval.Add(3);
-            x = WriteToFile(output, realval);
-            read_val = readFromeFile(path);
-
-        }
 
 
 
@@ -77,7 +65,7 @@ namespace materialDesignTesting
         /// return list that stores the contents of the file  
         /// </returns>
 
-        public List<double> readFromeFile(string path)
+        public List<double> readFromFile(string path)
         {
             string[] text;
             List<double> realval = new List<double>();
@@ -110,7 +98,7 @@ namespace materialDesignTesting
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public List<Double> readFromFile(String file)
+        public List<Double> readFromFileVer2(String file)
         {
             if (String.IsNullOrEmpty(file))
                 return new List<double>();
