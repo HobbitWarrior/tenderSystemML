@@ -14,7 +14,7 @@ namespace materialDesignTesting
         //string python = @"E:/Python37";
         string python = @"cmd.exe";
         // python app to call
-        string myPythonApp = @" /c python C:/Demo.py";
+        string myPythonApp = @" /c python C:/Auction.py";
         externalProcessRunner(string pythonPath, String scriptPath)
         {
             //validate and initialize the values
@@ -47,9 +47,6 @@ namespace materialDesignTesting
 
         // Create new process start info
         public bool isDone = false;
-        public externalProcessRunner()
-        {
-        }
         /// <summary>
         /// the following method will call an external python script,
         /// and return an array of the JSON response.
@@ -59,7 +56,7 @@ namespace materialDesignTesting
         {
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo();
             myProcessStartInfo.FileName = python;
-            myProcessStartInfo.Arguments = String.Format("{0} {1}", myPythonApp, convertArrToString(args));
+            myProcessStartInfo.Arguments = String.Format("{0} {1}", myPythonApp, constructArgsFromUserInput());
             myProcessStartInfo.UseShellExecute = false;
             myProcessStartInfo.RedirectStandardOutput = true;
             using (Process process = Process.Start(myProcessStartInfo))
@@ -73,6 +70,26 @@ namespace materialDesignTesting
                     return ra;
                 }
             }
+        }
+
+
+        private String constructArgsFromUserInput()
+        {
+            String gameParams = Convert.ToString(ViewsMediator.n0);
+            gameParams = gameParams + " " + Convert.ToString(ViewsMediator.n0);
+            gameParams = gameParams + " " + Convert.ToString(ViewsMediator.m);
+            gameParams = gameParams + " " + Convert.ToString(ViewsMediator.K);
+            gameParams = gameParams + " " + Convert.ToString(ViewsMediator.N);
+            gameParams = gameParams + " " + Convert.ToString(ViewsMediator.y);
+            gameParams = gameParams + " " + Convert.ToString(ViewsMediator.z);
+            gameParams = gameParams + " " + Convert.ToString(ViewsMediator.w);
+            gameParams = gameParams + " " + Convert.ToString(ViewsMediator.isUserFirst);
+            foreach (listBoxVector lbv in ViewsMediator.OpponentObservable)
+                gameParams += " " + Convert.ToString(lbv.value);
+            return gameParams;
+
+
+
         }
     }
 }
