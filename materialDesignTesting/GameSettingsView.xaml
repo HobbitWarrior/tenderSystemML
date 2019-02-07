@@ -21,10 +21,11 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Margin="25">
+    <Grid Margin="200">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="83*"/>
-            <ColumnDefinition Width="148*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="26*"/>
@@ -46,55 +47,55 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 </Binding>
             </TextBox.Text>
         </TextBox>-->
-        <Label Content="Playing Order" Grid.Column="0" Grid.Row="7"/>
-        <ComboBox x:Name="GameOrder" SelectedValue="{Binding GameOrder}" materialDesign:HintAssist.Hint="Order" Grid.Column="1" Grid.Row="7" Height="28" Margin="0,0,0,1">
+        <Label Content="Playing Order" Grid.Column="0" Grid.Row="7" VerticalAlignment="Center"/>
+        <ComboBox x:Name="GameOrder" SelectedValue="{Binding GameOrder}" materialDesign:HintAssist.Hint="Order" Grid.Column="1" Grid.Row="7" Height="28" Margin="0,0,0,1" VerticalAlignment="Center">
             <ComboBoxItem Tag="User" Content="User"/>
             <ComboBoxItem Tag="Opponent" Content="Opponent"/>
         </ComboBox>
-        <Label Content="K - Prize" Grid.Column="0" Grid.Row="0"/>
-        <TextBox x:Name="K" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="0">
+        <Label Content="K - Prize" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+        <TextBox x:Name="K" materialDesign:HintAssist.Hint="0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
             <TextBox.Text>
                 <Binding Path="K" UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Label Content="n0 - Number of Games in the First cycle" Grid.Column="0" Grid.Row="1"/>
-        <TextBox x:Name="n0" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="1">
+        <Label Content="n0 - Number of Games in the First cycle" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
+        <TextBox x:Name="n0" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
             <TextBox.Text>
                 <Binding Path="n0" UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
         </TextBox>
         <Label Content="m" Grid.Column="0" Grid.Row="2"/>
-        <TextBox x:Name="m" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="2">
+        <TextBox x:Name="m" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
             <TextBox.Text>
                 <Binding Path="m" UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Label Content="N" Grid.Column="0" Grid.Row="3"/>
-        <TextBox x:Name="N" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="3">
+        <Label Content="N" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBox x:Name="N" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center">
             <TextBox.Text>
                 <Binding Path="N" UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Label Content="y" Grid.Column="0" Grid.Row="4"/>
-        <TextBox x:Name="y" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="4">
+        <Label Content="y" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"/>
+        <TextBox x:Name="y" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center">
             <TextBox.Text>
                 <Binding Path="y" UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Label Content="z" Grid.Column="0" Grid.Row="5"/>
-        <TextBox x:Name="z" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="5">
+        <Label Content="z" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"/>
+        <TextBox x:Name="z" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center">
             <TextBox.Text>
                 <Binding Path="z" UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Label Content="w" Grid.Column="0" Grid.Row="6"/>
-        <TextBox x:Name="w" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="6">
+        <Label Content="w" Grid.Column="0" Grid.Row="6" VerticalAlignment="Center"/>
+        <TextBox x:Name="w" materialDesign:HintAssist.Hint="1000" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center">
             <TextBox.Text>
                 <Binding Path="w" UpdateSourceTrigger="PropertyChanged">
                 </Binding>

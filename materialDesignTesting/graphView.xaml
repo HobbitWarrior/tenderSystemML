@@ -79,26 +79,26 @@
                 
                 
                 <Label Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="4" x:Name="label" Content="Learning strategy statistitics" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Background="White" FontFamily="Arial Black" FontSize="28" FontWeight="Bold" Foreground="#DD4E34C7"/>
-                <TextBox Margin="25,0,25,0" Grid.Column="3" Grid.Row="2" materialDesign:HintAssist.Hint="Mean"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" >
-                    <TextBox.Text>
+                <TextBlock Margin="25,0,25,0" Grid.Column="3" Grid.Row="2" materialDesign:HintAssist.Hint="Mean">
+                    <TextBlock.Text>
                         <Binding Path="mean" UpdateSourceTrigger="PropertyChanged"/>
-                    </TextBox.Text>
-                </TextBox>
-                <TextBox Margin="25,0,25,0" Grid.Column="3" Grid.Row="3" materialDesign:HintAssist.Hint="Variance" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                    <TextBox.Text>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Margin="25,0,25,0" Grid.Column="3" Grid.Row="3" materialDesign:HintAssist.Hint="Variance">
+                    <TextBlock.Text>
                         <Binding Path="variance" UpdateSourceTrigger="PropertyChanged"/>
-                    </TextBox.Text>
-                </TextBox>
-                <TextBox Margin="25,0,25,0" Grid.Column="3" Grid.Row="4" materialDesign:HintAssist.Hint="Budget Spent"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" >
-                    <TextBox.Text>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Margin="25,0,25,0" Grid.Column="3" Grid.Row="4" materialDesign:HintAssist.Hint="Budget Spent">
+                    <TextBlock.Text>
                         <Binding Path="budgetSpent" UpdateSourceTrigger="PropertyChanged"/>
-                    </TextBox.Text>
-                </TextBox>
-                <TextBox Margin="25,0,25,0" Grid.Column="3" Grid.Row="5" materialDesign:HintAssist.Hint="Average gain" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                    <TextBox.Text>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Margin="25,0,25,0" Grid.Column="3" Grid.Row="5" materialDesign:HintAssist.Hint="Average gain">
+                    <TextBlock.Text>
                         <Binding Path="averageGain" UpdateSourceTrigger="PropertyChanged"/>
-                    </TextBox.Text>
-                </TextBox>
+                    </TextBlock.Text>
+                </TextBlock>
                 <Button x:Name="ResetButton" Content="Reset Graph" Click="ResetZoomOnClick" Grid.Row="6" Grid.Column="3"/>
                 <Label Content="Zoom" Grid.Row="6" Grid.Column="0"/>
                 <Slider x:Name="ZoomingSlidy" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal" Thumb.DragCompleted="ResetZoomOnClick"  Minimum="1" Maximum="100"/>

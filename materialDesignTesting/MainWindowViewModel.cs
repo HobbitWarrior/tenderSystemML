@@ -158,13 +158,13 @@ namespace materialDesignTesting
                 return  (navigateCommand = new RelayCommand<Type>(
                     vmType =>
                     {
-                        //toggle menus visibility and then navigate
-                        ShowMenu = (ShowMenu == "Visible" ? "Hidden" : "Visible");
-                        ShowOView = (ShowOView == "Visible" ? "Hidden" : "Visible");
                         //Bind a 'CurrentViewModel Set' event To the button
                         CurrentViewModel = null;
                         //CurrentViewModel = Activator.CreateInstance(vmType);
                         ChangeViewModel(vmType);
+                        //toggle menus visibility and then navigate
+                        ShowMenu = (ShowMenu == "Visible" ? "Hidden" : "Visible");
+                        ShowOView = (ShowOView == "Visible" ? "Hidden" : "Visible");
                         Console.WriteLine("Just Changed the CurrentViewModel to: {0} , \nShowMenu is {1}, \nShowView is {2}",CurrentViewModel, ShowMenu,ShowOView);
                     }));
             }
