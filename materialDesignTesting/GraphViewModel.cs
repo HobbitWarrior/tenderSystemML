@@ -334,7 +334,9 @@ namespace materialDesignTesting
                     new LineSeries
                     {
                         Title = name,
-                        Values = graphChartValues
+                        Values = graphChartValues,
+                        Stroke = String.Compare(name, "Outcomes") == 0  ? Brushes.DarkSlateBlue : Brushes.DodgerBlue,
+                        Fill = String.Compare(name, "Outcomes") == 0 ? Brushes.SlateBlue : Brushes.LightSkyBlue
                     });
                 return _seriesCollection;
             }
