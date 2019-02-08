@@ -22,7 +22,12 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Load Opponents's Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Height="150">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="3" x:Name="label" Content="Load Opponent Strategy From a File" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Background="White" FontFamily="Arial Black" FontSize="28" FontWeight="Bold" Foreground="#DD4E34C7"/>
+        <GroupBox Grid.Row="1" Header="Load Opponents's Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Height="150">
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

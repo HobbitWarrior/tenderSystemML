@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Load User's Strategy" Style="{DynamicResource MaterialDesignCardGroupBox}">
+        <GroupBox Header=" " Style="{DynamicResource MaterialDesignCardGroupBox}">
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -44,9 +44,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
 
-                <ToolBarTray  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Top">
+                <Label Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="5" x:Name="label" Content="Opponent's Manual Strategy" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Background="White" FontFamily="Arial Black" FontSize="28" FontWeight="Bold" Foreground="#DD4E34C7"/>
+                <ToolBarTray  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Top">
                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="True">
                         <Button ToolTip="Save">
                             <materialDesign:PackIcon Kind="ContentSave" />
