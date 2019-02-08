@@ -70,7 +70,7 @@ namespace materialDesignTesting
                 //FileName = System.IO.File.ReadAllText(openFileDlg.FileName);
                 Console.WriteLine("the opendialog.filename:  {0}", FileName);
                 //A temp method, returns a 1000 dimensional Vector
-                genetrateRandomVector(1000);
+                //genetrateRandomVector(1000);
                 vectorFileHandler vfh = new vectorFileHandler();
                 List<double> probabilityFromFileList = vfh.readFromFile(FileName);
                 if (probabilityFromFileList != null)

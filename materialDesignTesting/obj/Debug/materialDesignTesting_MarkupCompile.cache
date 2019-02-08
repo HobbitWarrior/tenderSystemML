@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-\\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\obj\Debug\
+C:\newPro\tenderSystemML\tenderSystemML\tenderSystemML\tenderSystemML\materialDesignTesting\obj\Debug\
 materialDesignTesting
 none
 false
 DEBUG;TRACE
-\\Mac\Home\Documents\GitHub\tenderSystemML\materialDesignTesting\App.xaml
+C:\newPro\tenderSystemML\tenderSystemML\tenderSystemML\tenderSystemML\materialDesignTesting\App.xaml
 14-1756252032
 
 42-673548176
-25411321379
+251894680659
 EstimateStrategyView.xaml;GameSettingsView.xaml;graphView.xaml;LoadingView.xaml;MainMenuWIndow.xaml;MainWindow.xaml;LoginUC.xaml;mvvmTemplates.xaml;OpponentLoadStrategyView.xaml;OpponentManualStrategyView.xaml;OpponentsMixedStrategyVectorView.xaml;UserLoadStrategyView.xaml;UserManualStrategyView.xaml;UserUS.xaml;
 
 False
