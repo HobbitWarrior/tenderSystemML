@@ -105,7 +105,10 @@
                 <Label Content="Pan" Grid.Row="7" Grid.Column="0"/>
                 <Slider Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" TickFrequency="5" Orientation="Horizontal"   Value="{Binding MaxX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Minimum="1" Maximum="100" FlowDirection="RightToLeft" />
                 <Grid x:Name="graphGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" Visibility="{Binding ExpectationGraphVisibility}">
-                    <lvc:CartesianChart x:Name="lvcHistogram" ZoomingSpeed="1" Pan="X" Series="{Binding SeriesCollection}" LegendLocation="None" DataTooltip="{Binding Datatooltip}" Zoom="Xy">
+                    <lvc:CartesianChart x:Name="lvcHistogram" ZoomingSpeed="1" Pan="X" Series="{Binding SeriesCollection}" LegendLocation="None" Zoom="Xy">
+                        <lvc:CartesianChart.DataTooltip>
+                            <lvc:DefaultTooltip SelectionMode="OnlySender" />
+                        </lvc:CartesianChart.DataTooltip>
                         <lvc:CartesianChart.AxisX>
                             <lvc:Axis x:Name="X" Title="K0" Labels="{Binding Labels}"/>
                         </lvc:CartesianChart.AxisX>
@@ -115,7 +118,10 @@
                     </lvc:CartesianChart>
                 </Grid>
                 <Grid x:Name="graphGridAverages" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" Visibility="{Binding AverageGraphVisibility}">
-                    <lvc:CartesianChart x:Name="lvcHistogramAverages" ZoomingSpeed="1" Pan="X" Series="{Binding SeriesCollectionAverages}" LegendLocation="None" DataTooltip="{Binding Datatooltip}" Zoom="Xy">
+                    <lvc:CartesianChart x:Name="lvcHistogramAverages" ZoomingSpeed="1" Pan="X" Series="{Binding SeriesCollectionAverages}" LegendLocation="None" Zoom="Xy">
+                        <lvc:CartesianChart.DataTooltip>
+                            <lvc:DefaultTooltip SelectionMode="OnlySender" />
+                        </lvc:CartesianChart.DataTooltip>
                         <lvc:CartesianChart.AxisX>
                             <lvc:Axis x:Name="aX" Title="K0" Labels="{Binding Labels}"/>
                         </lvc:CartesianChart.AxisX>
@@ -125,7 +131,10 @@
                     </lvc:CartesianChart>
                 </Grid>
                 <Grid x:Name="graphGridOutcomes" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" Visibility="{Binding OutcomeGraphVisibility}">
-                    <lvc:CartesianChart x:Name="lvcHistogramOutcomes" ZoomingSpeed="1" Pan="X" Series="{Binding SeriesCollectionOutcomes}" LegendLocation="None" DataTooltip="{Binding Datatooltip}" Zoom="Xy">
+                    <lvc:CartesianChart x:Name="lvcHistogramOutcomes" ZoomingSpeed="1" Pan="X" Series="{Binding SeriesCollectionOutcomes}" LegendLocation="None"  Zoom="Xy">
+                        <lvc:CartesianChart.DataTooltip>
+                            <lvc:DefaultTooltip SelectionMode="OnlySender" />
+                        </lvc:CartesianChart.DataTooltip>
                         <lvc:CartesianChart.AxisX>
                             <lvc:Axis x:Name="oX" Title="K0" Labels="{Binding Labels}"/>
                         </lvc:CartesianChart.AxisX>
