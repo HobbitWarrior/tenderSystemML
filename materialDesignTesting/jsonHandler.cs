@@ -31,40 +31,41 @@ namespace materialDesignTesting
         /// the following method will deserialize a JSON response with three arrays to the 
         /// resultArray instance.
         /// </summary>
-        /// <returns>resultArrays</returns>
+        /// <returns>resultArrays, or null.</returns>
         public resultArrays deserialize()
         {
             JavaScriptSerializer ser = new JavaScriptSerializer();
             System.Console.WriteLine(json);
+            resultArrays[] r = null;
             try
             {
-                resultArrays[] r = ser.Deserialize<resultArrays[]>(json);
+                r = ser.Deserialize<resultArrays[]>(json);
                 System.Console.WriteLine("this is the json respone:");
+
+                //remove later girl
+                System.Console.WriteLine("result array");
+                double[] array = r[0].outcome;
+                foreach (double val in array)
+                    System.Console.Write("{0}", val);
+
+                System.Console.WriteLine("result array");
+                array = r[0].average;
+                foreach (double val in array)
+                    System.Console.Write("{0}", val);
+
+                System.Console.WriteLine("result array");
+                array = r[0].expectation;
+                foreach (double val in array)
+                    System.Console.Write("{0}", val);
+                //end of remove
+                return r[0];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MainWindow.Snackbar.MessageQueue.Enqueue(String.Format("Something went wrong during reading the JSON from the python script, received the following exception: {0}.\n.NET exception: {1}", json, ex.Message));
-                System.Console.WriteLine(String.Format("Something went wrong during reading the JSON from the python script, received the following exception: {0}.\n.NET exception: {1}", json, ex.Message));
+                MainWindow.Snackbar.MessageQueue.Enqueue(String.Format("Something went wrong during reading the JSON from the python script, received the following exception: {0}.\n.NET exception: {1}", json, ex.Message.ToString()));
+                System.Console.WriteLine(String.Format("Something went wrong during reading the JSON from the python script, received the following exception: {0}.\n.NET exception: {1}", json, ex.Message.ToString()));
             }
-
-            //remove later girl
-            System.Console.WriteLine("result array");
-            double[] array = r[0].outcome;
-            foreach (double val in array)
-                System.Console.Write("{0}", val);
-
-            System.Console.WriteLine("result array");
-            array = r[0].average;
-            foreach (double val in array)
-                System.Console.Write("{0}", val);
-
-            System.Console.WriteLine("result array");
-            array = r[0].expectation;
-            foreach (double val in array)
-                System.Console.Write("{0}", val);
-            //end of remove
-           
-            return r[0];
+            return null;
         }
 
 

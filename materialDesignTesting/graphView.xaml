@@ -71,7 +71,7 @@
                             <TreeViewItem.Header>
                                 <Button Style="{StaticResource MaterialDesignFlatButton}" Content="Outcome" Command="{Binding ShowOutcome}" />
                             </TreeViewItem.Header>
-                        </TreeViewItem>>
+                        </TreeViewItem>
                     </TreeViewItem>
                 </TreeView>
                 <!--end of graphs tree view-->

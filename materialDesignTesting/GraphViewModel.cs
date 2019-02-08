@@ -293,11 +293,11 @@ namespace materialDesignTesting
         /// <returns></returns>
         public SeriesCollection expectationGraph(double[] graphValues)
         {
-            graphValues = null;
+            //graphValues = null;
             if (graphValues != null)
             {
                 SeriesCollection _seriesCollection = new SeriesCollection();
-                int valuesInterval = (int)Math.Ceiling((double)(graphValues.Length / 200));
+                int valuesInterval = (int)Math.Ceiling((double)(graphValues.Length / 200))+1;
                 for (int i = 0; i < graphValues.Length; i += valuesInterval)
                 {
                     _seriesCollection.Add(new ColumnSeries
@@ -325,7 +325,7 @@ namespace materialDesignTesting
             {
                 SeriesCollection _seriesCollection = new SeriesCollection();
                 //show selected values, to fit in the chart, with a proportion of 1/200
-                int valuesInterval = (int)Math.Ceiling((double)(graphValues.Length / 200));
+                int valuesInterval = (int)Math.Ceiling((double)(graphValues.Length / 200))+1;
                 ChartValues<double> graphChartValues = new ChartValues<double>();
                 for (int i=0; i<graphValues.Length;i+= valuesInterval)
                     graphChartValues.Add(graphValues[i]);

@@ -27,7 +27,9 @@ namespace materialDesignTesting
             externalProcessRunner epr = new externalProcessRunner();
             //validate and save the results in the view mediator
             if ((ViewsMediator.gameResults = epr.runCmd()) == null)
-                throw new Exception("Something went wrong, the external script runner 'externalProccessRunner' did not return results array.");
+                MainWindow.Snackbar.MessageQueue.Enqueue("Something went wrong, the external script runner 'externalProccessRunner' did not return results array.");
+            else
+                MainWindow.Snackbar.MessageQueue.Enqueue("Done :) Click Next to prceed to results.");
             //if the calculation is done change the transition between the wizard windows button controller.
             System.Console.WriteLine("finished reading from the pipe, loading graphs");
             ViewsMediator.isDoneCalcualtingQ = true;
