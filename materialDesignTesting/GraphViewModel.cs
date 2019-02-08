@@ -107,6 +107,12 @@ namespace materialDesignTesting
         #endregion
         #region Chart Values
 
+
+        /// <summary>
+        /// Fills the graph with dummy values.
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public SeriesCollection loadHistogramValues(int size)
         {
             SeriesCollection _seriesCollection = new SeriesCollection();
@@ -129,17 +135,23 @@ namespace materialDesignTesting
             return _seriesCollection;
         }
 
-
+        /// <summary>
+        /// fills the line chart with dummy values.
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public SeriesCollection loadLineValues(int size)
         {
             SeriesCollection _seriesCollection = new SeriesCollection();
-            if(size%2==0)
+            if((size%2)==0)
             {
                 _seriesCollection.Add(
                new LineSeries
                {
                    Title = "Dummy Series",
-                   Values = new ChartValues<double> { 4, 6, 5, 2, 4 }
+                   Values = new ChartValues<double> { 4, 6, 5, 2, 4 },
+                   Stroke = Brushes.Coral,
+                   Fill = Brushes.LightCoral
                }
              );
             }
@@ -149,7 +161,9 @@ namespace materialDesignTesting
                new LineSeries
                {
                    Title = "Dummy Series",
-                   Values = new ChartValues<double> {-10, 22, 3, 13, 10 ,97 }
+                   Values = new ChartValues<double> { -10, 22, 3, 13, 10, 97 },
+                   Stroke = Brushes.Coral,
+                   Fill = Brushes.LightCoral
                }
            );
             }
@@ -255,25 +269,28 @@ namespace materialDesignTesting
         public SeriesCollection loadSeriesCollection(graphType graph)
         {
             double[] graphValues=null;
-            if (graph == graphType.expectation)
-            {
-                graphValues = ViewsMediator.gameResults.expectation == null ? null : ViewsMediator.gameResults.expectation;
-                return expectationGraph(graphValues);
-            }
-            if(graph == graphType.outcome)
-            {
-                graphValues = ViewsMediator.gameResults.outcome == null ? null : ViewsMediator.gameResults.outcome;
-                return lineGraph(graphValues,"Outcomes");
-            }
-            if (graph == graphType.average)
-            {
-                graphValues = ViewsMediator.gameResults.average == null ? null : ViewsMediator.gameResults.average;
-                return lineGraph(graphValues, "Average");
-            }
-            else
-                return loadHistogramValues(50);
-        }
 
+            switch (graph)
+            {
+                case graphType.expectation:
+                    graphValues = ViewsMediator.gameResults.expectation == null ? null : ViewsMediator.gameResults.expectation;
+                    return expectationGraph(graphValues);
+                case graphType.outcome:
+                    graphValues = ViewsMediator.gameResults.outcome == null ? null : ViewsMediator.gameResults.outcome;
+                    return lineGraph(graphValues, "Outcomes");
+                case graphType.average:
+                    graphValues = ViewsMediator.gameResults.average == null ? null : ViewsMediator.gameResults.average;
+                    return lineGraph(graphValues, "Average");
+                default:
+                    return loadHistogramValues(50);
+
+            }
+        }
+        /// <summary>
+        /// the following method populates the histogram graoh with the results of the calculations.
+        /// </summary>
+        /// <param name="graphValues"></param>
+        /// <returns></returns>
         public SeriesCollection expectationGraph(double[] graphValues)
         {
             if (graphValues != null)
@@ -294,11 +311,19 @@ namespace materialDesignTesting
                 return loadHistogramValues(100);
         }
 
+
+        /// <summary>
+        /// the method fills the line graph with values from the calculations results.
+        /// </summary>
+        /// <param name="graphValues"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public SeriesCollection lineGraph(double[] graphValues,String name)
         {
             if (graphValues != null)
             {
                 SeriesCollection _seriesCollection = new SeriesCollection();
+                //show selected values, to fit in the chart, with a proportion of 1/200
                 int valuesInterval = (int)Math.Ceiling((double)(graphValues.Length / 200));
                 ChartValues<double> graphChartValues = new ChartValues<double>();
                 for (int i=0; i<graphValues.Length;i+= valuesInterval)
