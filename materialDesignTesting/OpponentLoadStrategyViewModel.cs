@@ -54,34 +54,42 @@ namespace materialDesignTesting
         public void openDialog()
         {
             Console.WriteLine("Just called a button click event!!!! Yay! :)");
-
-            //Open dialog
-            // Create OpenFileDialog
-            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
-
-            // Launch OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = openFileDlg.ShowDialog();
-            // Get the selected file name and display in a TextBox.S
-            // Load content of file in a TextBlock
-            if (result == true)
+            try
             {
-                FileName = openFileDlg.FileName;
-                //this method will read all the contents of the provided file
-                //FileName = System.IO.File.ReadAllText(openFileDlg.FileName);
-                Console.WriteLine("the opendialog.filename:  {0}", FileName);
-                //A temp method, returns a 1000 dimensional Vector
-                //genetrateRandomVector(1000);
-                vectorFileHandler vfh = new vectorFileHandler();
-                List<double> probabilityFromFileList = vfh.readFromFile(FileName);
-                if (probabilityFromFileList != null)
-                    ViewsMediator.Opponent = probabilityFromFileList;
 
-                //set expander to false
-                ViewsMediator.opponentExpander = "False";
+                //Open dialog
+                // Create OpenFileDialog
+                Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
 
-                Console.WriteLine("Loaded an opponent probability vector: ");
-                foreach (double value in ViewsMediator.Opponent)
-                    Console.Write("{0} ", value);
+                // Launch OpenFileDialog by calling ShowDialog method
+                Nullable<bool> result = openFileDlg.ShowDialog();
+                // Get the selected file name and display in a TextBox.S
+                // Load content of file in a TextBlock
+                if (result == true)
+                {
+                    FileName = openFileDlg.FileName;
+                    //this method will read all the contents of the provided file
+                    //FileName = System.IO.File.ReadAllText(openFileDlg.FileName);
+                    Console.WriteLine("the opendialog.filename:  {0}", FileName);
+                    //A temp method, returns a 1000 dimensional Vector
+                    //genetrateRandomVector(1000);
+                    vectorFileHandler vfh = new vectorFileHandler();
+                    List<double> probabilityFromFileList = vfh.readFromFile(FileName);
+                    if (probabilityFromFileList != null)
+                        ViewsMediator.Opponent = probabilityFromFileList;
+
+                    //set expander to false
+                    ViewsMediator.opponentExpander = "False";
+
+                    Console.WriteLine("Loaded an opponent probability vector: ");
+                    foreach (double value in ViewsMediator.Opponent)
+                        Console.Write("{0} ", value);
+                }
+            }
+            catch(Exception ex)
+            {
+                MainWindow.Snackbar.MessageQueue.Enqueue(String.Format("Sorry, couldn't the file, please try again.\n received the follwing message: {0}", ex.Message));
+                System.Console.WriteLine(String.Format("Sorry, couldn't the file, please try again.\n received the follwing message: {0}", ex.Message));
             }
         }
 
