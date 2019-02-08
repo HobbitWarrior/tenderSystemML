@@ -15,7 +15,10 @@ namespace materialDesignTesting
 
 
         public jsonHandler() { }
-
+        /// <summary>
+        /// Deserializes a JSON Response
+        /// </summary>
+        /// <param name="json"></param>
         public jsonHandler(String json)
         {
             if (json == null)
@@ -33,8 +36,16 @@ namespace materialDesignTesting
         {
             JavaScriptSerializer ser = new JavaScriptSerializer();
             System.Console.WriteLine(json);
-            resultArrays[] r = ser.Deserialize<resultArrays[]>(json);
-            System.Console.WriteLine("this is the json respone:");
+            try
+            {
+                resultArrays[] r = ser.Deserialize<resultArrays[]>(json);
+                System.Console.WriteLine("this is the json respone:");
+            }
+            catch(Exception ex)
+            {
+                MainWindow.Snackbar.MessageQueue.Enqueue(String.Format("Something went wrong during reading the JSON from the python script, received the following exception: {0}.\n.NET exception: {1}", json, ex.Message));
+                System.Console.WriteLine(String.Format("Something went wrong during reading the JSON from the python script, received the following exception: {0}.\n.NET exception: {1}", json, ex.Message));
+            }
 
             //remove later girl
             System.Console.WriteLine("result array");
