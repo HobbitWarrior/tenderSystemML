@@ -15,9 +15,7 @@ namespace materialDesignTesting
     /// </summary>
     class GameSettingsViewModel : INotifyPropertyChanged
     {
-        #region Fields
-        private Dictionary<String, int> trackFields = new Dictionary<string, int>();
-        #endregion
+
 
         #region Properties
         public int K
