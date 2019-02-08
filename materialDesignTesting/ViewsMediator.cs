@@ -31,22 +31,22 @@ namespace materialDesignTesting
         #region Game Settings Variables
         //<summary>Game General Settings Variables</summary>
         //<value>Number Of Games</value>
-        public static int K=1000;
+        public static int K=3;
 
         //<value>n0</value>
-        public static int n0=0;
+        public static int n0=1;
 
         //<value>m</value>
-        public static int m=0;
+        public static int m=2;
 
         //<value>y</value>
-        public static int y = 0;
+        public static int y = 4;
         //<value>z</value>
-        public static int z = 0;
+        public static int z = 5;
         //<value>w</value>
-        public static int w = 0;
+        public static int w = 6;
         //<value>N</value>
-        public static int N = 0;
+        public static int N = 7;
 
         /// <value>a falg to control the playing order, if true the user will play first</value>
         public static bool isUserFirst = true;

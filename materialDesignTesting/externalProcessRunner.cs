@@ -57,7 +57,9 @@ namespace materialDesignTesting
         {
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo();
             myProcessStartInfo.FileName = python;
-            myProcessStartInfo.Arguments = String.Format("{0} {1}", myPythonApp, constructArgsFromUserInput());
+            String Arguments = String.Format("{0} {1}", myPythonApp, constructArgsFromUserInput());
+            System.Console.Write(String.Format("{0} {1}", myPythonApp, constructArgsFromUserInput()));
+            myProcessStartInfo.Arguments = Arguments;
             myProcessStartInfo.UseShellExecute = false;
             myProcessStartInfo.RedirectStandardOutput = true;
 
@@ -84,8 +86,7 @@ namespace materialDesignTesting
 
         private String constructArgsFromUserInput()
         {
-            String gameParams = Convert.ToString(ViewsMediator.n0);
-            gameParams = gameParams + " " + Convert.ToString(ViewsMediator.n0);
+            String gameParams =" "+ Convert.ToString(ViewsMediator.n0);
             gameParams = gameParams + " " + Convert.ToString(ViewsMediator.m);
             gameParams = gameParams + " " + Convert.ToString(ViewsMediator.K);
             gameParams = gameParams + " " + Convert.ToString(ViewsMediator.N);
@@ -95,6 +96,7 @@ namespace materialDesignTesting
             gameParams = gameParams + " " + Convert.ToString(ViewsMediator.isUserFirst);
             foreach (double val in ViewsMediator.Opponent)
                 gameParams += " " + Convert.ToString(val);
+            System.Console.WriteLine(gameParams);
             return gameParams;
 
 

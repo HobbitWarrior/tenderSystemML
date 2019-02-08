@@ -293,6 +293,7 @@ namespace materialDesignTesting
         /// <returns></returns>
         public SeriesCollection expectationGraph(double[] graphValues)
         {
+            graphValues = null;
             if (graphValues != null)
             {
                 SeriesCollection _seriesCollection = new SeriesCollection();
