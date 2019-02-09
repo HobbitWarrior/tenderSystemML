@@ -111,6 +111,21 @@ namespace materialDesignTesting
             set
             {
                 _wizardNavigator = ViewsMediator.isDoneCalcualtingQ ? "Show Results" : "Save";
+                RaisePropertyChanged();
+            }
+        }
+
+        private static bool _isMenuControllerButtonEnabled = true;
+        public bool isMenuControllerButtonEnabled
+        {
+            get
+            {
+                return _isMenuControllerButtonEnabled;
+            }
+            set
+            {
+                _isMenuControllerButtonEnabled = value;
+                RaisePropertyChanged();
             }
         }
 

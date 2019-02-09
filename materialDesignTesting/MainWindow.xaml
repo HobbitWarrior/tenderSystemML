@@ -142,7 +142,7 @@
                                 </materialDesign:Card>
                             </ContentControl>
                             <ContentControl Visibility="{Binding ShowOView}" Content="{Binding CurrentViewModel}" Grid.Row="0"/>
-                            <Button Visibility="{Binding ShowOView}" Margin="5" Grid.Row="1" Content="{Binding wizardNavigator}" Command="{Binding BackToWizardCommand}" CommandParameter="{x:Type local:GraphViewModel}" />
+                            <Button IsEnabled="{Binding isMenuControllerButtonEnabled}" Visibility="{Binding ShowOView}" Margin="5" Grid.Row="1" Content="{Binding wizardNavigator}" Command="{Binding BackToWizardCommand}" CommandParameter="{x:Type local:GraphViewModel}" />
                         </Grid>
                     </ScrollViewer>
                     <!-- End Of Main Content! -->
