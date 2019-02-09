@@ -265,7 +265,6 @@ namespace materialDesignTesting
                             GameSettingsExpander = ViewsMediator.gameSettingsExpander;
                             CalculateExpander = ViewsMediator.calculateExpander;
                             navigateCommand = null;
-
                         }
                         //something is wrong with the game settings form, alert the user.
                         else
