@@ -70,7 +70,7 @@
                 <StackPanel Background="White" Margin="10">
                     <TextBlock Text="{Binding ErrorHead}" TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
                     <TextBox x:Name="ErrorMSGBody" Text="{Binding ErrorBody}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Button Content="Ok, Got it :)" Click="ErrorMessageDissimis"/>
+                    <Button Content="Ok, Got it :) " Click="ErrorMessageDissimis"/>
                 </StackPanel>
             </Border>
         </Grid>
