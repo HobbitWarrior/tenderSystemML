@@ -39,120 +39,143 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
-    <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
-        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
-            <materialDesign:DrawerHost.LeftDrawerContent>
-                <DockPanel MinWidth="212">
-                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+    <Grid>
+        <materialDesign:DialogHost Identifier="RootDialog"  Opacity="{Binding messageBoxEnabled}" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+            <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+                <materialDesign:DrawerHost.LeftDrawerContent>
+                    <DockPanel MinWidth="212">
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                                     DockPanel.Dock="Top"
                                     HorizontalAlignment="Right" Margin="16"
                                     IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                   <!--    Hamburger left menus :) -->
-                    <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
+                        <!--    Hamburger left menus :) -->
+                        <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
                              PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
-                        <ListBoxItem >
-                            <Button x:Name="mainButton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
-                                Main
-                            </Button>
-                        </ListBoxItem>
-                        <ListBoxItem >
-                            <Button x:Name="logInButton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
-                                Log In
-                            </Button>
-                        </ListBoxItem>
-                        <ListBoxItem>
-                            <Button x:Name="graphButton" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
-                                Show Graphs and Stats
-                            </Button>
-                        </ListBoxItem>
-                    </ListBox>
-                    <!--    End of Hamburger left menus :) -->
-                </DockPanel>
-            </materialDesign:DrawerHost.LeftDrawerContent>
-            <DockPanel>
-                <!-- Top Panel Right Expanding Menu-->
-                <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                            Mode="PrimaryMid" DockPanel.Dock="Top">
-                    <DockPanel>
-                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
-                                        x:Name="MenuToggleButton"/>
-                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
-                            <StackPanel>
-                                <Button Content="Hello World" Click="MenuPopupButton_OnClick" />
-                                <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
-                                <Button Content="Can't Touch This" IsEnabled="False" />
-                                <Separator/>
-                                <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
-                            </StackPanel>
-                        </materialDesign:PopupBox>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Tender Analysis System - All Pay Auctions</TextBlock>
+                            <ListBoxItem >
+                                <Button x:Name="mainButton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
+                                    Main
+                                </Button>
+                            </ListBoxItem>
+                            <ListBoxItem >
+                                <Button x:Name="logInButton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
+                                    Log In
+                                </Button>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <Button x:Name="graphButton" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
+                                    Show Graphs and Stats
+                                </Button>
+                            </ListBoxItem>
+                        </ListBox>
+                        <!--    End of Hamburger left menus :) -->
                     </DockPanel>
-                </materialDesign:ColorZone>
-                <!-- End of Top Panel Right Expanding Menu-->
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    
-                    <!-- Main Content Goes Here -->
-                    <ScrollViewer Grid.Row="1" 
+                </materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel>
+                    <!-- Top Panel Right Expanding Menu-->
+                    <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                            Mode="PrimaryMid" DockPanel.Dock="Top">
+                        <DockPanel>
+                            <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                                        x:Name="MenuToggleButton"/>
+                            <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                                <StackPanel>
+                                    <Button Content="Hello World" Click="MenuPopupButton_OnClick" />
+                                    <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
+                                    <Button Content="Can't Touch This" IsEnabled="False" />
+                                    <Separator/>
+                                    <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
+                                </StackPanel>
+                            </materialDesign:PopupBox>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Tender Analysis System - All Pay Auctions</TextBlock>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                    <!-- End of Top Panel Right Expanding Menu-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Main Content Goes Here -->
+                        <ScrollViewer Grid.Row="1" 
                                   HorizontalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
                                   VerticalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}" 
                                   Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="10*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
 
 
-                            <ContentControl Visibility="{Binding ShowMenu}" Grid.Row="0" tz:Transitionz.Opacity="{tz:OpacityParams From=0, To=1, Duration=200, TransitionOn=Visibility}" tz:Transitionz.Translate="{tz:TranslateParams From='10,0', To='0,0', Duration=200, TransitionOn=Visibility}" tz:Transitionz.Visibility="{Binding ElementName=CheckBox, Path=IsChecked, Converter={StaticResource b2vc}}">
-                                <materialDesign:Card  Background="{DynamicResource MaterialDesignBackground}">
-                                    <StackPanel>
-                                        <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding GameSettingsExpander, NotifyOnSourceUpdated=True}" Header="Game General Settings:">
-                                            <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                                <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Game Settings" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GameSettingsViewModel}"/>
-                                                <!--<Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="ShowGraph" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}"/>-->
-                                            </StackPanel>
-                                        </Expander>
-                                        <!--<Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                                <ContentControl Visibility="{Binding ShowMenu}" Grid.Row="0" tz:Transitionz.Opacity="{tz:OpacityParams From=0, To=1, Duration=200, TransitionOn=Visibility}" tz:Transitionz.Translate="{tz:TranslateParams From='10,0', To='0,0', Duration=200, TransitionOn=Visibility}" tz:Transitionz.Visibility="{Binding ElementName=CheckBox, Path=IsChecked, Converter={StaticResource b2vc}}">
+                                    <materialDesign:Card  Background="{DynamicResource MaterialDesignBackground}">
+                                        <StackPanel>
+                                            <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding GameSettingsExpander, NotifyOnSourceUpdated=True}" Header="Game General Settings:">
+                                                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                                    <Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Game Settings" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GameSettingsViewModel}"/>
+                                                    <!--<Button Background="#19647E" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="ShowGraph" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}"/>-->
+                                                </StackPanel>
+                                            </Expander>
+                                            <!--<Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                                         <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding UserExpander, NotifyOnSourceUpdated=True}" Header="User's Game Settings:">
                                             <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                                                 <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserLoadStrategyViewModel}"/>
                                                 <Button Background="#FFB30F"  Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Set Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:UserManualStrategyViewModel}"/>
                                             </StackPanel>
                                         </Expander>-->
-                                        <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
-                                        <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding OpponentExpander, NotifyOnSourceUpdated=True}" Header="Opponet's Game Settings:">
-                                            <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                                <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
-                                                <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
-                                            </StackPanel>
-                                        </Expander>
-                                        <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
-                                        <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding CalculateExpander, NotifyOnSourceUpdated=True}" Header="Estimate Strategy">
-                                            <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                                <!--<Button Background="#849324" Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Estimate Stratrgy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:EstimateStrategyViewModel}"/>-->
-                                                <Button Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.Value="-1"  materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="Estimate Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:LoadingViewModel}"/>
-                                                <Button Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.Value="-1"  materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="Deserialize :)" Click="Button_Click" Visibility="Hidden" />
-                                            </StackPanel>
-                                        </Expander>
-                                    </StackPanel>
-                                </materialDesign:Card>
-                            </ContentControl>
-                            <ContentControl Visibility="{Binding ShowOView}" Content="{Binding CurrentViewModel}" Grid.Row="0"/>
-                            <Button IsEnabled="{Binding isMenuControllerButtonEnabled}" Visibility="{Binding ShowOView}" Margin="5" Grid.Row="1" Content="{Binding wizardNavigator}" Command="{Binding BackToWizardCommand}" CommandParameter="{x:Type local:GraphViewModel}" />
-                        </Grid>
-                    </ScrollViewer>
-                    <!-- End Of Main Content! -->
-                    
-                    <!-- Some Notification Feature-->
-                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
+                                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                                            <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding OpponentExpander, NotifyOnSourceUpdated=True}" Header="Opponet's Game Settings:">
+                                                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                                    <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Load Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentLoadStrategyViewModel}"/>
+                                                    <Button Background="#FFB30F" Margin="5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Manual Strategy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:OpponentManualStrategyViewModel}"/>
+                                                </StackPanel>
+                                            </Expander>
+                                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                                            <Expander HorizontalAlignment="Stretch" IsExpanded="{Binding CalculateExpander, NotifyOnSourceUpdated=True}" Header="Estimate Strategy">
+                                                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                                    <!--<Button Background="#849324" Margin="5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Estimate Stratrgy" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:EstimateStrategyViewModel}"/>-->
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.Value="-1"  materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="Estimate Strategy" Command="{Binding NavigateCommandEstimate}" CommandParameter="{x:Type local:LoadingViewModel}"/>
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.Value="-1"  materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="Deserialize :)" Click="Button_Click" Visibility="Hidden" />
+                                                </StackPanel>
+                                            </Expander>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+                                </ContentControl>
+                                <ContentControl Visibility="{Binding ShowOView}" Content="{Binding CurrentViewModel}" Grid.Row="0"/>
+                                <Button IsEnabled="{Binding isMenuControllerButtonEnabled}" Visibility="{Binding ShowOView}" Margin="5" Grid.Row="1" Content="{Binding wizardNavigator}" Command="{Binding BackToWizardCommand}" CommandParameter="{x:Type local:GraphViewModel}" />
+                            </Grid>
+                        </ScrollViewer>
+                        <!-- End Of Main Content! -->
+
+                        <!-- Some Notification Feature-->
+                        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
                                             Grid.Row="1" />
-                    <!-- End of The Notification Feature -->
-                </Grid>
-            </DockPanel>
-        </materialDesign:DrawerHost>
-    </materialDesign:DialogHost>
+                        <!-- End of The Notification Feature -->
+                    </Grid>
+                </DockPanel>
+            </materialDesign:DrawerHost>
+        </materialDesign:DialogHost>
+        <!--alert Box Implementation-->
+        <Grid x:Name="AlertBox" Visibility="{Binding AlerBoxVisibility}" Opacity="1" Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#FF673AB7" BorderThickness="2" Grid.Row="1" Grid.Column="1">
+                <StackPanel Background="White" Margin="10">
+                    <TextBlock Text="{Binding ErrorHead}" TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
+                    <TextBox x:Name="ErrorMSGBody" Text="{Binding ErrorBody}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Button Content="Ok, Got it :)" Command="{Binding ErrorMessageDissimis}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <!--End of alert box implementation -->
+    </Grid>
 </Window>

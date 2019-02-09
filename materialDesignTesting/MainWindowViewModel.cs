@@ -18,6 +18,19 @@ namespace materialDesignTesting
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private object currentViewModel;
+        private string _nameOfCurrentViewModel = "main";
+        public string nameOfCurrentViewModel
+        {
+            get
+            {
+                return _nameOfCurrentViewModel;
+            }
+            set
+            {
+                _nameOfCurrentViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
         public Dictionary<String,Object> viewModels;
 
         ///<sammary>
@@ -101,7 +114,7 @@ namespace materialDesignTesting
         /// <summary>
         /// transition between the windows of the wizard button controller.
         /// </summary>
-        private string _wizardNavigator = "Save";
+        private string _wizardNavigator = "Back to Main Menu";
         public string wizardNavigator
         {
             get
@@ -110,7 +123,7 @@ namespace materialDesignTesting
             }
             set
             {
-                _wizardNavigator = ViewsMediator.isDoneCalcualtingQ ? "Show Results" : "Save";
+                _wizardNavigator = value;
                 RaisePropertyChanged();
             }
         }
@@ -175,12 +188,34 @@ namespace materialDesignTesting
                     {
                         //Bind a 'CurrentViewModel Set' event To the button
                         CurrentViewModel = null;
-                        //CurrentViewModel = Activator.CreateInstance(vmType);
                         ChangeViewModel(vmType);
+                        wizardNavigator = "Save";
                         //toggle menus visibility and then navigate
                         ShowMenu = (ShowMenu == "Visible" ? "Hidden" : "Visible");
                         ShowOView = (ShowOView == "Visible" ? "Hidden" : "Visible");
                         Console.WriteLine("Just Changed the CurrentViewModel to: {0} , \nShowMenu is {1}, \nShowView is {2}",CurrentViewModel, ShowMenu,ShowOView);
+                    }));
+            }
+        }
+
+
+        //not the most ideal solution, just a  temp method
+        private RelayCommand<Type> navigateCommandEstimate;
+        public RelayCommand<Type> NavigateCommandEstimate
+        {
+            get
+            {
+                return (navigateCommandEstimate = new RelayCommand<Type>(
+                    vmType =>
+                    {
+                        //Bind a 'CurrentViewModel Set' event To the button
+                        CurrentViewModel = null;
+                        ChangeViewModel(vmType);
+                        //toggle menus visibility and then navigate
+                        wizardNavigator = "Next";
+                        ShowMenu = (ShowMenu == "Visible" ? "Hidden" : "Visible");
+                        ShowOView = (ShowOView == "Visible" ? "Hidden" : "Visible");
+                        Console.WriteLine("Just Changed the CurrentViewModel to: {0} , \nShowMenu is {1}, \nShowView is {2}", CurrentViewModel, ShowMenu, ShowOView);
                     }));
             }
         }
@@ -203,24 +238,41 @@ namespace materialDesignTesting
                return  (backToWizardCommand = new RelayCommand<Type>(
                     (vmType)=>
                     {
-                        if (ViewsMediator.isDoneCalcualtingQ)
+                        //check Form Validity
+                        bool isFormValid = true;
+                        foreach (KeyValuePair<string,bool> isFieldValid in ViewsMediator.isFormValid)
                         {
-                            //Bind a 'CurrentViewModel Set' event To the button
-                            CurrentViewModel = null;
-                            //CurrentViewModel = Activator.CreateInstance(vmType);
-                            ChangeViewModel(vmType);
+                            if (!isFieldValid.Value)
+                                isFormValid = false;
                         }
+
+                        if(isFormValid)
+                        {
+                            if (ViewsMediator.isDoneCalcualtingQ)
+                            {
+                                //Bind a 'CurrentViewModel Set' event To the button
+                                CurrentViewModel = null;
+                                //CurrentViewModel = Activator.CreateInstance(vmType);
+                                ChangeViewModel(vmType);
+                            }
+                            else
+                            {
+                                ShowMenu = "Visible";
+                                ShowOView = "Hidden";
+                            }
+                            UserExpander = ViewsMediator.userExpander;
+                            OpponentExpander = ViewsMediator.opponentExpander;
+                            GameSettingsExpander = ViewsMediator.gameSettingsExpander;
+                            CalculateExpander = ViewsMediator.calculateExpander;
+                            navigateCommand = null;
+
+                        }
+                        //something is wrong with the game settings form, alert the user.
                         else
                         {
-                            ShowMenu = "Visible";
-                            ShowOView = "Hidden";
+                            ViewsMediator.isFormValid.Clear();
+                            showMessageBox("Whoops, Something is wrong", "Please make sure that you typed the correct data in the game settings.");
                         }
-                        UserExpander = ViewsMediator.userExpander;
-                        OpponentExpander = ViewsMediator.opponentExpander;
-                        GameSettingsExpander = ViewsMediator.gameSettingsExpander;
-                        CalculateExpander = ViewsMediator.calculateExpander;
-                        navigateCommand = null;
-
 
                         ///<summary>
                         ///After each return from a window in the wizard print to the snackbar an update about the results or errors
@@ -260,7 +312,93 @@ namespace materialDesignTesting
             CurrentViewModel = viewModels[viewModelKey.FullName];
         }
 
-    }
+
+        #region Alert Box Properties and methods
+        /// <summary>
+        /// a method that shows the message box 
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="Body"></param>
+        public void showMessageBox(String header, String Body)
+        {
+            messageBoxEnabled = 0.5;
+            AlerBoxVisibility = "Visible";
+            ErrorHead = header;
+            ErrorBody = Body;
+        }
+        public void hideMessageBox()
+        {
+            messageBoxEnabled = 1;
+            AlerBoxVisibility = "Hidden";
+        }
+        private string _AlerBoxVisibility = "Hidden";
+        public string AlerBoxVisibility
+        {
+            get
+            {
+                return _AlerBoxVisibility;
+            }
+            set
+            {
+                _AlerBoxVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+        //message box view controller
+        private double _messageBoxEnabled = 1;
+        public double messageBoxEnabled
+        {
+            get
+            {
+                return _messageBoxEnabled;
+            }
+            set
+            {
+                _messageBoxEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+        private string _ErrorHead;
+        public string ErrorHead
+        {
+            get
+            {
+                return _ErrorHead;
+            }
+            set
+            {
+                _ErrorHead = value;
+                RaisePropertyChanged();
+            }
+        }
+        private string _ErrorBody;
+        public string ErrorBody
+        {
+            get
+            {
+                return _ErrorBody;
+            }
+            set
+            {
+                _ErrorBody = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private RelayCommand<Type> errorMessageDissimis;
+        public RelayCommand<Type> ErrorMessageDissimis
+        {
+            get
+            {
+                return (errorMessageDissimis = new RelayCommand<Type>(
+                     (vmType) =>
+                     {
+                         hideMessageBox();
+                     }));
+            }
+        }
+#endregion
+}
 
 
 
