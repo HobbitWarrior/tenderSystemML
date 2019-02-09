@@ -239,11 +239,16 @@ namespace materialDesignTesting
                     (vmType)=>
                     {
                         //check Form Validity
+                        string erronousField = "";
                         bool isFormValid = true;
                         foreach (KeyValuePair<string,bool> isFieldValid in ViewsMediator.isFormValid)
                         {
                             if (!isFieldValid.Value)
+                            {
                                 isFormValid = false;
+                                //add the field to the error message.
+                                erronousField += " " + isFieldValid.Key+",";
+                            }
                         }
 
                         if(isFormValid)
@@ -270,7 +275,7 @@ namespace materialDesignTesting
                         else
                         {
                             ViewsMediator.isFormValid.Clear();
-                            showMessageBox("Whoops, Something is wrong", "Please make sure that you typed the correct data in the game settings.");
+                            showMessageBox("Whoops, Something is wrong", String.Format("Please make sure that you typed the correct data in the game settings. Please correct these fields: {0}", erronousField));
                         }
 
                         ///<summary>
@@ -288,6 +293,23 @@ namespace materialDesignTesting
             }
         }
 
+        private RelayCommand<Type> backToMainCommand;
+        public RelayCommand<Type> BackToMainCommand
+        {
+            get
+            {
+                return (backToMainCommand = new RelayCommand<Type>(
+                     (vmType) =>
+                     {
+                         ////Bind a 'CurrentViewModel Set' event To the button
+                         //CurrentViewModel = null;
+                         ////CurrentViewModel = Activator.CreateInstance(vmType);
+                         //ChangeViewModel(vmType);
+                         ShowMenu = "Visible";
+                         ShowOView = "Hidden";
+                     }));
+            }
+        }
 
 
         public MainWindowViewModel()
