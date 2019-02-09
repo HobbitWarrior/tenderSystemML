@@ -24,5 +24,6 @@ namespace materialDesignTesting
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        
     }
 }

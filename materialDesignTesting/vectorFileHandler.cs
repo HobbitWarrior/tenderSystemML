@@ -7,7 +7,7 @@ namespace materialDesignTesting
 {
 
     /// <summary>
-    /// A helper class to read CSV files 
+    /// A CSV file Reader/Writer 
     /// </summary>
 
 
@@ -80,7 +80,7 @@ namespace materialDesignTesting
                 text = File.ReadAllLines(path);
                 for (int i = 0; i < text.Length; i++)
                 {
-                    var temp = text[i].Replace(",", " ").Split(' ');
+                    var temp = text[i].Replace(",", " ").Replace(System.Environment.NewLine,"").Split(' ');
                     for (int j = 0; j < (temp.Length-1); j++)
                         realval.Add(double.Parse(temp[j]));
                 }

@@ -22,7 +22,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Calculating Strategy - The Q Learning Magic :)" Style="{DynamicResource MaterialDesignCardGroupBox}">
+        <GroupBox Header="Calculating Strategy - The Q Learning Magic :)" Style="{DynamicResource MaterialDesignCardGroupBox}" Opacity="{Binding messageBoxEnabled}">
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -53,5 +53,29 @@
                 <ProgressBar Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" IsIndeterminate="True" />
             </Grid>
         </GroupBox>
+
+        <!--alert Box Implementation-->
+        <Grid x:Name="AlertBox" Visibility="{Binding AlerBoxVisibility}" Opacity="1" Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#FF673AB7" BorderThickness="2" Grid.Row="1" Grid.Column="1">
+                <StackPanel Background="White" Margin="10">
+                    <TextBlock Text="{Binding ErrorHead}" TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
+                    <TextBox x:Name="ErrorMSGBody" Text="{Binding ErrorBody}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Button Content="Ok, Got it :) " Click="ErrorMessageDissimis"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <!--End of alert box implementation -->
+
+
     </Grid>
 </UserControl>

@@ -26,11 +26,20 @@ namespace materialDesignTesting
             }
             set
             {
+                //change the value, even though it may be not valid, and alert the user about the error
                 ViewsMediator.K = value;
-                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.K);
-                //update the value for the oppoent manual vector insertion
-                ViewsMediator.generateCollection();
-                RaisePropertyChanged();
+                //validation condition
+                if (value>1)
+                {
+                    Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.K);
+                    //update the value for the oppoent manual vector insertion
+                    ViewsMediator.generateCollection();
+                    RaisePropertyChanged();
+                    ViewsMediator.isFormValid["K"] = true;
+                }
+                else
+                    ViewsMediator.isFormValid["K"] = false;
+                    
             }
         }
 
@@ -43,8 +52,11 @@ namespace materialDesignTesting
             set
             {
                 ViewsMediator.n0 = value;
-                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.n0);
-                RaisePropertyChanged();
+                if (validateField(value,"n0"))
+                {
+                    Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.n0);
+                    RaisePropertyChanged();
+                }
             }
         }
         public int m
@@ -56,8 +68,11 @@ namespace materialDesignTesting
             set
             {
                 ViewsMediator.m = value;
-                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.m);
-                RaisePropertyChanged();
+                if (validateField(value,"m"))
+                {
+                    Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.m);
+                    RaisePropertyChanged();
+                }
             }
         }
         public int N
@@ -69,8 +84,14 @@ namespace materialDesignTesting
             set
             {
                 ViewsMediator.N = value;
-                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.N);
-                RaisePropertyChanged();
+                if (value>1)
+                {
+                    Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.N);
+                    ViewsMediator.isFormValid["N"] = true;
+                    RaisePropertyChanged();
+                }
+                else
+                    ViewsMediator.isFormValid["N"] = false;
             }
         }
         public int y
@@ -82,8 +103,11 @@ namespace materialDesignTesting
             set
             {
                 ViewsMediator.y = value;
-                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.y);
-                RaisePropertyChanged();
+                if (validateField(value,"y"))
+                {
+                    Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.y);
+                    RaisePropertyChanged();
+                }
             }
         }
         public int z
@@ -95,8 +119,11 @@ namespace materialDesignTesting
             set
             {
                 ViewsMediator.z = value;
-                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.z);
-                RaisePropertyChanged();
+                if (validateField(value,"z"))
+                {
+                    Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.z);
+                    RaisePropertyChanged();
+                }
             }
         }
         public int w
@@ -107,9 +134,12 @@ namespace materialDesignTesting
             }
             set
             {
-                ViewsMediator.w= value;
-                Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.w);
-                RaisePropertyChanged();
+                ViewsMediator.w = value;
+                if (validateField(value,"w"))
+                {
+                    Console.WriteLine("NumberOfGames has changed to: {0}", ViewsMediator.w);
+                    RaisePropertyChanged();
+                }
             }
         }
 
@@ -148,7 +178,111 @@ namespace materialDesignTesting
 
         #endregion
         #region methods
-        //TODO: implement some field validation and tracking the filling of values in the  fields, and on completion of the form inform the snackbar
+
+        /// <summary>
+        /// the method performs basic validation of the value in the form
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool validateField(int value,string field)
+        {
+            if (value < 1 || value > ViewsMediator.N)
+            {
+                ViewsMediator.isFormValid[field] = false;
+                return false;
+            }
+            ViewsMediator.isFormValid[field] = true;
+            return true;
+        }
         #endregion
+
+
+
+        #region Alert Box Properties and methods
+        /// <summary>
+        /// a method that shows the message box 
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="Body"></param>
+        public void showMessageBox(String header, String Body)
+        {
+            messageBoxEnabled = 0.5;
+            AlerBoxVisibility = "Visible";
+            ErrorHead = header;
+            ErrorBody = Body;
+        }
+        public void hideMessageBox()
+        {
+            messageBoxEnabled = 1;
+            AlerBoxVisibility = "Hidden";
+        }
+        private string _AlerBoxVisibility = "Hidden";
+        public string AlerBoxVisibility
+        {
+            get
+            {
+                return _AlerBoxVisibility;
+            }
+            set
+            {
+                _AlerBoxVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+        //message box view controller
+        private double _messageBoxEnabled = 1;
+        public double messageBoxEnabled
+        {
+            get
+            {
+                return _messageBoxEnabled;
+            }
+            set
+            {
+                _messageBoxEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+        private string _ErrorHead;
+        public string ErrorHead
+        {
+            get
+            {
+                return _ErrorHead;
+            }
+            set
+            {
+                _ErrorHead = value;
+                RaisePropertyChanged();
+            }
+        }
+        private string _ErrorBody;
+        public string ErrorBody
+        {
+            get
+            {
+                return _ErrorBody;
+            }
+            set
+            {
+                _ErrorBody = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private RelayCommand<Type> errorMessageDissimis;
+        public RelayCommand<Type> ErrorMessageDissimis
+        {
+            get
+            {
+                return (errorMessageDissimis = new RelayCommand<Type>(
+                     (vmType) =>
+                     {
+                         hideMessageBox();
+                     }));
+#endregion
+
+            }
+        }
     }
 }
