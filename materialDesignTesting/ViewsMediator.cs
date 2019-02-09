@@ -30,6 +30,10 @@ namespace materialDesignTesting
 
         #region Game Settings Variables
         //<summary>Game General Settings Variables</summary>
+        /// <value>
+        /// an indicator of the game settings form validity
+        /// </value>
+        public static Dictionary<string,bool> isFormValid = new Dictionary<string, bool>();
         //<value>Number Of Games</value>
         public static int K=3;
 
