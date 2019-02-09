@@ -37,63 +37,63 @@ using materialDesignTesting;
 
 
 namespace materialDesignTesting {
-
-
+    
+    
     /// <summary>
     /// MainWindow
     /// </summary>
     public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
-
-
+        
+        
         #line 51 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ListBox DemoItemsListBox;
-
+        
         #line default
         #line hidden
-
-
+        
+        
         #line 54 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button mainButton;
-
+        
         #line default
         #line hidden
-
-
+        
+        
         #line 59 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button logInButton;
-
+        
         #line default
         #line hidden
-
-
+        
+        
         #line 64 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button graphButton;
-
+        
         #line default
         #line hidden
-
-
+        
+        
         #line 78 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Primitives.ToggleButton MenuToggleButton;
-
+        
         #line default
         #line hidden
-
-
+        
+        
         #line 151 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal MaterialDesignThemes.Wpf.Snackbar MainSnackbar;
-
+        
         #line default
         #line hidden
-
+        
         private bool _contentLoaded;
-
+        
         /// <summary>
         /// InitializeComponent
         /// </summary>
@@ -105,14 +105,14 @@ namespace materialDesignTesting {
             }
             _contentLoaded = true;
             System.Uri resourceLocater = new System.Uri("/materialDesignTesting;component/mainwindow.xaml", System.UriKind.Relative);
-
+            
             #line 1 "..\..\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
-
+            
             #line default
             #line hidden
         }
-
+        
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
@@ -123,19 +123,19 @@ namespace materialDesignTesting {
             switch (connectionId)
             {
             case 1:
-
+            
             #line 17 "..\..\MainWindow.xaml"
             ((System.Windows.Input.CommandBinding)(target)).Executed += new System.Windows.Input.ExecutedRoutedEventHandler(this.OnCopy);
-
+            
             #line default
             #line hidden
             return;
             case 2:
             this.DemoItemsListBox = ((System.Windows.Controls.ListBox)(target));
-
+            
             #line 52 "..\..\MainWindow.xaml"
             this.DemoItemsListBox.PreviewMouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(this.UIElement_OnPreviewMouseLeftButtonUp);
-
+            
             #line default
             #line hidden
             return;
@@ -152,34 +152,34 @@ namespace materialDesignTesting {
             this.MenuToggleButton = ((System.Windows.Controls.Primitives.ToggleButton)(target));
             return;
             case 7:
-
+            
             #line 81 "..\..\MainWindow.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.MenuPopupButton_OnClick);
-
+            
             #line default
             #line hidden
             return;
             case 8:
-
+            
             #line 82 "..\..\MainWindow.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.MenuPopupButton_OnClick);
-
+            
             #line default
             #line hidden
             return;
             case 9:
-
+            
             #line 85 "..\..\MainWindow.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.MenuPopupButton_OnClick);
-
+            
             #line default
             #line hidden
             return;
             case 10:
-
+            
             #line 138 "..\..\MainWindow.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Button_Click);
-
+            
             #line default
             #line hidden
             return;
@@ -191,3 +191,4 @@ namespace materialDesignTesting {
         }
     }
 }
+

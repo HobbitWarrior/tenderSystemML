@@ -29,7 +29,6 @@ namespace materialDesignTesting
             //MainWindow.Snackbar.MessageQueue.Enqueue("Done :)");
             externalProcessRunner epr = new externalProcessRunner();
             //validate and save the results in the view mediator
-            showMessageBox("Whoops, Something went wrong", "Something went wrong, the external script runner 'externalProccessRunner' did not return results array.");
             if ((ViewsMediator.gameResults = epr.runCmd()) == null)
             {
                 MainWindow.Snackbar.MessageQueue.Enqueue("Something went wrong, the external script runner 'externalProccessRunner' did not return results array.");
