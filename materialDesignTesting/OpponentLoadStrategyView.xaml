@@ -45,7 +45,7 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Grid.Row="0"  materialDesign:HintAssist.Hint="{Binding FileName}"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
+                <TextBox Grid.Column="0" Grid.Row="0" SelectionBrush="Black" materialDesign:HintAssist.Hint="{Binding FileName}"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" BorderBrush="Black"/>
                 <Button x:Name="BrowseButton" Grid.Column="1" Grid.Row="0" Width="100" Content="Browse" Command="{Binding ClickOnBrowseButton}"/>
             </Grid>
         </GroupBox>

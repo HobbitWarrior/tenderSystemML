@@ -36,7 +36,7 @@
             </GroupBox.HeaderTemplate>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="300*"/>
+                    <RowDefinition Height="220*"/>
                     <RowDefinition Height="220*"/>
                     <RowDefinition Height="131*"/>
                     <RowDefinition Height="131*"/>
@@ -46,7 +46,7 @@
                     <RowDefinition Height="131*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120*"/>
+                    <ColumnDefinition Width="200*"/>
                     <ColumnDefinition Width="500*"/>
                     <ColumnDefinition Width="180*"/>
                     <ColumnDefinition Width="100*"/>
@@ -55,16 +55,16 @@
                 
                 
                 <!--Graph selection tree view-->
-                <TreeView Width="220" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <TreeView Width="200" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                     <TreeViewItem Header="Graphs" IsExpanded="True" Width="240">
                         <TreeViewItem  Width="200" MouseRightButtonUp="TreeViewItem_MouseRightButtonUp">
                             <TreeViewItem.Header>
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Content="Expectation" Command="{Binding ShowExpectation}" />
+                                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Content="Expectation" Command="{Binding ShowExpectation}" />
                             </TreeViewItem.Header>
                         </TreeViewItem>
                         <TreeViewItem Width="200">
                             <TreeViewItem.Header>
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Content="Average" Command="{Binding ShowAverage}" />
+                                <Button Style="{StaticResource MaterialDesignFlatButton}"  Content="Average" Command="{Binding ShowAverage}" />
                             </TreeViewItem.Header>
                         </TreeViewItem>
                         <TreeViewItem Width="200">

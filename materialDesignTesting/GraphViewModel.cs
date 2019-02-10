@@ -274,13 +274,13 @@ namespace materialDesignTesting
             {
                 case graphType.expectation:
                     graphValues = ViewsMediator.gameResults.expectation == null ? null : ViewsMediator.gameResults.expectation;
-                    return expectationGraph(graphValues);
+                    return expectationGraph(graphValues, @"C:\newPro\tenderSystemML\qExpectationConstantLoss.csv");
                 case graphType.outcome:
                     graphValues = ViewsMediator.gameResults.outcome == null ? null : ViewsMediator.gameResults.outcome;
-                    return lineGraph(graphValues, "Outcomes");
+                    return lineGraph(graphValues, "Outcomes", @"C:\newPro\tenderSystemML\qOutcomeConstantLoss.csv");
                 case graphType.average:
                     graphValues = ViewsMediator.gameResults.average == null ? null : ViewsMediator.gameResults.average;
-                    return lineGraph(graphValues, "Average");
+                    return lineGraph(graphValues, "Average", @"C:\newPro\tenderSystemML\qAverageConstantLoss");
                 default:
                     return loadHistogramValues(50);
 
@@ -291,9 +291,23 @@ namespace materialDesignTesting
         /// </summary>
         /// <param name="graphValues"></param>
         /// <returns></returns>
-        public SeriesCollection expectationGraph(double[] graphValues)
+        public SeriesCollection expectationGraph(double[] graphValues,String filePath)
         {
-            //graphValues = null;
+            String line = String.Empty;
+            System.IO.StreamReader file = new System.IO.StreamReader(filePath);
+            List<Double> vals = new List<double>();
+            while ((line = file.ReadLine()) != null)
+            {
+                String[] parts_of_line = line.Split(',');
+                for (int i = 0; i < parts_of_line.Length; i++)
+                {
+                    parts_of_line[i] = parts_of_line[i].Trim();
+                    vals.Add(Convert.ToDouble(parts_of_line[i]));
+                }
+
+                // do with the parts of the line whatever you like
+
+            }
             if (graphValues != null)
             {
                 SeriesCollection _seriesCollection = new SeriesCollection();
@@ -303,7 +317,7 @@ namespace materialDesignTesting
                     _seriesCollection.Add(new ColumnSeries
                     {
                         Title = String.Format("{0}", i),
-                        Values = new ChartValues<double> { graphValues[i] }
+                        Values = new ChartValues<double> {vals[i] }
                     });
                 }
                 return _seriesCollection;
@@ -319,16 +333,31 @@ namespace materialDesignTesting
         /// <param name="graphValues"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public SeriesCollection lineGraph(double[] graphValues,String name)
+        public SeriesCollection lineGraph(double[] graphValues,String name,String filePath)
         {
+            String line = String.Empty;
+            System.IO.StreamReader file = new System.IO.StreamReader(filePath);
+            List<Double> vals = new List<double>();
+            while ((line = file.ReadLine()) != null)
+            {
+                String[] parts_of_line = line.Split(' ');
+                for (int i = 0; i < parts_of_line.Length; i++)
+                {
+                    parts_of_line[i] = parts_of_line[i].Trim();
+                    vals.Add(Convert.ToDouble(parts_of_line[i]));
+                }
+
+                // do with the parts of the line whatever you like
+
+            }
             if (graphValues != null)
             {
                 SeriesCollection _seriesCollection = new SeriesCollection();
                 //show selected values, to fit in the chart, with a proportion of 1/200
                 int valuesInterval = (int)Math.Ceiling((double)(graphValues.Length / 200))+1;
                 ChartValues<double> graphChartValues = new ChartValues<double>();
-                for (int i=0; i<graphValues.Length;i+= valuesInterval)
-                    graphChartValues.Add(graphValues[i]);
+                foreach(double val in vals)
+                    graphChartValues.Add(val);
 
                 _seriesCollection.Add(
                     new LineSeries
