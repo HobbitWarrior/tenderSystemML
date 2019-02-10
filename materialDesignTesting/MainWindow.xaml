@@ -52,14 +52,11 @@
                         <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
                              PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
                             <ListBoxItem >
-                                <Button x:Name="mainButton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
+                                <Button x:Name="mainButton" Command="{Binding BackToMainCommand}" CommandParameter="{x:Type local:MainWindowViewModel}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
                                     Main
                                 </Button>
                             </ListBoxItem>
                             <ListBoxItem >
-                                <Button x:Name="logInButton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
-                                    Log In
-                                </Button>
                             </ListBoxItem>
                             <ListBoxItem>
                                 <Button x:Name="graphButton" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:GraphViewModel}" Margin="4" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignFlatButton}">
@@ -79,11 +76,6 @@
                                         x:Name="MenuToggleButton"/>
                             <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                                 <StackPanel>
-                                    <Button Content="Hello World" Click="MenuPopupButton_OnClick" />
-                                    <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
-                                    <Button Content="Can't Touch This" IsEnabled="False" />
-                                    <Separator/>
-                                    <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
                                 </StackPanel>
                             </materialDesign:PopupBox>
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Tender Analysis System - All Pay Auctions</TextBlock>
@@ -143,7 +135,7 @@
                                     </materialDesign:Card>
                                 </ContentControl>
                                 <ContentControl Visibility="{Binding ShowOView}" Content="{Binding CurrentViewModel}" Grid.Row="0"/>
-                                <Button IsEnabled="{Binding isMenuControllerButtonEnabled}" Visibility="{Binding ShowOView}" Margin="5" Grid.Row="1" Content="{Binding wizardNavigator}" Command="{Binding BackToWizardCommand}" CommandParameter="{x:Type local:GraphViewModel}" />
+                                <Button IsEnabled="{Binding isMenuControllerButtonEnabled}" Visibility="{Binding ShowOView}" Margin="5" Grid.Row="1" Content="Save" Command="{Binding BackToWizardCommand}" CommandParameter="{x:Type local:GraphViewModel}" />
                             </Grid>
                         </ScrollViewer>
                         <!-- End Of Main Content! -->
@@ -172,7 +164,7 @@
                 <StackPanel Background="White" Margin="10">
                     <TextBlock Text="{Binding ErrorHead}" TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
                     <TextBox x:Name="ErrorMSGBody" Text="{Binding ErrorBody}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Button Content="Ok, Got it :)" Command="{Binding ErrorMessageDissimis}"/>
+                    <Button Content="Ok" Command="{Binding ErrorMessageDissimis}"/>
                 </StackPanel>
             </Border>
         </Grid>
